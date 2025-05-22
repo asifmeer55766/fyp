@@ -1,0 +1,36 @@
+.rotating-background-button {
+    position: relative;
+    padding: 12px 30px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #00fff0;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: conic-gradient(from 0deg,
+                #00fff0,
+                #00bfff,
+                #00ffa6,
+                #00fff0);
+        animation: rotateBg 12s linear infinite;
+        z-index: -1;
+    }
+}
+
+
+@keyframes rotateBg {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,71 @@
+@import "../../common";
+
+.home-container {
+    padding-top: 80px;
+    background:
+        url('../../assets/bg-1.png') left center no-repeat,
+        url('../../assets/bg-2.png') right center no-repeat;
+    background-size: 700px; // or 'contain' or specific sizes like '300px'
+    background-color: rgb(2, 10, 15); // optional: fallback background color
+    min-height: 100vh;
+
+    .heading1 {
+        text-align: center;
+        font-size: 3.7rem;
+        font-weight: 400;
+        color: $primary-white;
+        margin-top: 40px;
+    }
+
+    .heading2 {
+        text-align: center;
+        font-size: 4rem;
+        font-weight: bold;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.1rem;
+        margin-top: 10px;
+        font-weight: 600;
+        color: $primary-white;
+    }
+
+    @keyframes colorChange {
+        0% {
+            color: $primary-blue;
+        }
+
+        50% {
+            color: $primary-blue-2;
+        }
+
+        100% {
+            color: $primary-blue ;
+        }
+    }
+
+    .animated-text {
+        animation: colorChange 3s infinite linear;
+
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .home-container {
+        .home {
+            .heading1 {
+                font-size: 1.5rem;
+            }
+
+            .heading2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+.animated-border-button {
+    position: relative;
+    padding: 12px 30px;
+    border: none;
+    background-color: #1e1e1e;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: conic-gradient(from 0deg,
+                #00fff0,
+                #00bfff,
+                #00ffa6,
+                #00fff0);
+        border-radius: 14px;
+        z-index: -1;
+        animation: spinBorder 3s linear infinite;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        z-index: -1;
+    }
+}
+
+@keyframes spinBorder {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width:768px) {
+    button {
+        width: 100%;
+    }
+}

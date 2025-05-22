@@ -1,0 +1,120 @@
+@import "../../common";
+
+.target-category-container {
+    margin: 100px auto 20px auto;
+    text-align: center;
+
+    span {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: $primary-white;
+    }
+
+    form {
+        display: inline;
+        margin: 4px auto;
+
+        .category-box {
+            padding: 5px 8px;
+            text-transform: capitalize;
+            background-color: $background-half-black;
+            width: fit-content;
+            margin: 2px 5px;
+            font-weight: 500;
+            display: inline;
+            border-radius: 3px;
+
+            label {
+                color: $text-half-black;
+            }
+
+            input {
+                width: 20px;
+            }
+
+            &:hover {
+                background-color: white;
+            }
+        }
+    }
+
+    .user-req-input-container {
+
+        width: 70%;
+        margin: 25px auto;
+
+        input {
+            padding: 10px;
+            min-height: 13vh;
+            width: 85%;
+            border: none;
+            outline: none;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            color: $primary-white;
+            background-color: $background-half-black;
+        }
+
+        button {
+            padding: 10px;
+            min-height: 13vh;
+            width: 15%;
+            border: none;
+            background: linear-gradient(to right, $primary-blue-2, $primary-blue);
+            color: white;
+            // font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+
+            &:hover {
+                background: linear-gradient(to right, $primary-blue, $primary-blue-2);
+
+            }
+        }
+
+        ::placeholder {
+            text-transform: capitalize;
+        }
+
+    }
+}
+
+@media screen and (max-width:768px) {
+    .target-category-container {
+        .user-req-input-container {
+            width: 95%;
+
+            input,
+            button {
+                min-height: 8vh;
+            }
+
+            input {
+                width: 70%;
+            }
+
+            button {
+                width: 30%;
+            }
+        }
+
+        form {
+
+            // display: flex;
+            .category-boxes {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .category-box {
+                    width: fit-content;
+                    margin: 10px 5px;
+                }
+            }
+
+
+        }
+    }
+}
