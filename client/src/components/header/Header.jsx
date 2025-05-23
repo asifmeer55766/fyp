@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import logo from "../../assets/logo.jpg";
@@ -9,6 +9,8 @@ import Button2 from '../buttons/Button2';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
     const toggleMenu = () => setMenuOpen(prev => !prev);
 
     const navigate = useNavigate();
@@ -19,8 +21,17 @@ const Header = () => {
         navigate('/')
     }
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+
     return (
-        <header>
+        <header className={scrolled ? 'scrolled' : ''}>
             <nav className="navbar">
                 {/* <img src={logo} alt="company logo" /> */}
                 <span><SlSettings className='setting' />SysDesign</span>
@@ -32,8 +43,7 @@ const Header = () => {
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='/about'>About</NavLink>
-                    <NavLink to='/services'>Services</NavLink>
-                    <NavLink to='/contact'>Contact</NavLink>
+                    <NavLink to='/features'>Features</NavLink>
                     <span className='login auth-btn' onClick={NavigateLogin}><Button1 name="Login" /></span>
                     <span className='auth-btn' onClick={GetStarted} ><Button2 name='Get Started' /></span>
                 </ul>

@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
 import Home from './pages/home/Home'
 import RegisterForm from './components/authentication/Register'
 import LoginForm from './components/authentication/Login'
+import Features from './pages/features/Features'
+import About from './pages/about/About'
 function App() {
 
   return (
@@ -14,7 +17,10 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<RegisterForm />} />
           <Route path='/login' element={<LoginForm />} />
+          <Route path='/features' element={<Features />} />
+          <Route path='/about' element={<About />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

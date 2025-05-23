@@ -10,7 +10,7 @@ const UserInput = () => {
 
                     <div className="user-req-input-container">
                         <input type="text" minLength={'200'} maxLength={'4000'} placeholder='make a system design for my eCommerce Store' />
-                        <button>Generate</button>
+                        <button onClick={alert("Sorry! BackEnd is under Development")}>Generate</button>
                     </div>
 
                     <div className="category-boxes">
@@ -26,13 +26,13 @@ const UserInput = () => {
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="erd digrame" id="" />
-                            <label htmlFor="erddigrame">ERD Digram</label>
+                            <input type="checkbox" name="erd digrame" id="lowlevel" />
+                            <label htmlFor="lowlevel">Low Level Design</label>
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="erd digrame" id="" />
-                            <label htmlFor="erddigrame">ERD Digram</label>
+                            <input type="checkbox" name="erd digrame" id="highlevel" />
+                            <label htmlFor="highlevel">High Level Design</label>
                         </div>
 
                         <div className="category-box">
