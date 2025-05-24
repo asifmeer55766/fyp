@@ -11,40 +11,42 @@ const Features = () => {
         <>
             <div className="features-container">
                 <h1>our <span>features</span></h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus!</p>
+                <p>Explore powerful tools to plan, design, and document your software systems professionally.</p>
+
 
 
                 <div className="features">
                     <div className="feature-items">
                         <img src={f1} alt="" />
                         <h2>ERD Digrame</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <p>Visualizes entities and relationships in a database structure for clarity.</p>
                     </div>
                     <div className="feature-items">
                         <img src={f2} alt="" />
                         <h2>DFD Digrame</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <p>Shows how data flows through the system using inputs, processes, and outputs.</p>
                     </div>
                     <div className="feature-items">
                         <img src={f3} alt="" />
                         <h2>System Architecture</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <p>Defines how software and hardware components interact within the system.</p>
                     </div>
                     <div className="feature-items">
                         <img src={f4} alt="" />
-                        <h2>High Level Design </h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <h2>High Level Design</h2>
+                        <p>Outlines system modules, major components, and overall software structure.</p>
                     </div>
                     <div className="feature-items">
                         <img src={f5} alt="" />
                         <h2>Low Level Desgin</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <p>Describes internal logic, functions, and workflows of each module in detail.</p>
                     </div>
                     <div className="feature-items">
                         <img src={f2} alt="" />
                         <h2>High Quality Docs</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, temporibus</p>
+                        <p>Delivers detailed, well-structured documentation for seamless team workflow.</p>
                     </div>
+
                 </div>
 
             </div>

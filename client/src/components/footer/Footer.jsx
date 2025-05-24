@@ -7,8 +7,11 @@ const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
-                <h2>SysDesign </h2>
-                <p>AI-Assisted System Design & Architecture Generator</p>
+                <div className="logo-title">
+
+                    <h2>SysDesign </h2>
+
+                </div>
 
 
 
@@ -16,7 +19,7 @@ const Footer = () => {
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
                     <Link to="/features">Features</Link>
-                    <Link to="/contact">Contact</Link>
+
                 </div>
 
                 <p className="copyright">

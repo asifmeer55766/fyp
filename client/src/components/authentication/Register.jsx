@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import authimg from "../../assets/authimg.jpg"
+import authimg from "../../assets/register.jpeg"
 const RegisterForm = ({ toggleForm }) => {
     return (
         <>

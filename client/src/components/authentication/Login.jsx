@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './AuthModel.scss'
-import authimg from "../../assets/authimg.jpg"
+import authimg from "../../assets/login.jpg"
 const LoginForm = ({ toggleForm }) => {
     return (
         <>

@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './UserInput.scss'
+
 const UserInput = () => {
+
+    const Alert = () => {
+        alert("Sorry! BackEnd is under Development")
+    }
+    useEffect(() => {
+
+    }, [Alert])
+
     return (
         <>
 
@@ -9,8 +18,8 @@ const UserInput = () => {
                 <form action="">
 
                     <div className="user-req-input-container">
-                        <input type="text" minLength={'200'} maxLength={'4000'} placeholder='make a system design for my eCommerce Store' />
-                        <button onClick={alert("Sorry! BackEnd is under Development")}>Generate</button>
+                        <input type="text" minLength={'200'} maxLength={'4000'} placeholder='write here your complete requirements at least( >250 char)' />
+                        <button onClick={Alert}>Generate</button>
                     </div>
 
                     <div className="category-boxes">

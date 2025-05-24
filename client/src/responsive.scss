@@ -1,0 +1,29 @@
+@media (max-width: 480px) {
+    /* Styles for very small phones */
+}
+
+@media (max-width: 576px) {
+
+    /* Styles for small mobile phones */
+    footer {
+        .footer-content {
+            flex-direction: column;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    /* Styles for tablets (e.g., iPad portrait) */
+}
+
+@media (max-width: 992px) {
+    /* Styles for small laptops */
+}
+
+@media (max-width: 1200px) {
+    /* Styles for desktops with smaller screens */
+}
+
+@media (max-width: 1400px) {
+    /* Styles for very large screens */
+}
