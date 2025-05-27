@@ -9,7 +9,7 @@ const Home = () => {
                 <div className="home">
                     <h1 className='heading1'>Elevate Your Experience With </h1>
                     <h1 className='heading2 animated-text'>Best AI Assist System Design Generator</h1>
-                    <p>Your One-Stop Solution for Client, Server, Database, API Gateway, Load Balancer, Cache, Authentication & Authorization.</p>
+                    <p>Your One-Step Solution for Client, Server, Database, API Gateway, Load Balancer, Cache, Authentication & Authorization.</p>
                 </div>
                 <div className="user-input-section">
                     <UserInput />

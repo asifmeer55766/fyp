@@ -4,6 +4,7 @@ import asif from '../../assets/asif.png';
 import sadaat from '../../assets/sadaat.jpg';
 import farhan from '../../assets/farhan.jpg';
 import naila from '../../assets/profile.png';
+import yasir from '../../assets/yasir.jpg';
 const About = () => {
     return (
         <div className="about-us">
@@ -41,7 +42,7 @@ const About = () => {
                             <p>Lead Developer & Visionary</p>
                         </div>
                         <div className="member">
-                            <img src={naila} alt="Engineer" />
+                            <img src={yasir} alt="Engineer" />
                             <h3>Yasir Ali</h3>
                             <p>Backend Engineer</p>
                         </div>

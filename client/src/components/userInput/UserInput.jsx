@@ -25,28 +25,28 @@ const UserInput = () => {
                     <div className="category-boxes">
                         <span>Select Target </span>
                         <div className="category-box">
-                            <input type="checkbox" name="erd digrame" id="erddigrame" />
                             <label htmlFor="erddigrame">ERD Digram</label>
+                            <input type="checkbox" name="erd digrame" id="erddigrame" />
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="sequence digrame" id="seqdigrame" />
                             <label htmlFor="seqdigrame">Sequence Digram</label>
+                            <input type="checkbox" name="sequence digrame" id="seqdigrame" />
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="erd digrame" id="lowlevel" />
                             <label htmlFor="lowlevel">Low Level Design</label>
+                            <input type="checkbox" name="erd digrame" id="lowlevel" />
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="erd digrame" id="highlevel" />
                             <label htmlFor="highlevel">High Level Design</label>
+                            <input type="checkbox" name="erd digrame" id="highlevel" />
                         </div>
 
                         <div className="category-box">
-                            <input type="checkbox" name="system design" id="systemdesign" />
                             <label htmlFor="systemdesign">complete system design</label>
+                            <input type="checkbox" name="system design" id="systemdesign" />
                         </div>
                     </div>
 
