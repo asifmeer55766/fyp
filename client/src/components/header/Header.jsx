@@ -10,8 +10,31 @@ import Button2 from '../buttons/Button2';
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [role, setRole] = useState('');
+
+    // Check login state on mount
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const storedRole = localStorage.getItem('role');
+        if (token) {
+            setIsLoggedIn(true);
+            setRole(storedRole);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
+
 
     const toggleMenu = () => setMenuOpen(prev => !prev);
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        setIsLoggedIn(false);
+        setRole('');
+        navigate('/');
+    };
+
 
     const navigate = useNavigate();
     const NavigateLogin = () => {
@@ -44,8 +67,27 @@ const Header = () => {
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='/about'>About</NavLink>
                     <NavLink to='/features'>Features</NavLink>
-                    <span className='login auth-btn' onClick={NavigateLogin}><Button1 name="Login" /></span>
-                    <span className='auth-btn' onClick={GetStarted} ><Button2 name='Get Started' /></span>
+                    {isLoggedIn ? (
+                        <>
+                            {role === 'admin' ? (
+                                <NavLink to="/admin-dashboard">Dashboard</NavLink>
+                            ) : (
+                                <NavLink to="/user-dashboard">Dashboard</NavLink>
+                            )}
+                            <span className='auth-btn' onClick={handleLogout}>
+                                <Button1 name="Logout" />
+                            </span>
+                        </>
+                    ) : (
+                        <>
+                            <span className='login auth-btn' onClick={NavigateLogin}>
+                                <Button1 name="Login" />
+                            </span>
+                            <span className='auth-btn' onClick={GetStarted}>
+                                <Button2 name='Get Started' />
+                            </span>
+                        </>
+                    )}
                 </ul>
             </nav>
 
