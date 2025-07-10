@@ -25,6 +25,20 @@ header {
         margin: 0 auto;
         padding: 10px 0;
 
+        .logo-div {
+            width: 8%;
+
+            img {
+                font-size: 2.5rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 800;
+            }
+
+        }
+
         span {
             font-size: 2.5rem;
             display: flex;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
-import logo from "../../assets/logo.jpg";
+import logopng from "../../assets/logopng.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { SlSettings } from "react-icons/sl";
 import Button1 from '../buttons/button1';
@@ -56,7 +56,9 @@ const Header = () => {
     return (
         <header className={scrolled ? 'scrolled' : ''}>
             <nav className="navbar">
-                {/* <img src={logo} alt="company logo" /> */}
+                {/* <div className='logo-div'>
+                    <img src={logopng} alt="company logo" />
+                </div> */}
                 <span><SlSettings className='setting' />SysDesign</span>
 
                 <div className="menu-icon" onClick={toggleMenu}>

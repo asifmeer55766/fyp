@@ -3,7 +3,9 @@ import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import './AuthModel.scss'
 import authimg from "../../assets/lock.png"
+import LoaderVerify from "../loaders/LoaderVerify";
 const LoginForm = ({ toggleForm }) => {
+    const [loading, setLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         email: "",
@@ -26,7 +28,7 @@ const LoginForm = ({ toggleForm }) => {
             toast.error("Please fill all fields");
         }
         else {
-
+            setLoading(true);
             try {
                 const res = await fetch("http://localhost:5000/api/login", {
                     method: "POST",
@@ -41,22 +43,20 @@ const LoginForm = ({ toggleForm }) => {
                     localStorage.setItem("role", data.user.role);
                     toast.success("Login successful!");
 
-                    // if (data.user.role === "admin") {
-                    //     navigate("/admin-dashboard");
-                    // } else {
-                    //     navigate("/user-dashboard");
-                    // }
                     setFormData({
                         email: "",
                         password: ""
                     })
                     // window.location.reload();
-                    window.location.href = "/dashboard";
+
+                    window.location.href = "/admin-dashboard";
                 } else {
                     toast.error(data.error);
                 }
             } catch (err) {
                 toast.error("Login failed");
+            } finally {
+                setLoading(false);
             }
 
 
@@ -65,27 +65,30 @@ const LoginForm = ({ toggleForm }) => {
 
     return (
         <>
-            <div className="auth">
+            {loading ? (
+                <LoaderVerify verify={'Authenticating your credentials, please wait...'} /> // Show only the loader while waiting
+            ) : (
+                <div className="auth">
 
-                <div className="auth-container">
-                    <div className="auth-img">
-                        <img src={authimg} alt="" />
-                    </div>
-                    <div className="auth-form">
-                        <h2>Welcome Back</h2>
-                        <form action="" onSubmit={handleSubmit}>
-                            <input type="email" placeholder="Email * " name="email" value={formData.email} onChange={handleChange} />
-                            <input type="password" placeholder="Password *" name="password" value={formData.password} onChange={handleChange} />
-                            <button className="submit-btn" type="submit">Login</button>
-                            <p>
-                                Do not have an account? <Link to="/register">Sign Up</Link>
-                            </p>
-                        </form>
-                    </div>
+                    <div className="auth-container">
+                        <div className="auth-img">
+                            <img src={authimg} alt="" />
+                        </div>
+                        <div className="auth-form">
+                            <h2>Welcome Back</h2>
+                            <form action="" onSubmit={handleSubmit}>
+                                <input type="email" placeholder="Email * " name="email" value={formData.email} onChange={handleChange} />
+                                <input type="password" placeholder="Password *" name="password" value={formData.password} onChange={handleChange} />
+                                <button className="submit-btn" type="submit">Login</button>
+                                <p>
+                                    Do not have an account? <Link to="/register">Sign Up</Link>
+                                </p>
+                            </form>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
-        </>
+            )} </>
     );
 };
 
