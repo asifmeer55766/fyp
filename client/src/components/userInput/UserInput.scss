@@ -1,7 +1,7 @@
 @import "../../common";
 
 .target-category-container {
-    margin: 100px auto 20px auto;
+    margin: 10px auto 20px auto;
     text-align: center;
 
     span {
@@ -39,64 +39,84 @@
     }
 
     .user-req-input-container {
+        width: 74%;
+        margin: 20px auto 25px auto;
+        position: relative;
 
-        width: 70%;
-        margin: 25px auto;
-
-        input {
-            padding: 28px 10px;
-            // min-height: 13vh;
-            width: 85%;
-            border: none;
-            outline: none;
-            border-top-left-radius: 6px;
-            border-bottom-left-radius: 6px;
-            color: black;
-            background-color: rgb(160, 160, 160);
+        p {
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 400;
         }
 
-        button {
-            padding: 28px 10px;
-            // min-height: 13vh;
-            width: 15%;
-            border: none;
-            background: linear-gradient(to right, $primary-blue-2, $primary-blue);
-            color: white;
-            // font-size: 1rem;
+        textarea {
+            width: 100%;
+            padding: 15px;
+            min-height: 35vh;
+            border: .6px solid rgb(151, 151, 151);
             outline: none;
-            cursor: pointer;
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
+            border-radius: 8px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: white;
+            resize: none;
+            background-color: rgb(59, 59, 59);
+        }
 
-            &:hover {
-                background: linear-gradient(to right, $primary-blue, $primary-blue-2);
+        .btn-operation {
+            position: absolute;
+            right: 25px;
+            bottom: 12px;
+            // width: 10%;
 
+            button {
+                width: 30px;
+                height: 30px;
+                font-size: 1.4rem;
+                text-align: center;
+                font-weight: bold;
+                border-radius: 4px;
+                padding: 4px;
+                border: none;
+                margin: 0px 5px;
+                cursor: pointer;
+                background-color: rgb(151, 151, 151);
+                color: white;
             }
         }
 
-        ::placeholder {
-            text-transform: capitalize;
-        }
 
+    }
+}
+
+@media screen and (min-width:1400px) {
+    .target-category-container {
+        .user-req-input-container {
+            textarea {
+                min-height: auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .target-category-container {
+        .user-req-input-container {
+            textarea {
+                min-height: auto;
+            }
+        }
     }
 }
 
 @media screen and (max-width:768px) {
     .target-category-container {
         .user-req-input-container {
-            width: 95%;
+            width: 90%;
 
-            input,
-            button {
-                min-height: 8vh;
-            }
-
-            input {
-                width: 70%;
-            }
-
-            button {
-                width: 30%;
+            textarea {
+                min-height: 16vh;
             }
         }
 

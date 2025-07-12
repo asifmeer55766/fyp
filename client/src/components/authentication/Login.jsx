@@ -54,7 +54,7 @@ const LoginForm = ({ toggleForm }) => {
                     toast.error(data.error);
                 }
             } catch (err) {
-                toast.error("Login failed");
+                toast.error("Login failed , Make sure you device are connected to a network ");
             } finally {
                 setLoading(false);
             }

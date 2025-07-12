@@ -15,6 +15,7 @@ import UserDashboard from './pages/userDashboard/UserDashboard';
 import SystemSetting from './pages/adminDashboard/systemSetting/SystemSetting';
 import DocsHistory from './pages/userDashboard/docsHistory/DocsHistory';
 import LoaderVerify from './components/loaders/LoaderVerify';
+import UserGuide from './pages/userGuide/UserGuide';
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/login' element={<LoginForm />} />
           <Route path='/features' element={<Features />} />
           <Route path='/about' element={<About />} />
+          <Route path='/user-guide' element={<UserGuide />} />
           <Route
             path="/admin-dashboard/*"
             element={

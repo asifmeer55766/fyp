@@ -10,10 +10,10 @@
 
     .heading1 {
         text-align: center;
-        font-size: 3.7rem;
+        font-size: 3rem;
         font-weight: 400;
         color: $primary-white;
-        margin-top: 40px;
+        margin-top: 50px;
     }
 
     .heading2 {
@@ -28,6 +28,33 @@
         margin-top: 10px;
         font-weight: 600;
         color: $primary-white;
+    }
+
+    .help-btn {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0px 0px 0px;
+        align-items: center;
+
+        span {
+            font-size: 1.1rem;
+            color: white;
+            margin-right: 10px;
+
+            i {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: aqua;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
     }
 
     @keyframes colorChange {
@@ -65,6 +92,12 @@
 
             p {
                 font-size: 1rem;
+            }
+
+            .help-btn {
+                width: 100%;
+
+
             }
         }
     }
