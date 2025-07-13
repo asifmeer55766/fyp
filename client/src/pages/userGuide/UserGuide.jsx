@@ -9,7 +9,7 @@ function UserGuide() {
             <section className="user-guide__section">
                 <h2>Step-by-Step Guide</h2>
                 <ol>
-                    <li><strong>Login / Register:</strong> Create an account or log in using your credentials.</li>
+                    <li><strong>Login / Register:</strong> Create an account or log in using your credentials, only registered user can use the application. </li>
                     <li><strong>Input Requirements:</strong> Go to the input panel and type your system requirements in natural language (e.g., “An e-commerce app with login, product
                         listing, cart, and payment”). make sure your input length at least greater than 250 character for better AI response. <br />Please provide detailed and complete system requirements. The AI analyzes your input to extract both functional and non-functional requirements, so the more comprehensive your description,
                         the more accurate and helpful the results will be</li>

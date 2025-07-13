@@ -59,14 +59,14 @@ const Header = () => {
                 {/* <div className='logo-div'>
                     <img src={logopng} alt="company logo" />
                 </div> */}
-                <span><SlSettings className='setting' />SysDesign</span>
+                <span>Sys Design</span>
 
                 <div className="menu-icon" onClick={toggleMenu}>
                     {menuOpen ? <FaTimes /> : <FaBars />}
                 </div>
 
                 <ul className={`nav-links ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>
-                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/' id={'home'}>Home</NavLink>
                     <NavLink to='/about'>About</NavLink>
                     <NavLink to='/features'>Features</NavLink>
                     {isLoggedIn ? (

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './UserInput.scss';
+import { useNavigate } from "react-router"
 import { toast } from 'react-toastify';
-import { IoReloadSharp, IoPaperPlane } from "react-icons/io5";
+import { IoReloadSharp, IoPaperPlane, IoMail, IoClose } from "react-icons/io5";
 
 const UserInput = () => {
+    const navigate = useNavigate()
     const [inputText, setInputText] = useState("");
+
     const [checked, setChecked] = useState({
         erd: false,
         sequence: false,
@@ -14,6 +17,12 @@ const UserInput = () => {
     });
     const handleChange = (e) => {
         const { name, checked: isChecked } = e.target;
+        const role = localStorage.getItem('role');
+        if (role !== 'admin' && role !== 'user') {
+            toast.error("Please login to your account first.");
+            navigate('/login');
+            return; // Exit early to prevent further changes
+        }
 
         if (name === "system") {
             // If complete system design is checked, turn off all others
@@ -32,11 +41,15 @@ const UserInput = () => {
                 system: false
             }));
         }
+
+
+
     };
 
 
     const handleForm = (e) => {
         e.preventDefault();
+
         const anyChecked = Object.values(checked).some(value => value === true);
 
         if (!anyChecked) {
@@ -52,8 +65,30 @@ const UserInput = () => {
 
     };
 
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handleOpen = () => setShowPopup(true);
+    const handleClose = () => setShowPopup(false);
+    const promptText = `I want to build an eCommerce website to sell mobile phones. The system should allow users to register, log in, and browse a catalog of phones by brand, price, and specifications. Users should be able to add products to their cart, manage the cart, and place orders with secure checkout. Admins must be able to add, update, or remove products and view all customer orders. The system should send order confirmation emails, support payment gateway integration, and allow users to track order status. It must include user authentication, authorization, product management, order management, and secure transactions. The system should be scalable, mobile responsive, SEO friendly, and provide a smooth user experience with fast performance and proper error handling.`;
+
     return (
         <div className="target-category-container">
+
+
+            <div>
+                {showPopup && (
+                    <div className="popup-overlay">
+                        <div className="popup-content">
+                            <h3>Example Prompt </h3>
+                            <p>{promptText}</p>
+                            <button onClick={handleClose} className="close-btn"><IoClose /></button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+
+
             <form onSubmit={handleForm}>
                 <div className="category-boxes">
                     <span>Select Target </span>
@@ -122,8 +157,9 @@ const UserInput = () => {
                         onChange={(e) => setInputText(e.target.value)}>
                     </textarea>
                     <div className="btn-operation">
-                        <button type='reset' onClick={() => setInputText('')}><IoReloadSharp /></button>
-                        <button type='submit'><IoPaperPlane /></button>
+                        <button type='reset' onClick={() => setInputText('')} title='Reset'><IoReloadSharp /></button>
+                        <button title='Prompt example' onClick={handleOpen}><IoMail /></button>
+                        <button type='submit' title='Generate'><IoPaperPlane /></button>
                     </div>
                 </div>
             </form>

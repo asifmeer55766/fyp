@@ -79,6 +79,12 @@
             padding: 1rem;
             width: 35%;
 
+            video {
+                width: 100%;
+                height: 100%;
+                border-radius: 18px;
+            }
+
             // Glow wrapper
             &::before {
                 content: '';
@@ -147,6 +153,7 @@
 
                 img {
                     width: 90%;
+                    display: none;
                 }
 
                 h2 {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import authimg from "../../assets/lock.png"
+import authimg from "../../assets/register.png"
 import { toast } from 'react-toastify';
 
 const RegisterForm = ({ toggleForm }) => {

@@ -5,7 +5,7 @@ import './user-dashboard.scss'
 const UserDashboard = () => {
     return (
         <>
-            <h1>user dashboard </h1>
+
             <section className="dashboard-container">
                 <div className="dashboard">
                     <div className="left-dashboard-section">

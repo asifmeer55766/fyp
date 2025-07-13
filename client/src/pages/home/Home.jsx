@@ -15,7 +15,7 @@ const Home = () => {
 
                 <div className="home">
                     <h1 className='heading1'>Take Your Experience to the Next Level With </h1>
-                    <h1 className='heading2 animated-text'>Best AI Assist System Design Generator</h1>
+                    <h1 className='heading2 animated-text'>Best AI Powered System Design Generator</h1>
                     {/* <p>Your One-Step Solution for Client, Server, Database, API Gateway, Load Balancer, Cache, Authentication & Authorization.</p> */}
                     <div className="help-btn">
 

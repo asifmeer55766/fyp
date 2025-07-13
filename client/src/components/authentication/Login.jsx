@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import { Link } from "react-router-dom";
 import './AuthModel.scss'
-import authimg from "../../assets/lock.png"
+import authimg from "../../assets/login.png"
 import LoaderVerify from "../loaders/LoaderVerify";
+import animation from "../../assets/loginanimation.mp4"
 const LoginForm = ({ toggleForm }) => {
     const [loading, setLoading] = useState(false);
 
@@ -54,7 +55,7 @@ const LoginForm = ({ toggleForm }) => {
                     toast.error(data.error);
                 }
             } catch (err) {
-                toast.error("Login failed , Make sure you device are connected to a network ");
+                toast.error("Login failed! Check your network connectivity ");
             } finally {
                 setLoading(false);
             }
@@ -73,6 +74,9 @@ const LoginForm = ({ toggleForm }) => {
                     <div className="auth-container">
                         <div className="auth-img">
                             <img src={authimg} alt="" />
+                            {/* <video src={animation} autoPlay loop ></video> */}
+
+
                         </div>
                         <div className="auth-form">
                             <h2>Welcome Back</h2>
