@@ -29,7 +29,7 @@ const LoginForm = ({ toggleForm }) => {
             toast.error("Please fill all fields");
         }
         else {
-            setLoading(true);
+
             try {
                 const res = await fetch("http://localhost:5000/api/login", {
                     method: "POST",

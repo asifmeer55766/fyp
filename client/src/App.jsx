@@ -16,6 +16,8 @@ import SystemSetting from './pages/adminDashboard/systemSetting/SystemSetting';
 import DocsHistory from './pages/userDashboard/docsHistory/DocsHistory';
 import LoaderVerify from './components/loaders/LoaderVerify';
 import UserGuide from './pages/userGuide/UserGuide';
+import ProcessAnimation from './components/animation/processAnimation/ProcessAnimation';
+import DisplayFunctionalRequirements from './pages/displayFunctionalReq/DisplayFunctionalReq';
 function App() {
 
   return (
@@ -29,6 +31,7 @@ function App() {
           <Route path='/features' element={<Features />} />
           <Route path='/about' element={<About />} />
           <Route path='/user-guide' element={<UserGuide />} />
+          <Route path='/display-functional-req' element={<DisplayFunctionalRequirements />} />
           <Route
             path="/admin-dashboard/*"
             element={
@@ -51,6 +54,7 @@ function App() {
           </Route>
         </Routes>
         {/* <LoaderVerify verify={'Authenticating your credentials, please wait...'} /> */}
+
         <Footer />
       </BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
