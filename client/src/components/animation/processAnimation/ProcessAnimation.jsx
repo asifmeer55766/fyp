@@ -5,7 +5,7 @@ function ProcessAnimation({ status }) {
         <div className='load-container'>
             <div className="loader"></div>
             <p>{status}</p>
-            <p><i>Once it verified you will be redirect </i></p>
+            <p><i>Once processing is complete, you will be redirected </i></p>
         </div>
     )
 }

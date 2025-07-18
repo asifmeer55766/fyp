@@ -18,9 +18,17 @@ import LoaderVerify from './components/loaders/LoaderVerify';
 import UserGuide from './pages/userGuide/UserGuide';
 import ProcessAnimation from './components/animation/processAnimation/ProcessAnimation';
 import DisplayFunctionalRequirements from './pages/displayFunctionalReq/DisplayFunctionalReq';
+import { useState, useEffect } from 'react';
+import ShimmerLoader from './components/animation/shimmerLoader/ShimmerLoader';
 function App() {
+  const [loading, setLoading] = useState(true);
 
-  return (
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+  return loading ? <ShimmerLoader /> : (
     <>
       <BrowserRouter>
         <Header />
@@ -54,7 +62,7 @@ function App() {
           </Route>
         </Routes>
         {/* <LoaderVerify verify={'Authenticating your credentials, please wait...'} /> */}
-
+        {/* <ProcessAnimation status={'please wait we are analyzing your inputs'} /> */}
         <Footer />
       </BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
