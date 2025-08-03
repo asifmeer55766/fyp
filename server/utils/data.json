@@ -1,0 +1,170 @@
+[
+  {
+    "id": "hld_tree_json",
+    "title": "High-Level Design in Tree JSON Format",
+    "description": "Generate HLD for any system in a nested JSON structure.",
+    "prompt": "Generate a High-Level Design (HLD) for a [system name or type of application], in a tree-like JSON format. The root node should be the system name, and each child node should represent a major component (e.g., Frontend, Backend, Database, Services, Storage, DevOps, Security). Each component may have nested children representing subcomponents, services, or modules.\n\nFollow this exact structure:\n{\n  \"name\": \"System Name\",\n  \"children\": [\n    {\n      \"name\": \"Component\",\n      \"children\": [\n        { \"name\": \"Subcomponent\" },\n        ...\n      ]\n    },\n    ...\n  ]\n}\n\nEnsure the output is valid JSON. No explanation, only the JSON structure."
+  }
+]
+
+
+
+{
+  "name": "Hospital Management System",    
+  "children": [
+    {
+      "name": "Frontend",
+      "children": [
+        {
+          "name": "User Interface (UI)",   
+          "children": [
+            { "name": "Doctor Dashboard" },
+            { "name": "Patient Dashboard" },
+            { "name": "Admin Dashboard" },
+            { "name": "Appointment Booking Interface" },
+            { "name": "Billing Interface" },
+            { "name": "Inventory Management Interface" },
+            { "name": "Reporting Interface" }
+          ]
+        },
+        {
+          "name": "UI Framework",
+          "children": [
+            { "name": "React/Angular/Vue.js" }
+          ]
+        },
+        {
+          "name": "Authentication Module",
+          "children": [
+            { "name": "Login Page" },
+            { "name": "Registration Page" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Backend",
+      "children": [
+        {
+          "name": "API Layer",
+          "children": [
+            { "name": "User Management API" },
+            { "name": "Patient Management API" },
+            { "name": "Doctor Management API" },
+            { "name": "Appointment Scheduling API" },
+            { "name": "Billing and Payments API" },
+            { "name": "Inventory Management API" },
+            { "name": "Reporting and Analytics API" },
+            { "name": "Medical Records API" },
+            { "name": "Authentication and Authorization API" }
+          ]
+        },
+        {
+          "name": "Business Logic Layer",
+          "children": [
+            { "name": "User Service" },
+            { "name": "Patient Service" },
+            { "name": "Doctor Service" },
+            { "name": "Appointment Service" },
+            { "name": "Billing Service" },
+            { "name": "Inventory Service" },
+            { "name": "Reporting Service" },
+            { "name": "Medical Records Service" },
+            { "name": "Authentication Service" },
+            { "name": "Authorization Service" }
+          ]
+        },
+        {
+          "name": "Framework",
+          "children": [
+            { "name": "Node.js/Python(Flask/Django)/Java(Spring)" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Database",
+      "children": [
+        {
+          "name": "Database System",
+          "children": [
+            { "name": "PostgreSQL/MySQL/MongoDB" }
+          ]
+        },
+        {
+          "name": "Database Schema",
+          "children": [
+            { "name": "Users Table" },
+            { "name": "Patients Table" },
+            { "name": "Doctors Table" },
+            { "name": "Appointments Table" },
+            { "name": "Bills Table" },
+            { "name": "Inventory Table" },
+            { "name": "Medical Records Table" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "children": [
+        {
+          "name": "Cloud Provider",
+          "children": [
+            { "name": "AWS/Azure/GCP" }
+          ]
+        },
+        {
+          "name": "Servers",
+          "children": [
+            { "name": "Web Servers" },
+            { "name": "Application Servers" },
+            { "name": "Database Servers" }
+          ]
+        },
+        {
+          "name": "Load Balancer",
+          "children": [
+            { "name": "Distribute traffic across servers" }
+          ]
+        },
+        {
+          "name": "Caching",
+          "children": [
+            { "name": "Redis/Memcached" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Security",
+      "children":[
+        {
+          "name": "Authentication",
+          "children":[
+            {"name": "Multi-Factor Authentication"}
+          ]
+        },
+        {
+          "name": "Authorization",
+          "children":[
+            {"name": "Role-Based Access Control"}
+          ]
+        },
+        {
+          "name": "Data Encryption",
+          "children":[
+            {"name": "At Rest"},
+            {"name": "In Transit (HTTPS)"}
+          ]
+        },
+        {
+          "name": "Vulnerability Scanning",
+          "children":[
+            {"name": "Regular Security Audits"}
+          ]
+        }
+      ]
+    }
+  ]
+}

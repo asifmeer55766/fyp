@@ -1,0 +1,82 @@
+@media print {
+  /* Set A4 page size and margins */
+  @page {
+    size: A4 portrait;
+    margin: 1in;
+  }
+
+  /* Hide non-print elements */
+  header,
+  nav,
+  footer,
+  .no-print,
+  button,
+  .buttons-operation-nex {
+    display: none !important;
+  }
+
+  /* Body adjustments for print */
+  body {
+    background: white;
+    color: #000;
+    font-family: "Times New Roman", serif;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+
+  /* Ensure page breaks cleanly between sections */
+  .section,
+  h1, h2, h3 {
+    page-break-before: auto;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Add page breaks after major sections */
+  .page-break {
+    page-break-before: always;
+  }
+
+  /* Ensure content doesn't overflow */
+  .content {
+    max-width: 100%;
+    overflow: visible !important;
+  }
+
+  /* Optional: add borders to tables if used */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+
+  table, th, td {
+    border: 1px solid #333;
+    padding: 6px;
+  }
+
+  /* Prevent links from printing as URLs */
+  a::after {
+    content: "";
+  }
+}
+
+.documentation-container{
+    background-color: white;
+    min-height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0px 20px;
+       text-align: justify;
+       section{
+        margin: 20px auto;
+       }
+    .project-overview{
+        margin-top: 80px;
+        h1{
+            text-align: center;
+            font-size: 2rem;
+            text-transform: capitalize;
+
+        }
+    }
+}

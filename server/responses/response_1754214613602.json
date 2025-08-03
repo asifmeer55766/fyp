@@ -1,0 +1,148 @@
+{
+  "functional_requirements": [
+    {
+      "module": "User Management",
+      "requirements": [
+        "Admin user should be able to create, read, update, and delete doctor accounts.",
+        "Admin user should be able to create, read, update, and delete patient accounts.",
+        "Admin user should be able to manage access roles and permissions for different user types (Admin, Doctor, Patient).",
+        "Doctors should be able to log in to the system with their credentials.",
+        "Patients should be able to log in to the system with their credentials.",
+        "Users (Doctors, Patients, Admins) should be able to reset their passwords."
+      ]
+    },
+    {
+      "module": "Patient Management",
+      "requirements": [
+        "Patients should be able to register and create their profiles, including personal information, medical history, and insurance details.",
+        "Doctors should be able to view patient profiles.",
+        "Admin should be able to view patient profile",
+        "Doctors should be able to record patient medical history, including diagnoses, allergies, and medications.",
+        "Patients should be able to update their profile information.",
+        "Patients should be able to view their appointment history.",
+        "Patients should be able to view their medical records (subject to access control)."
+      ]
+    },
+    {
+      "module": "Doctor Management",
+      "requirements": [
+        "Doctors should be able to manage their profiles, including specialization, contact information, and availability.",
+        "Admin can assign the specialization, contact information, and availability.",
+        "Doctors should be able to view their appointment schedules.",
+        "Doctors should be able to manage their patient records and prescriptions."
+      ]
+    },
+    {
+      "module": "Appointment Scheduling",
+      "requirements": [
+        "Patients should be able to schedule appointments with doctors.",
+        "The system should display doctor availability based on their defined schedules.",
+        "The system should send appointment reminders to patients and doctors.",
+        "Admin can view appointment history of all patients and doctors.",
+        "Patients should be able to reschedule or cancel appointments.",
+        "Doctors should be able to view and manage their appointment schedules."
+      ]
+    },
+    {
+      "module": "Billing and Payments",
+      "requirements": [
+        "The system should generate bills for patients based on consultations, procedures, and medications.",
+        "The system should support different payment methods (e.g., credit card, insurance).",
+        "The system should generate reports on billing and revenue.",
+        "Admin can manage or delete the bills of patients."
+      ]
+    },
+    {
+      "module": "Inventory Management",
+      "requirements": [
+        "The system should track the inventory of medications and medical supplies.",
+        "The system should generate alerts when stock levels are low.",
+        "Admin and relevant staff should be able to manage inventory levels.",
+        "The system should generate reports on inventory usage and costs."
+      ]
+    },
+    {
+      "module": "Reporting and Analytics",
+      "requirements": [
+        "The system should generate reports on patient demographics, diagnoses, and treatment outcomes.",
+        "The system should provide insights into hospital performance, such as patient volume, revenue, and costs.",
+        "The system should generate customizable reports based on specific criteria."
+      ]
+    },
+    {
+      "module": "Medical Records",
+      "requirements": [
+        "The system should store patient medical records securely and confidentially.",
+        "Doctors should be able to access and update patient medical records.",
+        "The system should support different types of medical records (e.g., lab results, imaging reports).",
+        "Admin should be able to manage the medical records"
+      ]
+    },
+    {
+      "module": "Authentication and Authorization",
+      "requirements": [
+        "The system should use secure authentication methods to verify user identities.",
+        "The system should implement role-based access control to restrict access to sensitive data and functionality.",
+        "The system should log user activity for auditing purposes."
+      ]
+    }
+  ],
+  "non_functional_requirements": [
+    {
+      "category": "Performance",
+      "requirements": [
+        "The system should be responsive and load quickly.",
+        "The system should be able to handle a large number of concurrent users.",
+        "Data retrieval and reporting should be efficient."
+      ]
+    },
+    {
+      "category": "Security",
+      "requirements": [
+        "The system should protect patient data from unauthorized access and disclosure.",
+        "The system should comply with relevant data privacy regulations (e.g., HIPAA).",
+        "The system should be protected against common web vulnerabilities (e.g., SQL injection, cross-site scripting).",
+        "All sensitive data should be encrypted at rest and in transit."
+      ]
+    },
+    {
+      "category": "Usability",
+      "requirements": [
+        "The system should be easy to use and navigate.",
+        "The user interface should be intuitive and user-friendly.",
+        "The system should provide clear and helpful error messages."
+      ]
+    },
+    {
+      "category": "Scalability",
+      "requirements": [
+        "The system should be scalable to accommodate future growth in data volume and user traffic.",
+        "The system architecture should be designed to allow for easy expansion."
+      ]
+    },
+    {
+      "category": "Reliability",
+      "requirements": [
+        "The system should be reliable and available 24/7.",
+        "The system should have a backup and recovery plan in place.",
+        "The system should be monitored for performance and errors."
+      ]
+    },
+    {
+      "category": "Maintainability",
+      "requirements": [
+        "The system should be easy to maintain and update.",
+        "The code should be well-documented and organized.",
+        "The system should be designed for modularity and reusability."
+      ]
+    },
+    {
+      "category": "Accessibility",
+      "requirements": [
+        "The system should be accessible to users with disabilities, following accessibility standards (e.g., WCAG).",
+        "The system should provide alternative text for images and other non-text content.",
+        "The system should be compatible with assistive technologies (e.g., screen readers)."
+      ]
+    }
+  ]
+}
