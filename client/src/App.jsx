@@ -16,11 +16,12 @@ import SystemSetting from "./pages/adminDashboard/systemSetting/SystemSetting";
 import DocsHistory from "./pages/userDashboard/docsHistory/DocsHistory";
 import LoaderVerify from "./components/loaders/LoaderVerify";
 import UserGuide from "./pages/userGuide/UserGuide";
-import ProcessAnimation from "./components/animation/processAnimation/ProcessAnimation";
+import ProcessAnimation from "./components/animation/loading/Loading";
 import DisplayFunctionalRequirements from "./pages/displayFunctionalReq/DisplayFunctionalReq";
-import { useState, useEffect } from "react";
-import ShimmerLoader from "./components/animation/shimmerLoader/ShimmerLoader";
 import FinalOutputDocs from "./pages/finalOutputDocs/FinalOutputDocs";
+import Status from "./components/status/Status";
+import Spiner from "./components/status/Spiner";
+import { useState, useEffect } from "react";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +31,11 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
   return loading ? (
-    <ShimmerLoader />
+    <div className="spiner-box">
+      <Spiner
+        status={"Initializing... Please wait while we prepare your experience"}
+      />
+    </div>
   ) : (
     <>
       <BrowserRouter>
@@ -42,11 +47,12 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<About />} />
           <Route path="/user-guide" element={<UserGuide />} />
-          <Route path="/system-docs" element={<FinalOutputDocs />} />
+          <Route path="/status" element={<Status />} />
           <Route
             path="/display-functional-req"
             element={<DisplayFunctionalRequirements />}
           />
+          <Route path="/system-docs" element={<FinalOutputDocs />} />
           <Route
             path="/admin-dashboard/*"
             element={
@@ -68,8 +74,6 @@ function App() {
             <Route path="docs-history" element={<DocsHistory />} />
           </Route>
         </Routes>
-        {/* <LoaderVerify verify={'Authenticating your credentials, please wait...'} /> */}
-        {/* <ProcessAnimation status={'please wait we are analyzing your inputs'} /> */}
         <Footer />
       </BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />

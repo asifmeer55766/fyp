@@ -1,0 +1,99 @@
+.status-container {
+  background-color: #fff;
+  min-height: 87vh;
+  margin-top: 80px;
+
+  .status-section {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0px auto;
+    .status-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+
+      .success-icon {
+        width: 150px;
+        height: 150px;
+        background-color: #f5f5f5;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        // ✨ Default state (faded)
+        img {
+          width: 40px;
+          height: 40px;
+          filter: grayscale(100%);
+          opacity: 0.4;
+          margin-bottom: 10px;
+        }
+
+        span {
+          font-weight: 600;
+          color: #888;
+          opacity: 0.5;
+          text-align: center;
+        }
+
+        // ✅ Completed state (full color)
+        &.completed {
+          img {
+            filter: none;
+            opacity: 1;
+          }
+
+          span {
+            color: #333;
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .progress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 60px auto 10px auto;
+    }
+    .action-progress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      flex-direction: column;
+    }
+    .button-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 40px auto;
+      button {
+        padding: 8px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1rem;
+        border: 2px solid #170da0;
+        border-radius: 4px;
+        background-color: #170da0;
+        color: whitesmoke;
+        cursor: pointer;
+        .icons {
+          font-size: 1.1rem;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

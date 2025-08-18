@@ -72,6 +72,7 @@ const Header = () => {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/features">Features</NavLink>
           <NavLink to="/system-docs">Documentation</NavLink>
+          <NavLink to="/display-functional-req">Functional req</NavLink>
           {isLoggedIn ? (
             <>
               {role === "admin" ? (

@@ -1,0 +1,115 @@
+erDiagram
+    PATIENT {
+        int patient_id PK
+        string name
+        string dob
+        string gender
+        string address
+        string phone_number
+        string email
+    }
+
+    DOCTOR {
+        int doctor_id PK
+        string name
+        string specialization
+        string phone_number
+        string email
+    }
+
+    APPOINTMENT {
+        int appointment_id PK
+        int patient_id FK
+        int doctor_id FK
+        datetime appointment_date
+        string appointment_time
+        string reason
+    }
+
+    ROOM {
+        int room_id PK
+        string room_number
+        string room_type
+        boolean is_available
+    }
+
+    ADMISSION {
+        int admission_id PK
+        int patient_id FK
+        int room_id FK
+        datetime admission_date
+        datetime discharge_date
+        string admission_reason
+    }
+
+    BILLING {
+        int bill_id PK
+        int patient_id FK
+        datetime bill_date
+        float total_amount
+        string payment_method
+        boolean is_paid
+    }
+
+    MEDICATION {
+        int medication_id PK
+        string medication_name
+        string dosage
+        string route
+        string frequency
+    }
+
+    PRESCRIPTION {
+        int prescription_id PK
+        int patient_id FK
+        int doctor_id FK
+        int medication_id FK
+        datetime prescription_date
+        string instructions
+    }
+
+    DIAGNOSIS {
+        int diagnosis_id PK
+        int patient_id FK
+        int doctor_id FK
+        string diagnosis_name
+        string diagnosis_date
+        string notes
+    }
+
+    LAB_TEST {
+        int test_id PK
+        int patient_id FK
+        string test_name
+        datetime test_date
+        string results
+    }
+
+    DEPARTMENT {
+        int department_id PK
+        string department_name
+        string description
+    }
+
+    STAFF {
+        int staff_id PK
+        string name
+        string role
+        int department_id FK
+        string phone_number
+        string email
+    }
+
+
+    PATIENT ||--o{ APPOINTMENT : "Schedules"
+    DOCTOR ||--o{ APPOINTMENT : "Attends"
+    PATIENT ||--o{ ADMISSION : "Is Admitted To"
+    ROOM ||--o{ ADMISSION : "Assigned To"
+    PATIENT ||--o{ BILLING : "Receives"
+    PATIENT ||--o{ PRESCRIPTION : "Receives"
+    DOCTOR ||--o{ PRESCRIPTION : "Prescribes"
+    MEDICATION ||--o{ PRESCRIPTION : "Is Included In"
+    PATIENT ||--o{ DIAGNOSIS : "Receives"
+    DOCTOR ||--o{ DIAGNOSIS : "Diagnoses"
+    PATIENT ||--o{ LAB_TEST : "Undergoes"
+    STAFF ||--o{ DEPARTMENT : "Works In"

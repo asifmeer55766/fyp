@@ -3,3 +3,16 @@
   margin: 0 auto;
   padding: 0px;
 }
+.spiner-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px auto;
+  min-height: 100vh;
+
+  p {
+    color: whitesmoke;
+    font-size: 1rem;
+  }
+}

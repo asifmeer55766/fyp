@@ -26,7 +26,9 @@
 
   /* Ensure page breaks cleanly between sections */
   .section,
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     page-break-before: auto;
     page-break-after: avoid;
     page-break-inside: avoid;
@@ -50,7 +52,9 @@
     margin-bottom: 1rem;
   }
 
-  table, th, td {
+  table,
+  th,
+  td {
     border: 1px solid #333;
     padding: 6px;
   }
@@ -60,23 +64,71 @@
     content: "";
   }
 }
-
-.documentation-container{
-    background-color: white;
-    min-height: 100vh;
-    font-family: 'Times New Roman', Times, serif;
-    padding: 0px 20px;
-       text-align: justify;
-       section{
-        margin: 20px auto;
-       }
-    .project-overview{
-        margin-top: 80px;
-        h1{
-            text-align: center;
-            font-size: 2rem;
-            text-transform: capitalize;
-
+// <----------------css for docs------------------------------->
+.documentation-container {
+  background-color: white;
+  min-height: 100vh;
+  // font-family: "Times New Roman", Times, serif;
+  padding: 0px 20px;
+  text-align: justify;
+  section {
+    margin: 40px auto;
+    .outer-div {
+      border: 1px solid #e3ecde;
+      border-radius: 4px;
+      div {
+        background-color: #e3ecde;
+        border-radius: 4px;
+        width: 100%;
+        svg {
+          width: 100%;
         }
+      }
     }
+
+    p {
+      background-color: #e3ecde;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    .api-div {
+      background-color: #e3ecde;
+      padding: 8px;
+      border-radius: 4px;
+
+      strong {
+        // display: block;
+        color: rgb(0, 67, 122);
+      }
+    }
+  }
+  .project-overview {
+    margin-top: 80px;
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      text-transform: capitalize;
+    }
+  }
+}
+
+.requirements-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  td {
+    vertical-align: top;
+  }
 }

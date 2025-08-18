@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UserInput.scss";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import ProcessAnimation from "../animation/processAnimation/ProcessAnimation";
 import { IoReloadSharp, IoPaperPlane, IoMail, IoClose } from "react-icons/io5";
-
-const UserInput = () => {
+import { useLocation } from "react-router-dom";
+import Spiner from "../status/Spiner";
+import Loading from "../animation/loading/Loading";
+const UserInput = ({ initialPrompt }) => {
   const navigate = useNavigate();
-  const [inputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState(initialPrompt || "");
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState({
     erd: false,
@@ -16,6 +17,15 @@ const UserInput = () => {
     high: false,
     system: false,
   });
+  const location = useLocation();
+  // const [text, setText] = useState("");
+
+  useEffect(() => {
+    if (location.state && location.state.prompt) {
+      setInputText(location.state.prompt);
+    }
+  }, [location]);
+
   // it handles the input field changes
   const handleChange = (e) => {
     const { name, checked: isChecked } = e.target;
@@ -52,12 +62,10 @@ const UserInput = () => {
     const anyChecked = Object.values(checked).some((value) => value === true);
 
     if (!anyChecked) {
-      toast.warning(
-        "Please select at least one design option before submitting "
-      );
+      toast.warning("Please select the design option before submitting ");
       return;
     } else if (inputText.trim() === "") {
-      toast.warning("Please enter your requirements in detail first ");
+      toast.warning("Please write system requirements");
       return;
     }
 
@@ -99,7 +107,7 @@ const UserInput = () => {
       }
     } catch (err) {
       toast.error("Failed to connect to server.");
-      console.error("Fetch error:", err);
+      navigate("/");
     } finally {
       setLoading(false);
       localStorage.setItem("originalPrompt", inputText);
@@ -116,11 +124,7 @@ const UserInput = () => {
   return (
     <>
       {loading ? (
-        <ProcessAnimation
-          status={
-            "We're currently analyzing your input. This may take a moment..."
-          }
-        />
+        <Loading status={"Please wait we are analyzing your input"} />
       ) : (
         <div className="target-category-container">
           <div>

@@ -1,0 +1,17 @@
+.system-tree {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.tree-node {
+  transition: all 0.3s ease;
+}
+
+.node-label {
+  transition: background 0.2s ease;
+}
+
+.node-label.clickable:hover {
+  background: #e3f2fd;
+  border-radius: 4px;
+}

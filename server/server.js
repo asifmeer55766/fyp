@@ -1,15 +1,12 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const helmet = require('helmet');
-const morgan = require('morgan');
-const connectDB = require('./database/db');
-const routes = require('./routes/routes');
-
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const connectDB = require("./database/db");
+const routes = require("./routes/routes");
 
 // const errorHandler = require('./middleware/errorHandler');
-
-
 
 dotenv.config();
 const app = express();
@@ -22,16 +19,16 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 // new api key
 
 // Routes
-app.use('/api', routes);
+app.use("/api", routes);
 
 // Health check
-app.get('/', (req, res) => {
-    res.send({ message: 'Server is running!' });
+app.get("/", (req, res) => {
+  res.send({ message: "Server is running!" });
 });
 
 // Error handler
@@ -39,5 +36,5 @@ app.get('/', (req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`✔ Server running on http://localhost:${PORT}`);
 });

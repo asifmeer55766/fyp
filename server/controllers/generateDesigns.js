@@ -1,5 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+import connectDB from "../database/db.js";
+import hldResponse from "../models/hldResponse.js";
 // Initialize with API key
 const genAI = new GoogleGenerativeAI(
   "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
@@ -7,6 +9,7 @@ const genAI = new GoogleGenerativeAI(
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gemini-1.5-pro-latest
 
 export const generateDesign = async (req, res) => {
+  await connectDB(); // Ensure DB is connected
   const { functional, nonFunctional, originalUserPrompt } = req.body;
 
   if (!functional || !nonFunctional || !originalUserPrompt) {
@@ -23,6 +26,7 @@ export const generateDesign = async (req, res) => {
 You are a system architect. A user wants the following system: "${originalUserPrompt}"
 
 Use the following requirements to build a High-Level Design (HLD).
+
 
 Functional Requirements:
 ${functionalText}
@@ -46,8 +50,35 @@ Respond ONLY with JSON. Do not explain.
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.text().trim();
-    res.json({ design: responseText });
-    console.log("responses is :", responseText);
+
+    let cleanedText = responseText
+      .replace(/^```(json)?/i, "")
+      .replace(/```$/, "")
+      .trim();
+    if (cleanedText.toLowerCase() === "false") {
+      console.log(
+        '❌ Received "false" response from AI. Aborting file creation.'
+      );
+      return res.status(400).json({
+        error:
+          "Your input appears unrelated to system design. Kindly provide a valid prompt describing software requirements to continue...",
+      });
+    }
+    let jsonData;
+    try {
+      jsonData = JSON.parse(cleanedText);
+    } catch {
+      jsonData = { raw: cleanedText };
+    }
+
+    // 2. Save to MongoDB
+
+    const saved = await hldResponse.create({
+      designName: jsonData.name || "Untitled System",
+      rawData: jsonData,
+    });
+
+    res.json({ design: saved });
   } catch (error) {
     console.error("Error generating HLD:", error);
     res.status(500).json({ error: "Internal server error" });

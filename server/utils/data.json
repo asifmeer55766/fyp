@@ -1,83 +1,147 @@
-[
-  {
-    "id": "hld_tree_json",
-    "title": "High-Level Design in Tree JSON Format",
-    "description": "Generate HLD for any system in a nested JSON structure.",
-    "prompt": "Generate a High-Level Design (HLD) for a [system name or type of application], in a tree-like JSON format. The root node should be the system name, and each child node should represent a major component (e.g., Frontend, Backend, Database, Services, Storage, DevOps, Security). Each component may have nested children representing subcomponents, services, or modules.\n\nFollow this exact structure:\n{\n  \"name\": \"System Name\",\n  \"children\": [\n    {\n      \"name\": \"Component\",\n      \"children\": [\n        { \"name\": \"Subcomponent\" },\n        ...\n      ]\n    },\n    ...\n  ]\n}\n\nEnsure the output is valid JSON. No explanation, only the JSON structure."
-  }
-]
-
-
 
 {
-  "name": "Hospital Management System",    
+  "name": "Mobile Phone eCommerce System",
   "children": [
     {
-      "name": "Frontend",
+      "name": "Frontend (User Interface)",
       "children": [
         {
-          "name": "User Interface (UI)",   
+          "name": "User Authentication Module",
           "children": [
-            { "name": "Doctor Dashboard" },
-            { "name": "Patient Dashboard" },
-            { "name": "Admin Dashboard" },
-            { "name": "Appointment Booking Interface" },
-            { "name": "Billing Interface" },
-            { "name": "Inventory Management Interface" },
-            { "name": "Reporting Interface" }
+            {
+              "name": "Registration Page"
+            },
+            {
+              "name": "Login Page"
+            },
+            {
+              "name": "Password Management (Reset/Forgot)"
+            }
           ]
         },
         {
-          "name": "UI Framework",
+          "name": "Product Catalog Module",
           "children": [
-            { "name": "React/Angular/Vue.js" }
+            {
+              "name": "Product Listing Page"
+            },
+            {
+              "name": "Product Detail Page"
+            },
+            {
+              "name": "Search & Filtering (Brand, Price, Specs)"
+            }
           ]
         },
         {
-          "name": "Authentication Module",
+          "name": "Shopping Cart Module",
           "children": [
-            { "name": "Login Page" },
-            { "name": "Registration Page" }
+            {
+              "name": "Add to Cart Functionality"
+            },
+            {
+              "name": "Cart Management (Update Quantity, Remove Items)"
+            },
+            {
+              "name": "View Cart Page"
+            }
           ]
+        },
+        {
+          "name": "Checkout Module",
+          "children": [
+            {
+              "name": "Shipping Address Form"
+            },
+            {
+              "name": "Payment Method Selection"
+            },
+            {
+              "name": "Order Summary"
+            }
+          ]
+        },
+        {
+          "name": "Order Tracking Module",
+          "children": [
+            {
+              "name": "Order History Page"
+            },
+            {
+              "name": "Order Details Page"
+            },
+            {
+              "name": "Order Status Display"
+            }
+          ]
+        },
+        {
+          "name": "Mobile Responsive Design"
+        },
+        {
+          "name": "SEO Optimization"
         }
       ]
     },
     {
-      "name": "Backend",
+      "name": "Backend (Application Logic)",
       "children": [
         {
-          "name": "API Layer",
+          "name": "User Management Service",
           "children": [
-            { "name": "User Management API" },
-            { "name": "Patient Management API" },
-            { "name": "Doctor Management API" },
-            { "name": "Appointment Scheduling API" },
-            { "name": "Billing and Payments API" },
-            { "name": "Inventory Management API" },
-            { "name": "Reporting and Analytics API" },
-            { "name": "Medical Records API" },
-            { "name": "Authentication and Authorization API" }
+            {
+              "name": "User Authentication & Authorization"
+            },
+            {
+              "name": "Profile Management"
+            }
           ]
         },
         {
-          "name": "Business Logic Layer",
+          "name": "Product Management Service",
           "children": [
-            { "name": "User Service" },
-            { "name": "Patient Service" },
-            { "name": "Doctor Service" },
-            { "name": "Appointment Service" },
-            { "name": "Billing Service" },
-            { "name": "Inventory Service" },
-            { "name": "Reporting Service" },
-            { "name": "Medical Records Service" },
-            { "name": "Authentication Service" },
-            { "name": "Authorization Service" }
+            {
+              "name": "CRUD Operations (Create, Read, Update, Delete)"
+            },
+            {
+              "name": "Inventory Management"
+            }
           ]
         },
         {
-          "name": "Framework",
+          "name": "Order Management Service",
           "children": [
-            { "name": "Node.js/Python(Flask/Django)/Java(Spring)" }
+            {
+              "name": "Order Placement"
+            },
+            {
+              "name": "Order Processing"
+            },
+            {
+              "name": "Order Status Updates"
+            },
+            {
+              "name": "Order History Retrieval"
+            }
+          ]
+        },
+        {
+          "name": "Payment Processing Service",
+          "children": [
+            {
+              "name": "Payment Gateway Integration (e.g., Stripe, PayPal)"
+            },
+            {
+              "name": "Transaction Management"
+            }
+          ]
+        },
+        {
+          "name": "Notification Service",
+          "children": [
+            {
+              "name": "Email Notifications (Order Confirmation, Status Updates)"
+            }
           ]
         }
       ]
@@ -86,21 +150,42 @@
       "name": "Database",
       "children": [
         {
-          "name": "Database System",
+          "name": "User Database (User Profiles, Credentials)"
+        },
+        {
+          "name": "Product Database (Product Information, Inventory)"
+        },
+        {
+          "name": "Order Database (Order Details, Transactions)"
+        }
+      ]
+    },
+    {
+      "name": "Admin Panel",
+      "children": [
+        {
+          "name": "Product Management Interface",
           "children": [
-            { "name": "PostgreSQL/MySQL/MongoDB" }
+            {
+              "name": "Add New Product"
+            },
+            {
+              "name": "Edit Product"
+            },
+            {
+              "name": "Delete Product"
+            }
           ]
         },
         {
-          "name": "Database Schema",
+          "name": "Order Management Interface",
           "children": [
-            { "name": "Users Table" },
-            { "name": "Patients Table" },
-            { "name": "Doctors Table" },
-            { "name": "Appointments Table" },
-            { "name": "Bills Table" },
-            { "name": "Inventory Table" },
-            { "name": "Medical Records Table" }
+            {
+              "name": "View All Orders"
+            },
+            {
+              "name": "Update Order Status"
+            }
           ]
         }
       ]
@@ -109,60 +194,142 @@
       "name": "Infrastructure",
       "children": [
         {
-          "name": "Cloud Provider",
-          "children": [
-            { "name": "AWS/Azure/GCP" }
-          ]
+          "name": "Web Server (e.g., Nginx, Apache)"
         },
         {
-          "name": "Servers",
-          "children": [
-            { "name": "Web Servers" },
-            { "name": "Application Servers" },
-            { "name": "Database Servers" }
-          ]
+          "name": "Application Server (e.g., Node.js, Python/Django, Java/Spring)"
         },
         {
-          "name": "Load Balancer",
-          "children": [
-            { "name": "Distribute traffic across servers" }
-          ]
+          "name": "Load Balancer"
         },
         {
-          "name": "Caching",
-          "children": [
-            { "name": "Redis/Memcached" }
-          ]
+          "name": "Caching Layer (e.g., Redis, Memcached)"
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+{
+  "name": "Nursery Shop Mobile Application",
+  "children": [
+    {
+      "name": "Mobile Application (Client)",
+      "children": [
+        {
+          "name": "User Interface (UI)"
+        },
+        {
+          "name": "Plant Catalog Module"
+        },
+        {
+          "name": "Search Functionality"
+        },
+        {
+          "name": "Shopping Cart Module"
+        },
+        {
+          "name": "Secure Payment Gateway Integration"
+        },
+        {
+          "name": "Order Management Module"
+        },
+        {
+          "name": "User Account Management"
+        },
+        {
+          "name": "Admin Interface (limited access)"
+        },
+        {
+          "name": "Image Handling and Display"
+        },
+        {
+          "name": "Push Notifications"
+        },
+        {
+          "name": "Geolocation Services (for delivery)"
+        },
+        {
+          "name": "Wishlist Functionality"
+        },
+        {
+          "name": "Reviews and Ratings"
         }
       ]
     },
     {
-      "name": "Security",
-      "children":[
+      "name": "Backend Services (Server)",
+      "children": [
         {
-          "name": "Authentication",
-          "children":[
-            {"name": "Multi-Factor Authentication"}
-          ]
+          "name": "API Gateway"
         },
         {
-          "name": "Authorization",
-          "children":[
-            {"name": "Role-Based Access Control"}
-          ]
+          "name": "Plant Catalog Service"
         },
         {
-          "name": "Data Encryption",
-          "children":[
-            {"name": "At Rest"},
-            {"name": "In Transit (HTTPS)"}
-          ]
+          "name": "Search Service"
         },
         {
-          "name": "Vulnerability Scanning",
-          "children":[
-            {"name": "Regular Security Audits"}
-          ]
+          "name": "Order Management Service"
+        },
+        {
+          "name": "Payment Processing Service"
+        },
+        {
+          "name": "User Authentication and Authorization Service"
+        },
+        {
+          "name": "Notification Service"
+        },
+        {
+          "name": "Reporting and Analytics Service"
+        },
+        {
+          "name": "Image Storage Service"
+        },
+        {
+          "name": "Data Backup and Recovery"
+        }
+      ]
+    },
+    {
+      "name": "Database",
+      "children": [
+        {
+          "name": "Plant Data (Details, Images, Pricing)"
+        },
+        {
+          "name": "User Data (Profiles, Addresses, Payment Info)"
+        },
+        {
+          "name": "Order Data (History, Status)"
+        },
+        {
+          "name": "Review Data (Ratings, Comments)"
+        }
+      ]
+    },
+    {
+      "name": "Infrastructure",
+      "children": [
+        {
+          "name": "Cloud Hosting (e.g., AWS, Azure, GCP)"
+        },
+        {
+          "name": "CDN (Content Delivery Network)"
+        },
+        {
+          "name": "Monitoring and Logging"
         }
       ]
     }
