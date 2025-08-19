@@ -59,7 +59,7 @@ const APITable = () => {
           {/* Map over the apiTable array inside the single latestApiDesign object */}
           {latestApiDesign.apiTable.map((endpoint, index) => (
             <tr key={index}>
-              <td>{endpoint.endpoint}</td>
+              <td className="endpoint">{endpoint.endpoint}</td>
               <td>{endpoint.method}</td>
               <td>{endpoint.description}</td>
               <td>

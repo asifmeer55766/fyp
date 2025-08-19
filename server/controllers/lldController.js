@@ -10,17 +10,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gem
 
 export const generateLowLevel = async (req, res) => {
   await connectDB(); // Ensure DB is connected
-  //   const { functional, nonFunctional, originalUserPrompt } = req.body;
 
-  //   if (!functional || !nonFunctional || !originalUserPrompt) {
-  //     return res.status(400).json({ error: "All required fields missing" });
-  //   }
-
-  //   const formatRequirements = (reqs) =>
-  //     reqs.map((item, i) => `${i + 1}. ${Object.values(item)[0]}`).join("\n");
-
-  //   const functionalText = formatRequirements(functional);
-  //   const nonFunctionalText = formatRequirements(nonFunctional);
   const { originalUserPrompt } = req.body;
 
   const prompt = `
@@ -44,7 +34,6 @@ Respond ONLY with JSON. Do not explain.
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.text().trim();
-    console.log("responses from low level design ", responseText);
 
     let cleanedText = responseText
       .replace(/^```(json)?/i, "")

@@ -3,7 +3,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 import RegisterForm from "./components/authentication/Register";
 import LoginForm from "./components/authentication/Login";
@@ -22,6 +21,9 @@ import FinalOutputDocs from "./pages/finalOutputDocs/FinalOutputDocs";
 import Status from "./components/status/Status";
 import Spiner from "./components/status/Spiner";
 import { useState, useEffect } from "react";
+import Footer from "./components/footer/Footer";
+import NotFound from "./pages/notFound/NotFound";
+import ScrollToTop from "./components/scrollTop/ScrollToTop";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -39,6 +41,7 @@ function App() {
   ) : (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -48,6 +51,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/user-guide" element={<UserGuide />} />
           <Route path="/status" element={<Status />} />
+          <Route path="/*" element={<NotFound />} />
           <Route
             path="/display-functional-req"
             element={<DisplayFunctionalRequirements />}

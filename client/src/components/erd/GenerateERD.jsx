@@ -20,7 +20,6 @@ export const GenerateERD = async (dispatch) => {
     }
 
     const data = await response.json();
-    console.log("Generated ERD:", data);
     dispatch(markTaskCompleted("diagrams"));
     toast.success("LLD is completed");
   } catch (error) {

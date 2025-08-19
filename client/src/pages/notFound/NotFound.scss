@@ -1,0 +1,66 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+
+  .notfound-content {
+    max-width: 600px;
+
+    h1 {
+      font-size: 8rem;
+      margin: 0;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulse 2s infinite;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+
+    button {
+      background: black;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: bold;
+
+      &:hover {
+        background: #353535;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
+
+/* Animation for 404 glowing effect */
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 5px #ff4b2b, 0 0 10px #ff4b2b;
+  }
+  50% {
+    text-shadow: 0 0 20px #ff416c, 0 0 40px #ff416c;
+  }
+  100% {
+    text-shadow: 0 0 5px #ff4b2b, 0 0 10px #ff4b2b;
+  }
+}

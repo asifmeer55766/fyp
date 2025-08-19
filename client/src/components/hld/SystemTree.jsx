@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Tree from "react-d3-tree";
-import SoftwareImage from "../../assets/icons/app.jpg";
-import majormodule from "../../assets/icons/majormodule.png";
+import SoftwareImage from "../../assets/icons/green.png";
+import majormodule from "../../assets/icons/red.png";
 // Custom node element that uses an image instead of a circle
 const renderCustomNode = ({ nodeDatum, toggleNode }) => {
   return (
@@ -11,7 +11,7 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
         <image
           href={SoftwareImage}
           x="-75"
-          y="-40"
+          y="-25"
           width="50"
           height="50"
           onClick={toggleNode}
@@ -35,7 +35,7 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
       {/* Node label */}
       <text
         x="20"
-        y="15"
+        y="5"
         textAnchor="start"
         fontSize="16"
         fill="#333"

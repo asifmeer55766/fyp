@@ -1,16 +1,65 @@
 /* HTML: <div class="loader"></div> */
-.loader {
-  width: 800px;
-  height: 14px;
-  -webkit-mask: radial-gradient(circle closest-side, #000 94%, #0000) 0 0/16.6%
-      100%,
-    linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px)
-      no-repeat;
-  background: linear-gradient(#170da0 0 0) 0/0% no-repeat #ddd;
-  animation: l7 2s infinite linear;
-}
-@keyframes l7 {
-  100% {
-    background-size: 100%;
+// .loader-container {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 10px;
+//   p {
+//     font-size: 1em;
+//     font-weight: 500;
+//     color: #170da0;
+//   }
+//   .loader {
+//     width: 570px;
+//     height: 11px;
+//     border-radius: 20px;
+//     background: repeating-linear-gradient(
+//           135deg,
+//           #170da0 0 10px,
+//           #ffffff 0 20px
+//         )
+//         0/0% no-repeat,
+//       repeating-linear-gradient(135deg, #ddd 0 10px, #eee 0 20px) 0/100%;
+//     animation: l3 2s infinite;
+//   }
+//   @keyframes l3 {
+//     100% {
+//       background-size: 100%;
+//     }
+//   }
+// }
+
+// src/components/animation/progress/progress.scss
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  p {
+    font-size: 1em;
+    font-weight: 500;
+    color: #170da0;
   }
+  .loader {
+    width: 570px;
+    height: 11px;
+    border-radius: 20px;
+    background: repeating-linear-gradient(
+          135deg,
+          #170da0 0 10px,
+          #ffffff 0 20px
+        )
+        0 / var(--progress-width) no-repeat,
+      /* Use the CSS variable here */
+        repeating-linear-gradient(135deg, #ddd 0 10px, #eee 0 20px) 0/100%;
+    // animation: l3 2s infinite; /* Remove this animation */
+    /* Add a transition to make the progress smooth */
+    transition: background-size 0.5s ease-in-out;
+  }
+  /* Remove the @keyframes l3 animation as it's no longer needed */
+  /* @keyframes l3 {
+    100% {
+      background-size: 100%;
+    }
+  } */
 }

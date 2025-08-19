@@ -5,7 +5,6 @@ const getHLD = async (req, res) => {
   try {
     connectDB();
     const latestDesign = await ResponseModel.findOne().sort({ createdAt: -1 });
-    console.log("latest desing is :", latestDesign);
 
     if (!latestDesign || !latestDesign.rawData) {
       return res.status(404).json({ error: "HLD data not found" });

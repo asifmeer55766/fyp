@@ -20,7 +20,6 @@ export default async function GenerateAPI(dispatch) {
     }
 
     const data = await response.json();
-    console.log("Generated APIs:", data);
     dispatch(markTaskCompleted("apis"));
     toast.success("API is completed");
   } catch (error) {

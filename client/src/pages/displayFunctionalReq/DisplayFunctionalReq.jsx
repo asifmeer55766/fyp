@@ -11,6 +11,8 @@ import Status from "../../components/status/Status";
 import { toast } from "react-toastify";
 import { GenerateERD } from "../../components/erd/GenerateERD";
 import GenerateAPI from "../../components/apis/GenerateAPI";
+import { GenerateSequenceDiagram } from "../../components/seqDigram/GenerateSequenceDiagram";
+import { GenerateProjectProposal } from "../../components/projectProposal/GenerateProjectProposal";
 
 const DisplayFunctionalReq = () => {
   const dispatch = useDispatch();
@@ -72,15 +74,19 @@ const DisplayFunctionalReq = () => {
 
       const data = await response.json();
       // function to generate Low Level Design
-      // await GenerateLLD(dispatch);
-      // toast.success("LLD is completed");
+      await GenerateLLD(dispatch);
 
       // function to generate ERD Diagram
-      // await GenerateERD(dispatch);
-      // toast.success("ERD is completed");
+      await GenerateERD(dispatch);
 
       //function to generate APIs and sequence
       await GenerateAPI(dispatch);
+
+      // function to generate sequence diagram
+      await GenerateSequenceDiagram(dispatch);
+
+      // function to generate project proposals
+      await GenerateProjectProposal(dispatch);
     } catch (error) {
       console.error("Error generating design:", error);
       dispatch(markTaskCompleted(""));

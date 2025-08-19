@@ -13,6 +13,14 @@ const { generateLowLevel } = require("../controllers/lldController");
 const { generateERD } = require("../controllers/generateERD");
 const { generateApi } = require("../controllers/generateApi");
 const { getLatestApiDesign } = require("../controllers/getApi");
+const {
+  generateSequenceDiagram,
+  getLatestSequenceDiagram,
+} = require("../controllers/generateSequenceDiagram");
+const {
+  generateProjectProposal,
+  getLatestProjectProposal,
+} = require("../controllers/generateprojectProposalController");
 // Register route
 router.post("/register", registerUser);
 router.post("/login", loginUser);
@@ -28,6 +36,10 @@ router.post("/generate-lld", generateLowLevel);
 router.post("/generate-erd", generateERD);
 router.post("/generate-api", generateApi);
 router.get("/get-apidesign", getLatestApiDesign);
+router.post("/generate-sequence-diagram", generateSequenceDiagram);
+router.get("/get-sequencediagram", getLatestSequenceDiagram);
+router.post("/generate-project-proposal", generateProjectProposal);
+router.get("/get-project-proposal", getLatestProjectProposal);
 
 const { authenticate, authorizeRoles } = require("../middleware/auth");
 

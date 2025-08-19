@@ -64,13 +64,22 @@
     content: "";
   }
 }
+h2 {
+  font-size: 1.2rem;
+}
 // <----------------css for docs------------------------------->
 .documentation-container {
   background-color: white;
   min-height: 100vh;
-  // font-family: "Times New Roman", Times, serif;
   padding: 0px 20px;
   text-align: justify;
+  .project-overview {
+    h2 {
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      margin-top: 20px;
+    }
+  }
   section {
     margin: 40px auto;
     .outer-div {
@@ -99,6 +108,43 @@
       strong {
         // display: block;
         color: rgb(0, 67, 122);
+      }
+    }
+
+    section {
+      h2 {
+        margin: 10px 0px;
+        font-size: 1.5rem;
+        span {
+          color: #00456d;
+        }
+      }
+      div {
+        background-color: #e3ecde;
+        padding: 18px;
+        line-height: 2;
+        border-radius: 4px;
+        ul {
+          li {
+            list-style: none;
+          }
+        }
+      }
+    }
+  }
+  .techStack {
+    ul {
+      li {
+        list-style-type: none;
+        line-height: 2;
+        margin-left: 20px;
+        span {
+          i {
+            strong {
+              color: #00456d;
+            }
+          }
+        }
       }
     }
   }

@@ -6,7 +6,7 @@
   .status-section {
     width: 100%;
     max-width: 1200px;
-    padding: 20px;
+    padding: 10px;
     margin: 0px auto;
     .status-box {
       display: flex;
@@ -16,10 +16,10 @@
 
       .success-icon {
         width: 150px;
-        height: 150px;
-        background-color: #f5f5f5;
+        height: 120px;
+        // background-color: #f5f5f5;
         border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -64,7 +64,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 60px auto 10px auto;
+      margin: 20px auto 10px auto;
     }
     .action-progress {
       display: flex;
@@ -93,6 +93,11 @@
           font-size: 1.1rem;
           margin-left: 5px;
         }
+      }
+      .disabled-btn {
+        cursor: not-allowed; // Change cursor to indicate it's not clickable
+        filter: grayscale(100%);
+        opacity: 0.4;
       }
     }
   }

@@ -9,12 +9,19 @@ import TreeViewer from "../../components/hld/TreeViewer";
 import TreeViewerLLD from "../../components/lld/TreeViewerLLD";
 import RenderERD from "../../components/erd/RenderERD";
 import APITable from "../../components/apiTable/APITable";
+import RenderSequenceDiagram from "../../components/seqDigram/RenderSequenceDiagram";
+import RenderProjectProposal from "../../components/projectProposal/RenderProjectProposal";
+import { formatDescription } from "../../../utils/formatDescription";
 
 export default function FinalOutputDocs() {
   const [functionalRequirements, setFunctionalRequirements] = useState([]);
   const [nonFunctionalRequirements, setNonFunctionalRequirements] = useState(
     []
   );
+  const [proposal, setProposal] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     fetch("http://localhost:5000/api/latest-response", {
       method: "GET",
@@ -33,18 +40,80 @@ export default function FinalOutputDocs() {
         console.error("Error fetching response:", err);
       });
   }, []);
+  useEffect(() => {
+    const fetchProposal = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/get-project-proposal"
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        setProposal(result.data);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchProposal();
+  }, []);
+  if (isLoading) {
+    return <div className="loading-message">Loading documentation...</div>;
+  }
+
+  if (error) {
+    return <div className="error-message">Error: {error}</div>;
+  }
+
+  // Also handle the case where the data is not found
+  if (!proposal) {
+    return <div className="empty-message">No project proposal found.</div>;
+  }
+
+  // Only call the formatting function and render when `proposal` exists.
+  const formattedDescription = formatDescription(proposal.description);
+
   return (
     <div className="documentation-container">
       <section className="project-overview">
-        <h1>System Design Docs</h1>
-        <h2>1) Project overview</h2>
-        <h3>Project Name: E-commerce Platform</h3>
-        <h3>Project Description</h3>
-        <p></p>
-        <h3>Stakeholders</h3>
-        <p></p>
-        <h3>Project Use-Case</h3>
-        <p></p>
+        <h2>(1) Project overview</h2>
+        <section className="proposal-section">
+          <h2>
+            Project Name: <span>{proposal.projectName}</span>
+          </h2>
+          <h2>Project Description</h2>
+          <div
+            className="description-content"
+            dangerouslySetInnerHTML={{ __html: formattedDescription }}
+          />
+        </section>
+
+        {/* Stakeholders and Use Cases Section */}
+        <section className="proposal-section-split">
+          <div className="stakeholders-container">
+            <h2>Stakeholders</h2>
+            <ul>
+              {proposal.stakeholders.map((stakeholder, index) => (
+                <li key={index}>
+                  <strong>{index + 1} ➡ </strong>
+                  {stakeholder}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="use-cases-container">
+            <h2>Project Use Cases</h2>
+            <ul>
+              {proposal.useCases.map((useCase, index) => (
+                <li key={index}>
+                  <strong>{index + 1} ➡</strong> {useCase}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </section>
 
       <section className="functional-and-nonfunctional-req">
@@ -212,6 +281,10 @@ export default function FinalOutputDocs() {
           (required parameters), and what you'll receive in return (the
           response).
         </p>
+        <Suspense fallback="wait Loading API design .....">
+          <APITable />
+        </Suspense>
+
         <div className="api-div">
           <p>
             <h3>Key Concepts to Display </h3>
@@ -267,10 +340,41 @@ export default function FinalOutputDocs() {
             permission to access the data.
           </p>
         </div>
-
-        <Suspense fallback="wait Loading API design .....">
-          <APITable />
+      </section>
+      <section className="sequence-diagram">
+        <h2>(7) Sequence Diagram</h2>
+        <p>
+          A sequence diagram is a type of chart that shows how processes or
+          objects interact with each other over time. It's a key tool in
+          software development and system design because it visually represents
+          the order in which messages or function calls are sent between
+          different parts of a system.
+        </p>
+        <Suspense fallback="loading sequence diagram...">
+          <RenderSequenceDiagram />
         </Suspense>
+      </section>
+
+      {/* <section>
+        <RenderProjectProposal />
+      </section> */}
+
+      {/* Tech Stack Section */}
+      <section className="techStack">
+        <h2>(8) Technology Stack</h2>
+        <ul>
+          {proposal.techStack.map((tech, index) => (
+            <li key={index}>
+              <strong> ({index + 1})</strong>
+              <span className="tech-name">
+                <i>
+                  <strong>{tech.technology}</strong>
+                </i>{" "}
+              </span>
+              : {tech.reason}
+            </li>
+          ))}
+        </ul>
       </section>
     </div>
   );

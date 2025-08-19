@@ -13,7 +13,37 @@ export default function Status() {
   };
 
   const tasks = useSelector((state) => state.tasks);
-  console.log("value of tasks is :", tasks.hld);
+
+  // Calculate the total number of tasks
+  const totalTasks = Object.keys(tasks).length;
+  // Count the number of completed tasks
+  const completedTasks = Object.values(tasks).filter(
+    (isCompleted) => isCompleted
+  ).length;
+  // Calculate the completion percentage
+  const progressPercentage = (completedTasks / totalTasks) * 100;
+
+  // Determine the dynamic message based on the current task being worked on
+  let progressMessage = "Please wait, we're working on it...";
+
+  if (!tasks.lld) {
+    progressMessage = "Working on Low Level Design...";
+  } else if (!tasks.diagrams) {
+    progressMessage = "Generating Diagrams...";
+  } else if (!tasks.systemArchitecture) {
+    progressMessage = "Building System Architecture...";
+  } else if (!tasks.apis) {
+    progressMessage = "Preparing API & Sequence Diagrams...";
+  } else if (!tasks.documentation) {
+    progressMessage = "Writing Documentation...";
+  } else if (!tasks.hld) {
+    progressMessage = "Working on Heigh Level Design...";
+  } else {
+    progressMessage = "All tasks completed! Your documentation is ready.";
+  }
+
+  // A boolean variable to check if all tasks are complete
+  const allTasksCompleted = progressPercentage === 100;
   return (
     <>
       <div className="status-container">
@@ -55,13 +85,17 @@ export default function Status() {
             </div>
           </div>
           <div className="progress">
-            <Progress />
+            <Progress percentage={progressPercentage} />
           </div>
           <div className="action-progress">
-            <Spiner status="Please wait your we 'r working on it " />
+            <Spiner status={progressMessage} />
           </div>
           <div className="button-box">
-            <button onClick={navigateDocs}>
+            <button
+              onClick={navigateDocs}
+              className={!allTasksCompleted ? "disabled-btn" : ""}
+              disabled={!allTasksCompleted}
+            >
               Save and Preview <MdOutlineSaveAlt className="icons" />
             </button>
           </div>
