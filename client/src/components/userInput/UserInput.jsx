@@ -72,10 +72,12 @@ const UserInput = ({ initialPrompt }) => {
     // form logic
     setLoading(true);
     try {
+      const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
       const response = await fetch("http://localhost:5000/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // 🔹 Send token to backend
         },
         body: JSON.stringify({ prompt: inputText.trim() }),
       });

@@ -1,9 +1,9 @@
+// routes/routes.js
 const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser } = require("../controllers/user.controller");
-
+const { authenticate, authorizeRoles } = require("../middleware/auth");
 const { generateRequirements } = require("../controllers/generate");
-// import { jsonGenerator } from '../controllers/jsongenerator.controller';
 const { getLatestResponse } = require("../controllers/responses");
 const { generateDesign } = require("../controllers/generateDesigns");
 const { getHLD } = require("../controllers/hldController");
@@ -21,28 +21,39 @@ const {
   generateProjectProposal,
   getLatestProjectProposal,
 } = require("../controllers/generateprojectProposalController");
-// Register route
+
+// Public routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 
-// Add Gemini generate route
-router.post("/generate", generateRequirements);
+// Protected routes 🔒
+// 💡 Apply the 'authenticate' middleware to all protected routes
+router.post("/generate", authenticate, generateRequirements);
+router.post("/generate-design", authenticate, generateDesign);
+router.post("/generate-lld", authenticate, generateLowLevel);
+router.post("/generate-api", authenticate, generateApi);
+router.post("/generate-erd", authenticate, generateERD);
+router.post(
+  "/generate-project-proposal",
+  authenticate,
+  generateProjectProposal
+);
+router.post(
+  "/generate-sequence-diagram",
+  authenticate,
+  generateSequenceDiagram
+);
+// get routes
 router.get("/latest-response", getLatestResponse);
-router.post("/generate-design", generateDesign);
 router.get("/getHLD", getHLD);
 router.get("/getLLD", getLLD);
 router.get("/getERD", getERD);
-router.post("/generate-lld", generateLowLevel);
-router.post("/generate-erd", generateERD);
-router.post("/generate-api", generateApi);
 router.get("/get-apidesign", getLatestApiDesign);
-router.post("/generate-sequence-diagram", generateSequenceDiagram);
 router.get("/get-sequencediagram", getLatestSequenceDiagram);
-router.post("/generate-project-proposal", generateProjectProposal);
+
 router.get("/get-project-proposal", getLatestProjectProposal);
 
-const { authenticate, authorizeRoles } = require("../middleware/auth");
-
+// Role-based examples
 router.get("/admin-only", authenticate, authorizeRoles("admin"), (req, res) => {
   res.json({ message: "Welcome Admin!" });
 });

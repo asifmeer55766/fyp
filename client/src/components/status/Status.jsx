@@ -25,8 +25,9 @@ export default function Status() {
 
   // Determine the dynamic message based on the current task being worked on
   let progressMessage = "Please wait, we're working on it...";
-
-  if (!tasks.lld) {
+  if (!tasks.hld) {
+    progressMessage = "Working on Heigh Level Design...";
+  } else if (!tasks.lld) {
     progressMessage = "Working on Low Level Design...";
   } else if (!tasks.diagrams) {
     progressMessage = "Generating Diagrams...";
@@ -36,8 +37,6 @@ export default function Status() {
     progressMessage = "Preparing API & Sequence Diagrams...";
   } else if (!tasks.documentation) {
     progressMessage = "Writing Documentation...";
-  } else if (!tasks.hld) {
-    progressMessage = "Working on Heigh Level Design...";
   } else {
     progressMessage = "All tasks completed! Your documentation is ready.";
   }

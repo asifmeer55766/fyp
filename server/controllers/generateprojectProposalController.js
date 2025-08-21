@@ -73,7 +73,18 @@ Rules:
     }
 
     // 🔹 Save the JSON to the database
-    const savedProposal = await ProjectProposal.create(jsonData);
+    const savedProposal = await ProjectProposal.create({
+      projectName: jsonData.projectName,
+      description: jsonData.description,
+      stakeholders: jsonData.stakeholders,
+      useCases: jsonData.useCases,
+      techStack: jsonData.techStack,
+
+      // keep full Gemini response as backup
+      jsonData,
+
+      userId: req.user._id,
+    });
 
     res.status(201).json({
       message: "Project proposal generated and saved successfully",

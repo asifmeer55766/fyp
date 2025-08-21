@@ -2,6 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import connectDB from "../database/db.js";
 import hldResponse from "../models/hldResponse.js";
+
 // Initialize with API key
 const genAI = new GoogleGenerativeAI(
   "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
@@ -76,6 +77,7 @@ Respond ONLY with JSON. Do not explain.
     const saved = await hldResponse.create({
       designName: jsonData.name || "Untitled System",
       rawData: jsonData,
+      userId: req.user._id, // ✅ FIXED
     });
 
     res.json({ design: saved });

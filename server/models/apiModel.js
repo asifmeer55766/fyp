@@ -15,6 +15,7 @@ const apiDesignSchema = new mongoose.Schema({
     required: true, // e.g. "API Design for College Management System"
   },
   apiTable: [apiEndpointSchema], // array of endpoints
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: {
     type: Date,
     default: Date.now,

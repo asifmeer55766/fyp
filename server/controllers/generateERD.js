@@ -226,6 +226,7 @@ Rules:
     const saved = await erdModel.create({
       designName: jsonData.name || "Untitled System",
       mermaidCode: mermaidCode,
+      userId: req.user._id, // ✅ FIXED
     });
 
     res.json({ raw: mermaidCode });

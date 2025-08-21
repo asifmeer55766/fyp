@@ -13,8 +13,11 @@ import { GenerateERD } from "../../components/erd/GenerateERD";
 import GenerateAPI from "../../components/apis/GenerateAPI";
 import { GenerateSequenceDiagram } from "../../components/seqDigram/GenerateSequenceDiagram";
 import { GenerateProjectProposal } from "../../components/projectProposal/GenerateProjectProposal";
+import { useParams } from "react-router-dom";
 
 const DisplayFunctionalReq = () => {
+  // 💡 This hook correctly gets the projectId from the URL, e.g., /project/12345
+  const { projectId } = useParams();
   const dispatch = useDispatch();
   const [functionalRequirements, setFunctionalRequirements] = useState([]);
   const [nonFunctionalRequirements, setNonFunctionalRequirements] = useState(
@@ -24,7 +27,6 @@ const DisplayFunctionalReq = () => {
   const nonFunctionalRef = useRef([]);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
   const handleClick = () => {
     const savedData = localStorage.getItem("originalPrompt") || "";
 
@@ -55,11 +57,17 @@ const DisplayFunctionalReq = () => {
     setLoading(true);
     try {
       const originalPrompt = localStorage.getItem("originalPrompt");
+      // 💡 Get the token from localStorage
+      // 💡 1. Get the token from localStorage
+      const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
       const response = await fetch(
         "http://localhost:5000/api/generate-design",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // 🔹 Send token to backend
+          },
           body: JSON.stringify({
             functional: functionalRef.current,
             nonFunctional: nonFunctionalRef.current,
@@ -73,6 +81,11 @@ const DisplayFunctionalReq = () => {
       }
 
       const data = await response.json();
+
+      // ✅ Mark HLD complete immediately after backend success
+      dispatch(markTaskCompleted("hld"));
+      dispatch(markTaskCompleted("systemArchitecture"));
+
       // function to generate Low Level Design
       await GenerateLLD(dispatch);
 
@@ -92,9 +105,6 @@ const DisplayFunctionalReq = () => {
       dispatch(markTaskCompleted(""));
     } finally {
       navigate("/status");
-      dispatch(markTaskCompleted("hld"));
-      dispatch(markTaskCompleted("systemArchitecture"));
-      toast.success("HLD is completed");
       setLoading(false);
     }
   };

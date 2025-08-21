@@ -60,6 +60,7 @@ Respond ONLY with JSON. Do not explain.
     const saved = await lldmodel.create({
       designName: jsonData.name || "Untitled System",
       rawData: jsonData,
+      userId: req.user._id, // ✅ FIXED
     });
 
     res.json({ design: saved });

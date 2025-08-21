@@ -13,7 +13,7 @@ exports.generateRequirements = async (req, res) => {
     await connectDB();
     const { prompt } = req.body;
 
-    const prefix = `First of all anaylize the prompt entered by user if it is irrelvent or not describing and defining any software requirement or dicussing about software , website, web application, mobile application or any type of software ,
+    const prefix = `First of all analyze the prompt entered by user if it is irrelvent or not describing and defining any software requirement or dicussing about software , website, web application, mobile application or any type of software ,
         just return false because you are design to generate only the functional and non functional requirements of software system just and not for any other even a single word , if it is about software system then 
         just write its functional and non functional requirements only in the form of json like this:
  {
@@ -74,11 +74,13 @@ exports.generateRequirements = async (req, res) => {
           "Your input appears unrelated to system design. Kindly provide a valid prompt describing software requirements to continue...",
       });
     }
+
     // ✅ Save to MongoDB in cleaner format
     const saved = await ResponseModel.create({
       prompt,
       functional_requirements: fr,
       non_functional_requirements: nfr,
+      userId: req.user._id, // ✅ FIXED
     });
     return res.json({ message: "Saved", data: saved });
   } catch (error) {

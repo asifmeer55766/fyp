@@ -64,6 +64,7 @@ exports.generateApi = async (req, res) => {
     const saved = await ApiDesign.create({
       title: jsonData.title,
       apiTable: jsonData.apiTable,
+      userId: req.user._id,
     });
 
     return res.json({ message: "Saved successfully", data: saved });

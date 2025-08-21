@@ -122,6 +122,7 @@ Rules:
     const saved = await SequenceDiagram.create({
       diagramName: jsonData.title || "Untitled Sequence Diagram",
       mermaidCode: mermaidCode,
+      userId: req.user._id,
     });
 
     res.json({ raw: mermaidCode });

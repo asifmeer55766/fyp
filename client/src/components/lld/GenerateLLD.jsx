@@ -5,11 +5,14 @@ import { toast } from "react-toastify";
 // Accept dispatch as an argument
 export const GenerateLLD = async (dispatch) => {
   try {
-    console.log("Starting LLD generation...");
     const originalPrompt = localStorage.getItem("originalPrompt");
+    const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
     const response = await fetch("http://localhost:5000/api/generate-lld", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // 🔹 Send token to backend
+      },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,
       }),

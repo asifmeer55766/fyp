@@ -10,7 +10,8 @@ import { toast } from "react-toastify";
  */
 export const GenerateSequenceDiagram = async (dispatch) => {
   try {
-    console.log("Starting sequence diagram generation...");
+    const token = localStorage.getItem("token");
+
     const originalPrompt = localStorage.getItem("originalPrompt");
 
     // Check for the prompt to ensure it's not empty
@@ -24,7 +25,10 @@ export const GenerateSequenceDiagram = async (dispatch) => {
       "http://localhost:5000/api/generate-sequence-diagram",
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           originalUserPrompt: originalPrompt,
         }),

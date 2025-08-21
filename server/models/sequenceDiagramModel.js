@@ -1,6 +1,7 @@
 // models/sequenceDiagramModel.js
 
 const mongoose = require("mongoose");
+const { baseSchemaFields } = require("./baseModel");
 
 const SequenceDiagramSchema = new mongoose.Schema({
   diagramName: {
@@ -11,6 +12,7 @@ const SequenceDiagramSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  ...baseSchemaFields,
   createdAt: {
     type: Date,
     default: Date.now,

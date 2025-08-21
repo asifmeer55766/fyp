@@ -5,11 +5,15 @@ import { toast } from "react-toastify";
 // Accept dispatch as an argument
 export const GenerateERD = async (dispatch) => {
   try {
-    console.log("Starting ERD generation...");
+    const token = localStorage.getItem("token");
+
     const originalPrompt = localStorage.getItem("originalPrompt");
     const response = await fetch("http://localhost:5000/api/generate-erd", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,
       }),
