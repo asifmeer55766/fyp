@@ -15,6 +15,8 @@ import { GenerateSequenceDiagram } from "../../components/seqDigram/GenerateSequ
 import { GenerateProjectProposal } from "../../components/projectProposal/GenerateProjectProposal";
 import { useParams } from "react-router-dom";
 
+import { GenerateSystemDesign } from "../../components/architectureDiagram/GenerateSystemDesign";
+
 const DisplayFunctionalReq = () => {
   // 💡 This hook correctly gets the projectId from the URL, e.g., /project/12345
   const { projectId } = useParams();
@@ -84,22 +86,23 @@ const DisplayFunctionalReq = () => {
 
       // ✅ Mark HLD complete immediately after backend success
       dispatch(markTaskCompleted("hld"));
-      dispatch(markTaskCompleted("systemArchitecture"));
+      // dispatch(markTaskCompleted("systemArchitecture"));
 
       // function to generate Low Level Design
-      await GenerateLLD(dispatch);
-
+      // await GenerateLLD(dispatch);
+      // function to generate architecture
+      await GenerateSystemDesign(dispatch);
       // function to generate ERD Diagram
-      await GenerateERD(dispatch);
+      // await GenerateERD(dispatch);
 
       //function to generate APIs and sequence
-      await GenerateAPI(dispatch);
+      // await GenerateAPI(dispatch);
 
       // function to generate sequence diagram
-      await GenerateSequenceDiagram(dispatch);
+      // await GenerateSequenceDiagram(dispatch);
 
       // function to generate project proposals
-      await GenerateProjectProposal(dispatch);
+      // await GenerateProjectProposal(dispatch);
     } catch (error) {
       console.error("Error generating design:", error);
       dispatch(markTaskCompleted(""));

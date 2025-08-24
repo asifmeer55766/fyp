@@ -12,7 +12,7 @@ import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard";
 import UserDashboard from "./pages/userDashboard/UserDashboard";
 import SystemSetting from "./pages/adminDashboard/systemSetting/SystemSetting";
-import DocsHistory from "./pages/userDashboard/docsHistory/DocsHistory";
+
 import LoaderVerify from "./components/loaders/LoaderVerify";
 import UserGuide from "./pages/userGuide/UserGuide";
 import ProcessAnimation from "./components/animation/loading/Loading";
@@ -24,6 +24,12 @@ import { useState, useEffect } from "react";
 import Footer from "./components/footer/Footer";
 import NotFound from "./pages/notFound/NotFound";
 import ScrollToTop from "./components/scrollTop/ScrollToTop";
+import Profile from "./pages/adminDashboard/profile/Profile";
+import ProjectsList from "./pages/adminDashboard/projectlist/ProjectList";
+import UsersList from "./pages/adminDashboard/userlist/UsersList";
+import Settings from "./pages/adminDashboard/setting/Setting";
+import UserProfile from "./pages/userDashboard/profile/UserProfile";
+import UserProjectsList from "./pages/userDashboard/projectlist/UserProjectList";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -65,7 +71,12 @@ function App() {
               </ProtectedRoute>
             }
           >
+            <Route index element={<Profile />} />
             <Route path="system-setting" element={<SystemSetting />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="project-list" element={<ProjectsList />} />
+            <Route path="user-list" element={<UsersList />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
           <Route
             path="/user-dashboard/*"
@@ -75,7 +86,9 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="docs-history" element={<DocsHistory />} />
+            <Route index element={<UserProfile />} />
+            <Route path="user-profile" element={<UserProfile />} />
+            <Route path="user-project-list" element={<UserProjectsList />} />
           </Route>
         </Routes>
         <Footer />

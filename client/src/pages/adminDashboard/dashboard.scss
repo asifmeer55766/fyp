@@ -1,0 +1,68 @@
+$backgroundWhite: white;
+$backgroundlight: #edf7fd;
+$textColorPrimary: rgba(58, 58, 58, 0.877);
+$textColorHover: #4da6eb;
+.dashboard-container {
+  margin-top: 80px;
+
+  .dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    background-color: aliceblue;
+
+    .left-dashboard-section {
+      width: 20%;
+      background-color: $backgroundlight;
+      min-height: 40vh;
+
+      nav {
+        ul {
+          padding: 0px 0px;
+
+          h3 {
+            color: $textColorPrimary;
+            margin: 10px 15px;
+            border-bottom: 0.5px solid $textColorHover;
+            padding-bottom: 15px;
+          }
+
+          a {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            text-decoration: none;
+            text-transform: capitalize;
+            font-size: 0.83rem;
+            font-weight: 500;
+            margin: 2.8px 0px;
+            background-color: $backgroundlight;
+            padding: 8px;
+            color: $textColorPrimary;
+
+            span {
+              font-size: 1.1rem;
+              margin-right: 5px;
+              display: flex;
+              font-weight: 500;
+              justify-content: start;
+              align-items: center;
+              color: $textColorHover;
+            }
+          }
+
+          a:hover {
+            background-color: $backgroundlight;
+            color: $textColorHover;
+          }
+        }
+      }
+    }
+
+    .right-dashboard-section {
+      padding: 16px;
+      width: 80%;
+      background-color: $backgroundWhite;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
-import logopng from "../../assets/logopng.png";
+import logopng from "../../assets/logo system design.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { SlSettings } from "react-icons/sl";
 import Button1 from "../buttons/button1";
@@ -53,10 +53,10 @@ const Header = () => {
   return (
     <header className={scrolled ? "scrolled" : ""}>
       <nav className="navbar">
-        {/* <div className='logo-div'>
-                    <img src={logopng} alt="company logo" />
-                </div> */}
-        <span>Sys Design</span>
+        <div className="logo-div">
+          <img src={logopng} alt="company logo" />
+        </div>
+        {/* <span>Sys Design</span> */}
 
         <div className="menu-icon" onClick={toggleMenu}>
           {menuOpen ? <FaTimes /> : <FaBars />}
@@ -70,6 +70,7 @@ const Header = () => {
             Home
           </NavLink>
           <NavLink to="/about">About</NavLink>
+
           <NavLink to="/features">Features</NavLink>
           <NavLink to="/system-docs">Documentation</NavLink>
           <NavLink to="/display-functional-req">Functional req</NavLink>

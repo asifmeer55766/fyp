@@ -21,6 +21,11 @@ const {
   generateProjectProposal,
   getLatestProjectProposal,
 } = require("../controllers/generateprojectProposalController");
+const {
+  generateSystemDesign,
+  getLatestSystemDesign,
+} = require("../controllers/systemDesignController");
+const { generatePdf } = require("../controllers/pdfController");
 
 // Public routes
 router.post("/register", registerUser);
@@ -33,6 +38,7 @@ router.post("/generate-design", authenticate, generateDesign);
 router.post("/generate-lld", authenticate, generateLowLevel);
 router.post("/generate-api", authenticate, generateApi);
 router.post("/generate-erd", authenticate, generateERD);
+router.post("/generate-system-design", authenticate, generateSystemDesign);
 router.post(
   "/generate-project-proposal",
   authenticate,
@@ -50,8 +56,9 @@ router.get("/getLLD", getLLD);
 router.get("/getERD", getERD);
 router.get("/get-apidesign", getLatestApiDesign);
 router.get("/get-sequencediagram", getLatestSequenceDiagram);
-
+router.get("/get-system-design", getLatestSystemDesign);
 router.get("/get-project-proposal", getLatestProjectProposal);
+router.get("/generate-pdf", generatePdf);
 
 // Role-based examples
 router.get("/admin-only", authenticate, authorizeRoles("admin"), (req, res) => {

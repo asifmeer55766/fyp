@@ -4,13 +4,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "ASIF HUSSAIN",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
+    "ajv": "^8.17.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.1.0",
@@ -20,6 +21,7 @@
     "mongoose": "^8.16.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.10",
+    "puppeteer": "^24.17.0",
     "zod": "^3.24.1"
   }
 }

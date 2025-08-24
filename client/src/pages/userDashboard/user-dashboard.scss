@@ -1,53 +1,53 @@
-.dashboard-container {
-    margin-top: 80px;
+// .dashboard-container {
+//     margin-top: 80px;
 
-    .dashboard {
-        display: flex;
-        justify-content: space-between;
-        align-items: start;
-        background-color: aliceblue;
+//     .dashboard {
+//         display: flex;
+//         justify-content: space-between;
+//         align-items: start;
+//         background-color: aliceblue;
 
-        .left-dashboard-section {
-            width: 20%;
-            background-color: rgb(0, 25, 42);
-            min-height: 100vh;
+//         .left-dashboard-section {
+//             width: 20%;
+//             background-color: rgb(0, 25, 42);
+//             min-height: 100vh;
 
-            nav {
-                ul {
-                    padding: 0px 0px;
+//             nav {
+//                 ul {
+//                     padding: 0px 0px;
 
-                    h3 {
-                        color: white;
-                        margin: 10px 15px;
-                    }
+//                     h3 {
+//                         color: white;
+//                         margin: 10px 15px;
+//                     }
 
-                    a {
-                        display: block;
-                        text-decoration: none;
-                        text-transform: capitalize;
-                        font-size: 1rem;
-                        margin: 2.8px 0px;
-                        background-color: rgb(1, 36, 61);
-                        padding: 8px;
-                        color: rgb(202, 200, 200);
+//                     a {
+//                         display: block;
+//                         text-decoration: none;
+//                         text-transform: capitalize;
+//                         font-size: 1rem;
+//                         margin: 2.8px 0px;
+//                         background-color: rgb(1, 36, 61);
+//                         padding: 8px;
+//                         color: rgb(202, 200, 200);
 
-                        span {
-                            font-size: 1.1rem;
-                            margin-right: 5px;
-                        }
-                    }
+//                         span {
+//                             font-size: 1.1rem;
+//                             margin-right: 5px;
+//                         }
+//                     }
 
-                    a:hover {
-                        background-color: rgb(0, 25, 42);
+//                     a:hover {
+//                         background-color: rgb(0, 25, 42);
 
-                    }
-                }
-            }
-        }
+//                     }
+//                 }
+//             }
+//         }
 
-        .right-dashboard-section {
-            padding: 16px;
-            width: 80%;
-        }
-    }
-}
+//         .right-dashboard-section {
+//             padding: 16px;
+//             width: 80%;
+//         }
+//     }
+// }
