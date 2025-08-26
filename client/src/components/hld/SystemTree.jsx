@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Tree from "react-d3-tree";
 import SoftwareImage from "../../assets/icons/green.png";
 import majormodule from "../../assets/icons/red.png";
+
 // Custom node element that uses an image instead of a circle
 const renderCustomNode = ({ nodeDatum, toggleNode }) => {
   return (
@@ -12,8 +13,8 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
           href={SoftwareImage}
           x="-75"
           y="-25"
-          width="50"
-          height="50"
+          width="40"
+          height="40"
           onClick={toggleNode}
           style={{
             transform: "scaleX(-1)", // flip horizontally
@@ -24,11 +25,11 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
       ) : (
         <image
           x="-15"
-          y="-15"
+          y="-10"
           onClick={toggleNode}
           href={majormodule}
-          width="35"
-          height="35"
+          width="20"
+          height="20"
         />
       )}
 
@@ -37,9 +38,9 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
         x="20"
         y="5"
         textAnchor="start"
-        fontSize="16"
+        fontSize="14"
         fill="#333"
-        strokeWidth="0.5"
+        strokeWidth=".5"
       >
         {nodeDatum.name}
       </text>
@@ -51,8 +52,9 @@ export default function SystemTree({ data }) {
   const treeContainer = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [treeData, setTreeData] = useState(data);
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
 
-  // This effect runs once to get the container's dimensions for centering the tree.
+  // This effect runs once to get the initial container's dimensions.
   useEffect(() => {
     if (treeContainer.current) {
       const { offsetWidth, offsetHeight } = treeContainer.current;
@@ -69,7 +71,6 @@ export default function SystemTree({ data }) {
   };
 
   // This effect expands the tree whenever the data prop changes.
-  // It deep clones the data to avoid modifying the original prop.
   useEffect(() => {
     if (data) {
       const clonedData = JSON.parse(JSON.stringify(data));
@@ -78,34 +79,55 @@ export default function SystemTree({ data }) {
     }
   }, [data]);
 
+  // Use a second useEffect with a slight delay to allow the tree to render
+  // and then calculate its size.
+  useEffect(() => {
+    if (treeData && treeContainer.current) {
+      // Small delay to ensure the SVG has been rendered by react-d3-tree
+      const timer = setTimeout(() => {
+        const treeSvg = treeContainer.current.querySelector("svg");
+        if (treeSvg) {
+          const bbox = treeSvg.getBBox();
+          // Add some padding to the calculated dimensions
+          const calculatedWidth = bbox.width + 100; // 100px padding
+          const calculatedHeight = bbox.height + 100; // 100px padding
+          setSvgDimensions({
+            width: calculatedWidth,
+            height: calculatedHeight,
+          });
+        }
+      }, 50); // A small delay is often needed for the DOM to update
+      return () => clearTimeout(timer); // Cleanup timer
+    }
+  }, [treeData]);
+
   return (
     <div
       ref={treeContainer}
+      className="tree-container"
       style={{
-        width: "100%", // A4 width
-        height: "297mm", // A4 height
-        margin: "0 auto", // Center the container
-        padding: "15mm", // Add some margin for printing
-        boxSizing: "border-box", // Include padding in the dimensions
-        overflow: "hidden", // Hide any overflow to prevent scrolling
-        backgroundColor: "#fff", // Set a white background for printing
+        width: "100%",
+        // Set height dynamically
+        height: `${svgDimensions.height}px`,
+        margin: "0 auto",
+        padding: "15mm",
+        boxSizing: "border-box",
+        overflow: "visible", // Change to "visible" to allow tree to expand
+        backgroundColor: "#fff",
       }}
     >
-      {dimensions.width > 0 && (
+      {treeData && (
         <Tree
           data={treeData}
           orientation="horizontal"
-          translate={{ x: 50, y: dimensions.height / 2 }}
-          pathFunc="elbow"
-          collapsible={true}
-          nodeSize={{ x: 240, y: 100 }}
-          // Use the custom renderer here to display images/icons
+          translate={{ x: 80, y: svgDimensions.height / 2 || 500 }}
+          pathFunc="diagonal"
+          collapsible={false} // Disable collapsible since we're expanding all
+          nodeSize={{ x: 210, y: 50 }}
           renderCustomNodeElement={renderCustomNode}
           styles={{
             nodes: {
               node: {
-                // The circle properties are no longer used since we are rendering a custom node.
-                // We'll keep the text styles for the attributes.
                 name: {
                   fontSize: "10px",
                   fill: "#333",

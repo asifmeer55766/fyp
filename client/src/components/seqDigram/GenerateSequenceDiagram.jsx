@@ -12,6 +12,7 @@ export const GenerateSequenceDiagram = async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
 
+    const projectId = localStorage.getItem("projectId");
     const originalPrompt = localStorage.getItem("originalPrompt");
 
     // Check for the prompt to ensure it's not empty
@@ -31,6 +32,7 @@ export const GenerateSequenceDiagram = async (dispatch) => {
         },
         body: JSON.stringify({
           originalUserPrompt: originalPrompt,
+          projectId,
         }),
       }
     );
@@ -45,7 +47,6 @@ export const GenerateSequenceDiagram = async (dispatch) => {
 
     const data = await response.json();
     dispatch(markTaskCompleted("apis"));
-    toast.success("Sequence Diagram is completed!");
   } catch (error) {
     console.error("Error generating sequence diagram:", error);
     toast.error(`Error generating diagram: ${error.message}`);

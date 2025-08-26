@@ -61,7 +61,7 @@ function jsonToMermaidSequence(jsonData) {
 exports.generateSequenceDiagram = async (req, res) => {
   try {
     await connectDB();
-    const { originalUserPrompt } = req.body;
+    const { originalUserPrompt, projectId } = req.body;
 
     const prompt = `You are a system architect. A user wants to model the data flow for the following system: "${originalUserPrompt}".
 Generate a sequence diagram in JSON format that strictly follows this structure:
@@ -123,6 +123,7 @@ Rules:
       diagramName: jsonData.title || "Untitled Sequence Diagram",
       mermaidCode: mermaidCode,
       userId: req.user._id,
+      projectId,
     });
 
     res.json({ raw: mermaidCode });

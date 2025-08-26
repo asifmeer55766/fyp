@@ -66,7 +66,7 @@ function jsonToMermaidFlowchart(jsonData) {
 exports.generateSystemDesign = async (req, res) => {
   try {
     await connectDB();
-    const { originalUserPrompt } = req.body;
+    const { originalUserPrompt, projectId } = req.body;
 
     // --- VALIDATION AND ERROR HANDLING ---
     // 1. Check for empty prompt
@@ -159,6 +159,7 @@ Rules:
         diagramName: jsonData.title || "Untitled System Design",
         mermaidCode: mermaidCode,
         userId: req.user._id, // Assumes user authentication is handled
+        projectId,
       });
 
       // Respond with the raw Mermaid code

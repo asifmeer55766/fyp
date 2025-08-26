@@ -1,9 +1,12 @@
 // FinalOutputDocs.jsx
-import React from "react";
 import "./output.scss";
 import { Suspense } from "react";
 import { normalizeRequirements } from "../../../utils/normalizeRequirements";
 import { useEffect, useState } from "react";
+import React, { useRef } from "react";
+import { FaDownload } from "react-icons/fa6";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 import TreeViewer from "../../components/hld/TreeViewer";
 import TreeViewerLLD from "../../components/lld/TreeViewerLLD";
@@ -14,9 +17,42 @@ import RenderSequenceDiagram from "../../components/seqDigram/RenderSequenceDiag
 import { formatDescription } from "../../../utils/formatDescription";
 
 import RenderSystemDesign from "../../components/architectureDiagram/RenderSystemDesign";
-import DownloadPdfButton from "../../components/downloadButton/DownloadPdfButton";
 
 export default function FinalOutputDocs() {
+  const contentRef = useRef();
+  const [loading, setLoading] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setLoading(true); // start loading
+    try {
+      const canvas = await html2canvas(contentRef.current);
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF("p", "mm", "a4");
+      const imgWidth = 190;
+      const pageHeight = 295;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      let heightLeft = imgHeight;
+      let position = 10;
+
+      pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save("Project.pdf");
+    } catch (error) {
+      console.error("PDF generation failed", error);
+    }
+    setLoading(false); // stop loading
+  };
+
   const [functionalRequirements, setFunctionalRequirements] = useState([]);
   const [nonFunctionalRequirements, setNonFunctionalRequirements] = useState(
     []
@@ -80,11 +116,49 @@ export default function FinalOutputDocs() {
 
   return (
     <>
-      <button style={{ position: "fixed", right: "0px" }}>
-        <DownloadPdfButton />
+      <button
+        style={{
+          position: "fixed",
+          right: "20px",
+          top: "90px",
+          padding: "10px 20px",
+          background: "#2563eb",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+        }}
+        onClick={handleDownloadPDF}
+        disabled={loading}
+      >
+        {loading ? (
+          <>
+            <span
+              className="spinner"
+              style={{
+                width: "16px",
+                height: "16px",
+                border: "2px solid #fff",
+                borderTop: "2px solid transparent",
+                borderRadius: "50%",
+                display: "inline-block",
+                animation: "spin 1s linear infinite",
+              }}
+            ></span>
+            Generating PDF...
+          </>
+        ) : (
+          "Download Project PDF"
+        )}
+        <span>
+          <FaDownload />
+        </span>
       </button>
 
-      <div className="documentation-container">
+      <div className="documentation-container" ref={contentRef}>
         <section className="project-overview">
           <h2>(1) Project overview</h2>
           <section className="proposal-section">

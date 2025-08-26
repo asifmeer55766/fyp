@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export default async function GenerateAPI(dispatch) {
   try {
     const token = localStorage.getItem("token");
-
+    const projectId = localStorage.getItem("projectId");
     const originalPrompt = localStorage.getItem("originalPrompt");
     const response = await fetch("http://localhost:5000/api/generate-api", {
       method: "POST",
@@ -16,6 +16,7 @@ export default async function GenerateAPI(dispatch) {
       },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,
+        projectId,
       }),
     });
 
@@ -25,7 +26,6 @@ export default async function GenerateAPI(dispatch) {
 
     const data = await response.json();
     dispatch(markTaskCompleted("apis"));
-    toast.success("API is completed");
   } catch (error) {
     console.error("Error generating API:", error);
   }

@@ -6,6 +6,12 @@ const ERDSchema = new mongoose.Schema({
   // rawData: { type: Object, required: true },   // AI JSON output (entities + relations)
   mermaidCode: { type: String, required: true }, // Only store what frontend needs
   ...baseSchemaFields, // ✅ adds userId
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+    required: true,
+  },
+
   createdAt: { type: Date, default: Date.now },
 });
 

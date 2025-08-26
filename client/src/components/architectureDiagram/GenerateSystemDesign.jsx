@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 export const GenerateSystemDesign = async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
+    const projectId = localStorage.getItem("projectId");
     const originalPrompt = localStorage.getItem("originalPrompt");
 
     // Ensure a prompt is available before making the API call
@@ -31,6 +32,7 @@ export const GenerateSystemDesign = async (dispatch) => {
         },
         body: JSON.stringify({
           originalUserPrompt: originalPrompt,
+          projectId,
         }),
       }
     );
@@ -45,7 +47,6 @@ export const GenerateSystemDesign = async (dispatch) => {
 
     const data = await response.json();
     dispatch(markTaskCompleted("systemArchitecture")); // Update the task status
-    toast.success("System Design Flowchart is completed!");
   } catch (error) {
     console.error("Error generating system design:", error);
     toast.error(`Error generating diagram: ${error.message}`);

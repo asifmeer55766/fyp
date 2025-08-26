@@ -19,7 +19,7 @@ import { GenerateSystemDesign } from "../../components/architectureDiagram/Gener
 
 const DisplayFunctionalReq = () => {
   // 💡 This hook correctly gets the projectId from the URL, e.g., /project/12345
-  const { projectId } = useParams();
+  const projectId = localStorage.getItem("projectId");
   const dispatch = useDispatch();
   const [functionalRequirements, setFunctionalRequirements] = useState([]);
   const [nonFunctionalRequirements, setNonFunctionalRequirements] = useState(
@@ -31,9 +31,7 @@ const DisplayFunctionalReq = () => {
   const [loading, setLoading] = useState(false);
   const handleClick = () => {
     const savedData = localStorage.getItem("originalPrompt") || "";
-
-    // Navigate to ComponentA and pass data via state
-    navigate("/", { state: { prompt: savedData } });
+    navigate("/", { state: { prompt: savedData, projectId, mode: "update" } });
   };
 
   useEffect(() => {
@@ -74,6 +72,7 @@ const DisplayFunctionalReq = () => {
             functional: functionalRef.current,
             nonFunctional: nonFunctionalRef.current,
             originalUserPrompt: originalPrompt || "unknown system",
+            projectId,
           }),
         }
       );
@@ -89,20 +88,20 @@ const DisplayFunctionalReq = () => {
       // dispatch(markTaskCompleted("systemArchitecture"));
 
       // function to generate Low Level Design
-      // await GenerateLLD(dispatch);
+      await GenerateLLD(dispatch);
       // function to generate architecture
       await GenerateSystemDesign(dispatch);
       // function to generate ERD Diagram
-      // await GenerateERD(dispatch);
+      await GenerateERD(dispatch);
 
       //function to generate APIs and sequence
-      // await GenerateAPI(dispatch);
+      await GenerateAPI(dispatch);
 
       // function to generate sequence diagram
-      // await GenerateSequenceDiagram(dispatch);
+      await GenerateSequenceDiagram(dispatch);
 
       // function to generate project proposals
-      // await GenerateProjectProposal(dispatch);
+      await GenerateProjectProposal(dispatch);
     } catch (error) {
       console.error("Error generating design:", error);
       dispatch(markTaskCompleted(""));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./profile.scss";
 import { FaChalkboard, FaCodepen, FaCertificate } from "react-icons/fa";
 import {
@@ -7,16 +7,133 @@ import {
   IoRocket,
   IoLaptopOutline,
   IoCube,
+  IoMail,
+  IoFingerPrint,
 } from "react-icons/io5";
 export default function Profile() {
+  const [projects, setProjects] = useState([]);
+  const [user, setUser] = useState([]);
+  const [loggedInUser, setloggedInUser] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const res = await fetch("http://localhost:5000/api/projects", {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       });
+  //       const data = await res.json();
+  //       setProjects(data);
+  //     } catch (error) {
+  //       console.error("Failed to load projects", error);
+  //     }
+  //   };
+
+  //   fetchProjects();
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const res = await fetch("http://localhost:5000/api/user-details", {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       });
+  //       const data = await res.json();
+  //       setUser(data);
+  //     } catch (error) {
+  //       console.error("Failed to load user", error);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, []);
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const token = localStorage.getItem("token");
+  //       const res = await fetch(
+  //         "http://localhost:5000/api/loggedIn-user-details",
+  //         {
+  //           headers: { Authorization: `Bearer ${token}` },
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       setloggedInUser(data);
+  //     } catch (error) {
+  //       console.error("Failed to load user", error);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, []);
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const headers = { Authorization: `Bearer ${token}` };
+
+        const [projectsRes, userRes, loggedInRes] = await Promise.all([
+          fetch("http://localhost:5000/api/projects", { headers }),
+          fetch("http://localhost:5000/api/user-details", { headers }),
+          fetch("http://localhost:5000/api/loggedIn-user-details", { headers }),
+        ]);
+
+        const [projects, user, loggedInUser] = await Promise.all([
+          projectsRes.json(),
+          userRes.json(),
+          loggedInRes.json(),
+        ]);
+
+        setProjects(projects);
+        setUser(user);
+        setloggedInUser(loggedInUser);
+      } catch (error) {
+        console.error("Failed to load data", error);
+      }
+    };
+
+    fetchAll();
+  }, []);
+
+  const now = new Date();
+  const currentMonth = now.getMonth();
+  const currentYear = now.getFullYear();
+
+  // 🔹 Count only projects created this month
+  const projectsThisMonth = projects.filter((project) => {
+    const createdDate = new Date(project.createdAt);
+    return (
+      createdDate.getMonth() === currentMonth &&
+      createdDate.getFullYear() === currentYear
+    );
+  }).length;
+
+  const monthlyTrafic = Math.floor((projectsThisMonth / 30) * 100);
+
   return (
     <>
       <h1>Profile </h1>
       <div class="profile-container">
+        <div class="starting-row">
+          <p>
+            Welcome <span> {loggedInUser.username} </span>
+          </p>
+
+          <p>
+            Email: <span>{loggedInUser.email}</span>{" "}
+          </p>
+
+          <p>
+            You are logged In as :<span> {loggedInUser.role} </span>
+          </p>
+        </div>
         <div class="first-row">
           <div class="column-1 columns">
             <div class="inner-box">
-              <p>100</p>
+              <p>{projects.length}</p>
               <span className="icons">
                 <FaChalkboard />
               </span>
@@ -25,7 +142,7 @@ export default function Profile() {
           </div>
           <div class="column-2 columns">
             <div class="inner-box">
-              <p>200</p>
+              <p>{projects.length}</p>
               <span className="icons">
                 <FaCertificate />
               </span>
@@ -34,7 +151,7 @@ export default function Profile() {
           </div>
           <div class="column-3 columns">
             <div class="inner-box">
-              <p>12</p>
+              <p>00</p>
               <span className="icons">
                 <FaCodepen />
               </span>
@@ -45,7 +162,7 @@ export default function Profile() {
         <div class="second-row">
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>{user.length}</p>
               <span className="icons">
                 <IoPerson />
               </span>
@@ -54,7 +171,7 @@ export default function Profile() {
           </div>
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>1</p>
               <span className="icons">
                 <IoPeopleSharp />
               </span>
@@ -63,7 +180,7 @@ export default function Profile() {
           </div>
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>{projects.length}</p>
               <span className="icons">
                 <IoLaptopOutline />
               </span>
@@ -72,7 +189,7 @@ export default function Profile() {
           </div>
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>{projectsThisMonth}</p>
               <span className="icons">
                 <IoLaptopOutline />
               </span>
@@ -81,16 +198,18 @@ export default function Profile() {
           </div>
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>00%</p>
               <span className="icons">
                 <IoCube />
               </span>
-              <span className="desc">AI Requests Processed (F/P)</span>
+              <span className="desc">AI Processing Failed Ratio</span>
             </div>
           </div>
           <div class="col-box-1 col-box">
             <div class="inner-box">
-              <p>200</p>
+              <p>
+                {monthlyTrafic}% out of {user.length} Registered User
+              </p>
               <span className="icons">
                 <IoRocket />
               </span>

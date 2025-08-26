@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 export const GenerateProjectProposal = async (dispatch) => {
   try {
     const originalPrompt = localStorage.getItem("originalPrompt");
-
+    const projectId = localStorage.getItem("projectId");
     if (!originalPrompt) {
       toast.error("Please provide a prompt first.");
       return;
@@ -28,6 +28,7 @@ export const GenerateProjectProposal = async (dispatch) => {
         },
         body: JSON.stringify({
           originalUserPrompt: originalPrompt,
+          projectId,
         }),
       }
     );
@@ -41,7 +42,6 @@ export const GenerateProjectProposal = async (dispatch) => {
 
     const data = await response.json();
     dispatch(markTaskCompleted("documentation"));
-    toast.success("Project Proposal is completed!");
   } catch (error) {
     console.error("Error generating project proposal:", error);
     toast.error(`Error generating proposal: ${error.message}`);

@@ -11,7 +11,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gem
 export const generateLowLevel = async (req, res) => {
   await connectDB(); // Ensure DB is connected
 
-  const { originalUserPrompt } = req.body;
+  const { originalUserPrompt, projectId } = req.body;
 
   const prompt = `
 You are a system architect. A user wants the following system: "${originalUserPrompt}"
@@ -61,6 +61,7 @@ Respond ONLY with JSON. Do not explain.
       designName: jsonData.name || "Untitled System",
       rawData: jsonData,
       userId: req.user._id, // ✅ FIXED
+      projectId,
     });
 
     res.json({ design: saved });

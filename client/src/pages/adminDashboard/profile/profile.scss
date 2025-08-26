@@ -9,7 +9,7 @@ h1 {
 
 p {
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 .desc {
   font-size: 0.8rem;
@@ -32,6 +32,22 @@ p {
 
 .profile-container {
   width: 100%;
+  .starting-row {
+    background-color: #edf7fd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 3px 15px;
+    border-radius: 4px;
+    p {
+      font-size: 1.2rem;
+      span {
+        font-style: italic;
+        font-weight: 400;
+        color: #ffa600;
+      }
+    }
+  }
   .first-row {
     width: 100%;
     display: flex;

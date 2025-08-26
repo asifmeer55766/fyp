@@ -3,7 +3,10 @@ const express = require("express");
 const router = express.Router();
 const { registerUser, loginUser } = require("../controllers/user.controller");
 const { authenticate, authorizeRoles } = require("../middleware/auth");
-const { generateRequirements } = require("../controllers/generate");
+const {
+  generateRequirements,
+  updateRequirements,
+} = require("../controllers/generate");
 const { getLatestResponse } = require("../controllers/responses");
 const { generateDesign } = require("../controllers/generateDesigns");
 const { getHLD } = require("../controllers/hldController");
@@ -25,7 +28,11 @@ const {
   generateSystemDesign,
   getLatestSystemDesign,
 } = require("../controllers/systemDesignController");
-const { generatePdf } = require("../controllers/pdfController");
+const {
+  getProjects,
+  getUser,
+  getLoggedInUserDetails,
+} = require("../controllers/getController");
 
 // Public routes
 router.post("/register", registerUser);
@@ -33,6 +40,7 @@ router.post("/login", loginUser);
 
 // Protected routes 🔒
 // 💡 Apply the 'authenticate' middleware to all protected routes
+router.put("/projects/:id/requirements", authenticate, updateRequirements);
 router.post("/generate", authenticate, generateRequirements);
 router.post("/generate-design", authenticate, generateDesign);
 router.post("/generate-lld", authenticate, generateLowLevel);
@@ -58,7 +66,11 @@ router.get("/get-apidesign", getLatestApiDesign);
 router.get("/get-sequencediagram", getLatestSequenceDiagram);
 router.get("/get-system-design", getLatestSystemDesign);
 router.get("/get-project-proposal", getLatestProjectProposal);
-router.get("/generate-pdf", generatePdf);
+
+// get controller on the base of conditions
+router.get("/projects", authenticate, getProjects);
+router.get("/user-details", getUser);
+router.get("/loggedIn-user-details", authenticate, getLoggedInUserDetails);
 
 // Role-based examples
 router.get("/admin-only", authenticate, authorizeRoles("admin"), (req, res) => {

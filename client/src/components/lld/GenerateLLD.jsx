@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 export const GenerateLLD = async (dispatch) => {
   try {
     const originalPrompt = localStorage.getItem("originalPrompt");
+    const projectId = localStorage.getItem("projectId");
     const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
     const response = await fetch("http://localhost:5000/api/generate-lld", {
       method: "POST",
@@ -15,6 +16,7 @@ export const GenerateLLD = async (dispatch) => {
       },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,
+        projectId,
       }),
     });
 
@@ -23,9 +25,7 @@ export const GenerateLLD = async (dispatch) => {
     }
 
     const data = await response.json();
-    console.log("Generated LLD:", data);
     dispatch(markTaskCompleted("lld"));
-    toast.success("LLD is completed");
   } catch (error) {
     console.error("Error generating LLD:", error);
   }

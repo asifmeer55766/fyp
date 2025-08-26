@@ -1,9 +1,9 @@
 @media print {
   /* Set A4 page size and margins */
-  @page {
-    size: A4 portrait;
-    margin: 1in;
-  }
+  // @page {
+  //   size: A1 portrait;
+  //   margin: 1in;
+  // }
 
   /* Hide non-print elements */
   header,
@@ -72,6 +72,14 @@ h2 {
   position: fixed;
   right: 1%;
   top: 20%;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .documentation-container {
   background-color: white;

@@ -2,8 +2,6 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import connectDB from "../database/db.js";
 import hldResponse from "../models/hldResponse.js";
-
-// Initialize with API key
 const genAI = new GoogleGenerativeAI(
   "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
 );
@@ -11,7 +9,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gem
 
 export const generateDesign = async (req, res) => {
   await connectDB(); // Ensure DB is connected
-  const { functional, nonFunctional, originalUserPrompt } = req.body;
+  const { projectId, functional, nonFunctional, originalUserPrompt } = req.body;
 
   if (!functional || !nonFunctional || !originalUserPrompt) {
     return res.status(400).json({ error: "All required fields missing" });
@@ -78,6 +76,7 @@ Respond ONLY with JSON. Do not explain.
       designName: jsonData.name || "Untitled System",
       rawData: jsonData,
       userId: req.user._id, // ✅ FIXED
+      projectId,
     });
 
     res.json({ design: saved });

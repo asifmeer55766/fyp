@@ -162,7 +162,7 @@ function mapRelation(type) {
 exports.generateERD = async (req, res) => {
   try {
     await connectDB();
-    const { originalUserPrompt } = req.body;
+    const { originalUserPrompt, projectId } = req.body;
 
     const prompt = `You are a system architect. A user wants the following system: "${originalUserPrompt}".
 Generate only valid JSON (no markdown, no explanations, no extra text).
@@ -227,6 +227,7 @@ Rules:
       designName: jsonData.name || "Untitled System",
       mermaidCode: mermaidCode,
       userId: req.user._id, // ✅ FIXED
+      projectId,
     });
 
     res.json({ raw: mermaidCode });

@@ -17,6 +17,12 @@ const SystemDesignSchema = new mongoose.Schema({
     required: true,
   },
   ...baseSchemaFields, // Include common fields like userId, etc.
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+    required: true,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

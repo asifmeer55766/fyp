@@ -16,7 +16,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 exports.generateProjectProposal = async (req, res) => {
   try {
     await connectDB();
-    const { originalUserPrompt } = req.body;
+    const { originalUserPrompt, projectId } = req.body;
 
     // A detailed prompt ensures the AI returns the correct JSON structure
     const prompt = `You are a project manager. A user has an idea for a software project: "${originalUserPrompt}".
@@ -79,11 +79,9 @@ Rules:
       stakeholders: jsonData.stakeholders,
       useCases: jsonData.useCases,
       techStack: jsonData.techStack,
-
-      // keep full Gemini response as backup
       jsonData,
-
       userId: req.user._id,
+      projectId,
     });
 
     res.status(201).json({

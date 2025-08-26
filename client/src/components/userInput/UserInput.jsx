@@ -8,6 +8,9 @@ import Spiner from "../status/Spiner";
 import Loading from "../animation/loading/Loading";
 const UserInput = ({ initialPrompt }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { mode, projectId } = location.state || {};
+
   const [inputText, setInputText] = useState(initialPrompt || "");
   const [loading, setLoading] = useState(false);
   const [checked, setChecked] = useState({
@@ -17,8 +20,6 @@ const UserInput = ({ initialPrompt }) => {
     high: false,
     system: false,
   });
-  const location = useLocation();
-  // const [text, setText] = useState("");
 
   useEffect(() => {
     if (location.state && location.state.prompt) {
@@ -73,14 +74,29 @@ const UserInput = ({ initialPrompt }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
-      const response = await fetch("http://localhost:5000/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // 🔹 Send token to backend
-        },
-        body: JSON.stringify({ prompt: inputText.trim() }),
-      });
+      let response;
+      if (mode === "update" && projectId) {
+        response = await fetch(
+          `http://localhost:5000/api/projects/${projectId}/requirements`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ prompt: inputText.trim() }),
+          }
+        );
+      } else {
+        response = await fetch("http://localhost:5000/api/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ prompt: inputText.trim() }),
+        });
+      }
 
       const data = await response.json();
 
@@ -88,6 +104,12 @@ const UserInput = ({ initialPrompt }) => {
         toast.error(data.error || "Something went wrong.");
         console.error("Error response from server:", data.error);
         return;
+      }
+      // ✅ store projectId in localStorage
+      if (data.projectId) {
+        localStorage.setItem("projectId", data.projectId);
+        toast.success("Project created successfully!");
+        console.log("Saved Project ID:", data.projectId);
       }
 
       if (data.response) {

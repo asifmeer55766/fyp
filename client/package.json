@@ -12,6 +12,8 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
     "@terrastruct/d2": "^0.1.33",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^3.0.1",
     "mermaid": "^11.9.0",
     "react": "^19.1.0",
     "react-d3-tree": "^3.6.6",

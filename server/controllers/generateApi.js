@@ -10,7 +10,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 exports.generateApi = async (req, res) => {
   try {
     await connectDB();
-    const { originalUserPrompt } = req.body;
+    const { originalUserPrompt, projectId } = req.body;
 
     if (!originalUserPrompt) {
       return res.status(400).json({ error: "Prompt is required" });
@@ -65,6 +65,7 @@ exports.generateApi = async (req, res) => {
       title: jsonData.title,
       apiTable: jsonData.apiTable,
       userId: req.user._id,
+      projectId,
     });
 
     return res.json({ message: "Saved successfully", data: saved });

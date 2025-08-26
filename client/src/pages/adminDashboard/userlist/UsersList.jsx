@@ -1,30 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoPerson, IoPeopleSharp } from "react-icons/io5";
 import "./UsersList.scss";
 
 export default function UsersList() {
-  // Dummy users (replace with DB/API later)
-  const [users] = useState([
-    {
-      _id: "u1",
-      name: "Ali Khan",
-      email: "ali.khan@example.com",
-      role: "admin",
-      createdAt: "2025-07-01",
-    },
-    {
-      _id: "u2",
-      name: "Sara Ahmed",
-      email: "sara.ahmed@example.com",
-      createdAt: "2025-07-10",
-    },
-    {
-      _id: "u3",
-      name: "Bilal Hussain",
-      email: "bilal.hussain@example.com",
-      createdAt: "2025-07-10",
-    },
-  ]);
+  const [users, setUser] = useState([]);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:5000/api/user-details", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Failed to load user", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div className="users-container">
@@ -40,7 +35,7 @@ export default function UsersList() {
               )}
             </div>
             <div className="user-info">
-              <h3>{user.name}</h3>
+              <h3>{user.username}</h3>
               <p>{user.email}</p>
               <span className={`role ${user.role}`}>{user.role}</span>
               <small>

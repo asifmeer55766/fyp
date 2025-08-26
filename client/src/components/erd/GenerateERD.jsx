@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export const GenerateERD = async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-
+    const projectId = localStorage.getItem("projectId");
     const originalPrompt = localStorage.getItem("originalPrompt");
     const response = await fetch("http://localhost:5000/api/generate-erd", {
       method: "POST",
@@ -16,6 +16,7 @@ export const GenerateERD = async (dispatch) => {
       },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,
+        projectId,
       }),
     });
 
@@ -25,7 +26,6 @@ export const GenerateERD = async (dispatch) => {
 
     const data = await response.json();
     dispatch(markTaskCompleted("diagrams"));
-    toast.success("LLD is completed");
   } catch (error) {
     console.error("Error generating LLD:", error);
   }
