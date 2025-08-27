@@ -15,13 +15,13 @@ import APITable from "../../components/apiTable/APITable";
 import RenderSequenceDiagram from "../../components/seqDigram/RenderSequenceDiagram";
 // import RenderProjectProposal from "../../components/projectProposal/RenderProjectProposal";
 import { formatDescription } from "../../../utils/formatDescription";
-
+import { useParams } from "react-router-dom";
 import RenderSystemDesign from "../../components/architectureDiagram/RenderSystemDesign";
 
 export default function FinalOutputDocs() {
   const contentRef = useRef();
   const [loading, setLoading] = useState(false);
-
+  const { id: projectId } = useParams();
   const handleDownloadPDF = async () => {
     setLoading(true); // start loading
     try {
@@ -62,7 +62,7 @@ export default function FinalOutputDocs() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/latest-response", {
+    fetch(`http://localhost:5000/api/latest-response`, {
       method: "GET",
       headers: { "Cache-Control": "no-cache" },
     })
@@ -71,7 +71,7 @@ export default function FinalOutputDocs() {
         const { functionalRequirements, nonFunctionalRequirements } =
           normalizeRequirements(data);
 
-        // ✅ SET THE STATE HERE
+        //         // ✅ SET THE STATE HERE
         setFunctionalRequirements(functionalRequirements || []);
         setNonFunctionalRequirements(nonFunctionalRequirements || []);
       })
@@ -98,6 +98,60 @@ export default function FinalOutputDocs() {
     };
     fetchProposal();
   }, []);
+
+  // Combined useEffect to fetch all data for the specific project
+  // useEffect(() => {
+  //   const fetchAllData = async () => {
+  //     if (!projectId) {
+  //       setError("No Project ID found in URL.");
+  //       setIsLoading(false);
+  //       return;
+  //     }
+
+  //     setIsLoading(true);
+  //     setError(null);
+
+  //     try {
+  //       // 1. Fetch Project Requirements
+  //       const requirementsResponse = await fetch(
+  //         `http://localhost:5000/api/system-docs/${projectId}/latest-response`,
+  //         {
+  //           method: "GET",
+  //           headers: { "Cache-Control": "no-cache" },
+  //         }
+  //       );
+  //       if (!requirementsResponse.ok)
+  //         throw new Error("Failed to fetch requirements.");
+  //       const requirementsData = await requirementsResponse.json();
+  //       const { functionalRequirements, nonFunctionalRequirements } =
+  //         normalizeRequirements(requirementsData);
+  //       setFunctionalRequirements(functionalRequirements || []);
+  //       setNonFunctionalRequirements(nonFunctionalRequirements || []);
+
+  //       // 2. Fetch Project Proposal
+  //       const proposalResponse = await fetch(
+  //         `http://localhost:5000/api/project/${projectId}/get-project-proposal`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //           },
+  //         }
+  //       );
+  //       if (!proposalResponse.ok)
+  //         throw new Error("Failed to fetch project proposal.");
+  //       const proposalResult = await proposalResponse.json();
+  //       setProposal(proposalResult.data);
+  //     } catch (e) {
+  //       setError(e.message);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchAllData();
+  // }, [projectId]); // Depend on projectId
+
   if (isLoading) {
     return <div className="loading-message">Loading documentation...</div>;
   }
@@ -120,7 +174,7 @@ export default function FinalOutputDocs() {
         style={{
           position: "fixed",
           right: "20px",
-          top: "90px",
+          top: "150px",
           padding: "10px 20px",
           background: "#2563eb",
           color: "white",

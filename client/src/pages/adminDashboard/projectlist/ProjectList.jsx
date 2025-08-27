@@ -24,7 +24,7 @@ export default function ProjectsList() {
   }, []);
 
   const openProject = (id) => {
-    window.location.href = `/project/${id}`;
+    window.location.href = `/projects/${id}`;
   };
 
   return (

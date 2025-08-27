@@ -9,16 +9,17 @@ header {
   max-width: 1480px;
   margin: 0px auto !important;
   z-index: 1000;
+  padding: 10px 0px;
+  background: transparent;
   transition: background-color 0.3s ease;
 
   &.scrolled {
-    background-color: #030e0e;
+    background-color: #010b14;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
   .navbar {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
     width: 90%;
@@ -26,7 +27,7 @@ header {
     padding: 10px 0;
 
     .logo-div {
-      width: 18%;
+      width: 15%;
 
       img {
         font-size: 2.5rem;
@@ -36,20 +37,6 @@ header {
         align-items: center;
         font-weight: 800;
         background-blend-mode: multiply, screen;
-      }
-    }
-
-    span {
-      font-size: 2.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 800;
-      color: $primary-white;
-
-      .setting {
-        margin-right: 8px;
-        color: $primary-blue-2;
       }
     }
 
@@ -68,12 +55,13 @@ header {
       a {
         text-decoration: none;
         font-size: 1.1rem;
-        font-weight: 500;
-        color: $primary-white;
+        font-weight: 200;
+        // color: $primary-white;
+        color: #b77625;
         transition: color 0.3s;
 
         &:hover {
-          color: $primary-blue;
+          color: #b86704;
         }
       }
     }

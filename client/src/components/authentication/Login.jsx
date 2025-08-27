@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./AuthModel.scss";
 import authimg from "../../assets/login.png";
 import LoaderVerify from "../loaders/LoaderVerify";
 import animation from "../../assets/loginanimation.mp4";
+import Btn from "../buttons/Btn";
 const LoginForm = ({ toggleForm }) => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -47,7 +49,7 @@ const LoginForm = ({ toggleForm }) => {
           });
           // window.location.reload();
 
-          window.location.href = "/admin-dashboard";
+          window.location.href = "/";
         } else {
           toast.error(data.error);
         }
@@ -89,9 +91,17 @@ const LoginForm = ({ toggleForm }) => {
                   value={formData.password}
                   onChange={handleChange}
                 />
-                <button className="submit-btn" type="submit">
+                {/* <button className="submit-btn" type="submit">
                   Login
-                </button>
+                </button> */}
+                <Btn
+                  icon={<FiLogIn />}
+                  text={"Login"}
+                  background={"#5c33ff"}
+                  color={"white"}
+                  type="submit"
+                  className="submit-btn"
+                />
                 <p>
                   Do not have an account? <Link to="/register">Sign Up</Link>
                 </p>

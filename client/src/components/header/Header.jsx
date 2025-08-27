@@ -6,6 +6,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { SlSettings } from "react-icons/sl";
 import Button1 from "../buttons/button1";
 import Button2 from "../buttons/Button2";
+import Btn from "../buttons/Btn";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -66,14 +68,25 @@ const Header = () => {
           className={`nav-links ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen(false)}
         >
-          <NavLink to="/" id={"home"}>
-            Home
-          </NavLink>
-          <NavLink to="/about">About</NavLink>
+          {isLoggedIn ? (
+            <NavLink to="/" id={"home"}>
+              Home
+            </NavLink>
+          ) : (
+            ""
+          )}
+
+          <NavLink to="/about"> About Us</NavLink>
 
           <NavLink to="/features">Features</NavLink>
-          <NavLink to="/system-docs">Documentation</NavLink>
-          <NavLink to="/display-functional-req">Functional req</NavLink>
+          {isLoggedIn ? (
+            <>
+              <NavLink to="/system-docs">Documentation</NavLink>
+              <NavLink to="/display-functional-req">Functional req</NavLink>
+            </>
+          ) : (
+            ""
+          )}
           {isLoggedIn ? (
             <>
               {role === "admin" ? (
@@ -82,16 +95,27 @@ const Header = () => {
                 <NavLink to="/user-dashboard">Dashboard</NavLink>
               )}
               <span className="auth-btn" onClick={handleLogout}>
-                <Button1 name="Logout" />
+                {/* <Button1 name="Logout" /> */}
+                <Btn
+                  icon={<FiLogOut />}
+                  text={"Logout"}
+                  background={"#c83c36"}
+                  color={"white"}
+                  name="logout"
+                />
               </span>
             </>
           ) : (
             <>
               <span className="login auth-btn" onClick={NavigateLogin}>
-                <Button1 name="Login" />
-              </span>
-              <span className="auth-btn" onClick={GetStarted}>
-                <Button2 name="Get Started" />
+                {/* <Button1 name="Login" /> */}
+                <Btn
+                  icon={<FiLogIn />}
+                  text={"Login"}
+                  background={"#5c33ff"}
+                  color={"white"}
+                  name="login"
+                />
               </span>
             </>
           )}

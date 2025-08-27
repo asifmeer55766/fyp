@@ -3,7 +3,7 @@ import "./DisplayFunctionalRequirements.scss";
 import { IoReload, IoChevronForwardSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { normalizeRequirements } from "../../../utils/normalizeRequirements";
-
+import Btn from "../../components/buttons/Btn";
 import { GenerateLLD } from "../../components/lld/GenerateLLD";
 import { useDispatch } from "react-redux";
 import { markTaskCompleted } from "../../redux/taskStatusSlice";
@@ -14,7 +14,7 @@ import GenerateAPI from "../../components/apis/GenerateAPI";
 import { GenerateSequenceDiagram } from "../../components/seqDigram/GenerateSequenceDiagram";
 import { GenerateProjectProposal } from "../../components/projectProposal/GenerateProjectProposal";
 import { useParams } from "react-router-dom";
-
+import { FiRotateCw, FiArrowRightCircle } from "react-icons/fi";
 import { GenerateSystemDesign } from "../../components/architectureDiagram/GenerateSystemDesign";
 
 const DisplayFunctionalReq = () => {
@@ -207,11 +207,22 @@ const DisplayFunctionalReq = () => {
 
           <div className="buttons-operation-nex">
             <button onClick={handleClick}>
-              Missing Requirements Try Again <IoReload />
+              <Btn
+                icon={<FiRotateCw />}
+                text={"Requirements Missing, Click to Retry"}
+                background={"#5c33ff"}
+                color={"white"}
+              />
             </button>
 
             <button onClick={handleGenerateDesign}>
-              Continue Next <IoChevronForwardSharp />
+              <Btn
+                icon={<FiArrowRightCircle />}
+                text={"Continue Next "}
+                background={"#5c33ff"}
+                color={"white"}
+                onClick={handleGenerateDesign}
+              />
             </button>
           </div>
         </div>

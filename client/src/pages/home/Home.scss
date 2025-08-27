@@ -1,18 +1,18 @@
 @import "../../common";
 
 .home-container {
-  margin-top: 80px;
-  background: url("../../assets/bg-1.png") left center no-repeat,
-    url("../../assets/bg-2.png") right center no-repeat;
-  background-size: 700px; // or 'contain' or specific sizes like '300px'
-  min-height: 87vh;
+  // padding-top: 80px;
+  background: url("../../assets/pinkblue.png") left center no-repeat,
+    url("../../assets/pinkgradient.png") right top no-repeat;
+  background-size: 750px; // or 'contain' or specific sizes like '300px'
+  min-height: 100vh;
 
   .heading1 {
     text-align: center;
     font-size: 2.5rem;
-    font-weight: 400;
+    font-weight: 200;
     color: $primary-white;
-    margin-top: 50px;
+    padding-top: 135px;
   }
 
   .heading2 {

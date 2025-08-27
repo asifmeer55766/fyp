@@ -29,43 +29,18 @@ const UserInput = ({ initialPrompt }) => {
 
   // it handles the input field changes
   const handleChange = (e) => {
-    const { name, checked: isChecked } = e.target;
-    const role = localStorage.getItem("role");
-    if (role !== "admin" && role !== "user") {
+    const token = localStorage.getItem("token");
+    if (!token) {
       toast.error("Please login to your account first.");
       navigate("/login");
       return; // Exit early to prevent further changes
-    }
-
-    if (name === "system") {
-      // If complete system design is checked, turn off all others
-      setChecked({
-        erd: false,
-        sequence: false,
-        low: false,
-        high: false,
-        system: isChecked,
-      });
-    } else {
-      // Toggle the selected checkbox, and turn off system design
-      setChecked((prev) => ({
-        ...prev,
-        [name]: isChecked,
-        system: false,
-      }));
     }
   };
 
   // the form logic here
   const handleForm = async (e) => {
     e.preventDefault();
-
-    const anyChecked = Object.values(checked).some((value) => value === true);
-
-    if (!anyChecked) {
-      toast.warning("Please select the design option before submitting ");
-      return;
-    } else if (inputText.trim() === "") {
+    if (inputText.trim() === "") {
       toast.warning("Please write system requirements");
       return;
     }
@@ -167,71 +142,24 @@ const UserInput = ({ initialPrompt }) => {
 
           <form onSubmit={handleForm}>
             <div className="category-boxes">
-              <span>Select Target </span>
-
-              <div className="category-box">
-                <label htmlFor="erd">ERD Diagram</label>
-                <input
-                  type="checkbox"
-                  name="erd"
-                  id="erd"
-                  checked={checked.erd}
-                  onChange={handleChange}
-                  disabled={checked.system}
-                />
-              </div>
-
-              <div className="category-box">
-                <label htmlFor="sequence">Sequence Diagram</label>
-                <input
-                  type="checkbox"
-                  name="sequence"
-                  id="sequence"
-                  checked={checked.sequence}
-                  onChange={handleChange}
-                  disabled={checked.system}
-                />
-              </div>
-
-              <div className="category-box">
-                <label htmlFor="low">Low Level Design</label>
-                <input
-                  type="checkbox"
-                  name="low"
-                  id="low"
-                  checked={checked.low}
-                  onChange={handleChange}
-                  disabled={checked.system}
-                />
-              </div>
-
               <div className="category-box">
                 <label htmlFor="high">High Level Design</label>
-                <input
-                  type="checkbox"
-                  name="high"
-                  id="high"
-                  checked={checked.high}
-                  onChange={handleChange}
-                  disabled={checked.system}
-                />
+              </div>
+              <div className="category-box">
+                <label htmlFor="low">Low Level Design</label>
+              </div>
+              <div className="category-box">
+                <label htmlFor="erd">ERD Diagram</label>
+              </div>
+              <div className="category-box">
+                <label htmlFor="sequence">Sequence Diagram</label>
+              </div>
+              <div className="category-box">
+                <label htmlFor="tech">Technology Stack</label>
               </div>
 
               <div className="category-box">
-                <label htmlFor="system">Complete System Design</label>
-                <input
-                  type="checkbox"
-                  name="system"
-                  id="system"
-                  checked={checked.system}
-                  onChange={handleChange}
-                  disabled={
-                    checked.erd ||
-                    checked.sequence ||
-                    checked.low ||
-                    checked.high
-                  }
-                />
+                <label htmlFor="system">Complete System Design Doc......</label>
               </div>
             </div>
 

@@ -8,6 +8,7 @@ const {
   updateRequirements,
 } = require("../controllers/generate");
 const { getLatestResponse } = require("../controllers/responses");
+// const { getLatestResponse } = require("../controllers/getController");
 const { generateDesign } = require("../controllers/generateDesigns");
 const { getHLD } = require("../controllers/hldController");
 const { getLLD } = require("../controllers/getLLD");
@@ -28,6 +29,7 @@ const {
   generateSystemDesign,
   getLatestSystemDesign,
 } = require("../controllers/systemDesignController");
+
 const {
   getProjects,
   getUser,
@@ -67,6 +69,8 @@ router.get("/get-sequencediagram", getLatestSequenceDiagram);
 router.get("/get-system-design", getLatestSystemDesign);
 router.get("/get-project-proposal", getLatestProjectProposal);
 
+// get routes on the based of conditions
+// Get routes based on project ID and user auth ✅
 // get controller on the base of conditions
 router.get("/projects", authenticate, getProjects);
 router.get("/user-details", getUser);

@@ -50,19 +50,39 @@ function App() {
         <ScrollToTop />
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<About />} />
           <Route path="/user-guide" element={<UserGuide />} />
           <Route path="/status" element={<Status />} />
+          <Route path="/contact" element={<About />} />
           <Route path="/*" element={<NotFound />} />
           <Route
-            path="/display-functional-req"
-            element={<DisplayFunctionalRequirements />}
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
           />
-          <Route path="/system-docs" element={<FinalOutputDocs />} />
+          <Route
+            path="/display-functional-req"
+            element={
+              <ProtectedRoute>
+                <DisplayFunctionalRequirements />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/system-docs"
+            element={
+              <ProtectedRoute>
+                <FinalOutputDocs />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/admin-dashboard/*"
             element={

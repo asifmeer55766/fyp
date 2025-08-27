@@ -25,7 +25,8 @@ export default function UserProjectsList() {
 
   const openProject = (id) => {
     alert(`Open project with ID: ${id}`);
-    // Later: window.location.href = `/project/${id}`;
+    // Later: window.location.href = `/system-docs/${id}`;
+    Later: window.location.href = `/system-docs`;
   };
 
   return (
