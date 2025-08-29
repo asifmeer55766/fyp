@@ -17,7 +17,7 @@ import LoaderVerify from "./components/loaders/LoaderVerify";
 import UserGuide from "./pages/userGuide/UserGuide";
 import ProcessAnimation from "./components/animation/loading/Loading";
 import DisplayFunctionalRequirements from "./pages/displayFunctionalReq/DisplayFunctionalReq";
-import FinalOutputDocs from "./pages/finalOutputDocs/FinalOutputDocs";
+// import FinalOutputDocs from "./pages/finalOutputDocs/FinalOutputDocs";
 import Status from "./components/status/Status";
 import Spiner from "./components/status/Spiner";
 import { useState, useEffect } from "react";
@@ -30,6 +30,8 @@ import UsersList from "./pages/adminDashboard/userlist/UsersList";
 import Settings from "./pages/adminDashboard/setting/Setting";
 import UserProfile from "./pages/userDashboard/profile/UserProfile";
 import UserProjectsList from "./pages/userDashboard/projectlist/UserProjectList";
+import ProjectOutput from "./pages/userDashboard/projectouput/ProjectOutput";
+import FinalOutputDocsNew from "./pages/finalOutputDocs/FinalOutputDocsNew";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -58,6 +60,9 @@ function App() {
           <Route path="/status" element={<Status />} />
           <Route path="/contact" element={<About />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/projects" element={<UserProjectsList />} />
+          {/* <Route path="/projects/:id" element={<ProjectOutput />} /> */}
+          <Route path="/projects/:id" element={<FinalOutputDocsNew />} />
           <Route
             path="/"
             element={
@@ -71,14 +76,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <DisplayFunctionalRequirements />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/system-docs"
-            element={
-              <ProtectedRoute>
-                <FinalOutputDocs />
               </ProtectedRoute>
             }
           />

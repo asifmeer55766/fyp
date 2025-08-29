@@ -2,36 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { IoCheckmarkSharp, IoCloseSharp } from "react-icons/io5";
 import "./ApiTable.scss";
-const APITable = () => {
-  // Change state variable name to reflect it's a single object
-  const [latestApiDesign, setLatestApiDesign] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+const APITable = ({ latestApiDesign }) => {
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchLatestApiDesign = async () => {
-      // Renamed function for clarity
-      try {
-        // Ensure this matches your backend's GET endpoint for the latest design
-        const response = await fetch("http://localhost:5000/api/get-apidesign");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        // Set the state with the single object
-        setLatestApiDesign(result.data);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchLatestApiDesign();
-  }, []);
-
-  if (isLoading) {
-    return <div>Loading API design...</div>;
-  }
 
   if (error) {
     return <div>Error: {error}</div>;

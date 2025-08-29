@@ -1,3 +1,5 @@
+// $backgroundPage: #e3ecde;
+$backgroundPage: #f3ffff;
 @media print {
   /* Set A4 page size and margins */
   // @page {
@@ -82,9 +84,9 @@ h2 {
   }
 }
 .documentation-container {
-  background-color: white;
+  background-color: $backgroundPage;
   min-height: 100vh;
-  padding: 60px 20px 0px 20px;
+  padding: 90px 20px 0px 20px;
   text-align: justify;
   .project-overview {
     h2 {
@@ -94,12 +96,13 @@ h2 {
     }
   }
   section {
-    margin: 40px auto;
+    margin: 60px auto 0px auto;
     .outer-div {
-      border: 1px solid #e3ecde;
+      border: 1px solid $backgroundPage;
       border-radius: 4px;
       div {
-        background-color: #e3ecde;
+        // background-color: #e3ecde;
+        background-color: $backgroundPage;
         border-radius: 4px;
         width: 100%;
         svg {
@@ -109,12 +112,12 @@ h2 {
     }
 
     p {
-      background-color: #e3ecde;
+      background-color: $backgroundPage;
       padding: 8px;
       border-radius: 4px;
     }
     .api-div {
-      background-color: #e3ecde;
+      background-color: $backgroundPage;
       padding: 8px;
       border-radius: 4px;
 
@@ -133,7 +136,7 @@ h2 {
         }
       }
       div {
-        background-color: #e3ecde;
+        background-color: $backgroundPage;
         padding: 18px;
         line-height: 2;
         border-radius: 4px;
@@ -148,7 +151,7 @@ h2 {
   .techStack {
     ul {
       li {
-        list-style-type: none;
+        list-style-type: none !important;
         line-height: 2;
         margin-left: 20px;
         span {

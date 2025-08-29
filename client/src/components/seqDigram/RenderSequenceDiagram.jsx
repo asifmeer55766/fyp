@@ -3,39 +3,12 @@
 import React, { useEffect, useState } from "react";
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
-const RenderSequenceDiagram = () => {
+const RenderSequenceDiagram = ({ dbSequenceCode }) => {
   const [svgContent, setSvgContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [dbSequenceCode, setDbSequenceCode] = useState("");
 
-  // Step 1: Fetch Mermaid code from backend on component mount
-  useEffect(() => {
-    const fetchSequenceDiagram = async () => {
-      try {
-        // Use the new GET endpoint
-        const response = await fetch(
-          "http://localhost:5000/api/get-sequencediagram"
-        );
-        const data = await response.json();
+  const cleanedSequenceCode = dbSequenceCode.replace(/^mermaid\s*/, "");
 
-        if (data) {
-          // Remove leading "mermaid" keyword if present and set the state
-          const cleanedSequenceCode = data.replace(/^mermaid\s*/, "");
-          setDbSequenceCode(cleanedSequenceCode);
-        } else {
-          console.error("Fetched data is empty.");
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error("Failed to fetch sequence diagram data:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchSequenceDiagram();
-  }, []); // Empty dependency array means this runs once
-
-  // Step 2: Render Mermaid code into SVG once the code is fetched
   useEffect(() => {
     if (dbSequenceCode) {
       const renderMermaidDiagram = async () => {
@@ -55,9 +28,8 @@ const RenderSequenceDiagram = () => {
 
       renderMermaidDiagram();
     }
-  }, [dbSequenceCode]); // Reruns when dbSequenceCode changes
+  }, [dbSequenceCode]);
 
-  // Step 3: Auto-scale the SVG to fit its container
   useEffect(() => {
     if (!isLoading && svgContent) {
       const container = document.querySelector(".mermaid-diagram-container");

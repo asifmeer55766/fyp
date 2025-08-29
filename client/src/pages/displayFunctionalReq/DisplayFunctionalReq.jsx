@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./DisplayFunctionalRequirements.scss";
 import { IoReload, IoChevronForwardSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
 import { normalizeRequirements } from "../../../utils/normalizeRequirements";
 import Btn from "../../components/buttons/Btn";
 import { GenerateLLD } from "../../components/lld/GenerateLLD";
@@ -16,10 +17,12 @@ import { GenerateProjectProposal } from "../../components/projectProposal/Genera
 import { useParams } from "react-router-dom";
 import { FiRotateCw, FiArrowRightCircle } from "react-icons/fi";
 import { GenerateSystemDesign } from "../../components/architectureDiagram/GenerateSystemDesign";
+import Requirements from "../../components/requirements/Requirements";
 
 const DisplayFunctionalReq = () => {
   // 💡 This hook correctly gets the projectId from the URL, e.g., /project/12345
   const projectId = localStorage.getItem("projectId");
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const [functionalRequirements, setFunctionalRequirements] = useState([]);
   const [nonFunctionalRequirements, setNonFunctionalRequirements] = useState(
@@ -35,9 +38,12 @@ const DisplayFunctionalReq = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/latest-response", {
+    fetch(`http://localhost:5000/api/latest-response/${projectId}`, {
       method: "GET",
-      headers: { "Cache-Control": "no-cache" },
+      headers: {
+        "Cache-Control": "no-cache",
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {

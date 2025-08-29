@@ -1,93 +1,56 @@
 // components/renderers/RenderProjectProposal.jsx
-
-import React, { useEffect, useState } from "react";
-import "./ProjectProposal.scss"; // Import the new SCSS file
-
-const RenderProjectProposal = () => {
-  const [proposal, setProposal] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchProposal = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/get-project-proposal"
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setProposal(result.data);
-      } catch (e) {
-        setError(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchProposal();
-  }, []);
-
-  if (isLoading) {
-    return <div className="loading-message">Loading project proposal...</div>;
-  }
-
-  if (error) {
-    return <div className="error-message">Error: {error}</div>;
-  }
-
+import React from "react";
+import "./ProjectProposal.scss";
+import { formatDescription } from "../../../utils/formatDescription";
+const RenderProjectProposal = ({ proposal }) => {
+  console.log("project proposal is :", proposal);
   if (!proposal) {
     return <div className="empty-message">No project proposal found.</div>;
   }
+  // Only call the formatting function and render when `proposal` exists.
+  const formattedDescription = formatDescription(proposal.description);
 
   return (
-    <div className="proposal-container">
-      <div className="proposal-header">
-        <h1>{proposal.projectName}</h1>
-      </div>
+    <>
+      <section className="project-overview">
+        <h2>(1) Project overview</h2>
+        <section className="proposal-section">
+          <h2>
+            Project Name: <span>{proposal.projectName}</span>
+          </h2>
+          <h2>Project Description</h2>
+          <div
+            className="description-content"
+            dangerouslySetInnerHTML={{ __html: formattedDescription }}
+          />
+        </section>
 
-      {/* Description Section */}
-      <section className="proposal-section">
-        <h2>Project Description</h2>
-        <div
-          className="description-content"
-          dangerouslySetInnerHTML={{ __html: proposal.description }}
-        />
+        {/* Stakeholders and Use Cases Section */}
+        <section className="proposal-section-split">
+          <div className="stakeholders-container">
+            <h2>Stakeholders</h2>
+            <ul>
+              {proposal.stakeholders.map((stakeholder, index) => (
+                <li key={index}>
+                  <strong>{index + 1} ➡ </strong>
+                  {stakeholder}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="use-cases-container">
+            <h2>Project Use Cases</h2>
+            <ul>
+              {proposal.useCases.map((useCase, index) => (
+                <li key={index}>
+                  <strong>{index + 1} ➡</strong> {useCase}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </section>
-
-      {/* Tech Stack Section */}
-      <section className="proposal-section">
-        <h2>Technology Stack</h2>
-        <ul>
-          {proposal.techStack.map((tech, index) => (
-            <li key={index}>
-              <span className="tech-name">{tech.technology}</span>:{" "}
-              {tech.reason}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Stakeholders and Use Cases Section */}
-      <section className="proposal-section-split">
-        <div className="stakeholders-container">
-          <h2>Key Stakeholders</h2>
-          <ul>
-            {proposal.stakeholders.map((stakeholder, index) => (
-              <li key={index}>{stakeholder}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="use-cases-container">
-          <h2>Project Use Cases</h2>
-          <ul>
-            {proposal.useCases.map((useCase, index) => (
-              <li key={index}>{useCase}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    </div>
+    </>
   );
 };
 

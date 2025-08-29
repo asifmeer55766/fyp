@@ -8,8 +8,9 @@ import Progress from "../animation/progress/Progress";
 import Spiner from "./Spiner";
 export default function Status() {
   const navigate = useNavigate();
+  const projecId = localStorage.getItem("projectId");
   const navigateDocs = () => {
-    navigate("/system-docs");
+    navigate(`/projects/${projecId}`);
   };
 
   const tasks = useSelector((state) => state.tasks);

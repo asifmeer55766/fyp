@@ -2,36 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./ERD.css";
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
 
-const RenderERD = () => {
+const RenderERD = ({ dbErdCode }) => {
   const [svgContent, setSvgContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [dbErdCode, setDbErdCode] = useState("");
 
-  // Fetch ERD from backend
-  // Fetch ERD from backend
-  useEffect(() => {
-    const fetchERD = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/getERD");
-        const data = await response.json(); // this will now be a string
+  const cleanedErdCode = dbErdCode.replace(/^mermaid\s*/, "");
 
-        if (data) {
-          // remove leading "mermaid" keyword if present
-          const cleanedErdCode = data.replace(/^mermaid\s*/, "");
-          setDbErdCode(cleanedErdCode);
-        } else {
-          console.error("Fetched data is empty.");
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error("Failed to fetch ERD data:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchERD();
-  }, []);
-  // Render Mermaid diagram after fetch
   useEffect(() => {
     if (dbErdCode) {
       const renderMermaidDiagram = async () => {

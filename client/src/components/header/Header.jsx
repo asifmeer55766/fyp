@@ -81,8 +81,9 @@ const Header = () => {
           <NavLink to="/features">Features</NavLink>
           {isLoggedIn ? (
             <>
-              <NavLink to="/system-docs">Documentation</NavLink>
-              <NavLink to="/display-functional-req">Functional req</NavLink>
+              <NavLink to="/display-functional-req">
+                System Requirements
+              </NavLink>
             </>
           ) : (
             ""

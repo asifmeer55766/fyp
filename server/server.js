@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const connectDB = require("./database/db");
 const routes = require("./routes/routes");
+const projectRoutes = require("./routes/routes");
 
 // const errorHandler = require('./middleware/errorHandler');
 
@@ -25,6 +26,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/api", routes);
+app.use("/api/projects", projectRoutes);
 
 // Health check
 app.get("/", (req, res) => {

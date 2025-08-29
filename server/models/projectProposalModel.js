@@ -30,6 +30,11 @@ const ProjectProposalSchema = new mongoose.Schema({
   // keep whole Gemini response for backup
   jsonData: { type: Object, required: true },
   ...baseSchemaFields,
+  projectId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

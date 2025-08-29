@@ -10,14 +10,14 @@ import { toast } from "react-toastify";
  */
 export const GenerateProjectProposal = async (dispatch) => {
   try {
-    const originalPrompt = localStorage.getItem("originalPrompt");
+    const token = localStorage.getItem("token");
     const projectId = localStorage.getItem("projectId");
+    const originalPrompt = localStorage.getItem("originalPrompt");
     if (!originalPrompt) {
       toast.error("Please provide a prompt first.");
       return;
     }
 
-    const token = localStorage.getItem("token");
     const response = await fetch(
       "http://localhost:5000/api/generate-project-proposal",
       {

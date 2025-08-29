@@ -1,40 +1,55 @@
 // routes/routes.js
 const express = require("express");
 const router = express.Router();
+//===================================================================================================
+// project with id
+
+const {
+  // getProjects,
+  getLatestProjectProposal,
+  getLatestSystemDesign,
+  getLatestResponse,
+  getLLD,
+  getERD,
+  getLatestApiDesign,
+  getFullProjectOutput,
+  deleteProject,
+} = require("../controllers/getController");
+//===================================================================================================
 const { registerUser, loginUser } = require("../controllers/user.controller");
 const { authenticate, authorizeRoles } = require("../middleware/auth");
 const {
   generateRequirements,
   updateRequirements,
 } = require("../controllers/generate");
-const { getLatestResponse } = require("../controllers/responses");
-// const { getLatestResponse } = require("../controllers/getController");
+// ---------------------------------------------------------------------------------------
+const { getResponse } = require("../controllers/responses");
 const { generateDesign } = require("../controllers/generateDesigns");
-const { getHLD } = require("../controllers/hldController");
-const { getLLD } = require("../controllers/getLLD");
-const { getERD } = require("../controllers/getERD");
+// const { getHLD } = require("../controllers/hldController");
+// const { getLLD } = require("../controllers/getLLD");
+// const { getERD } = require("../controllers/getERD");
 const { generateLowLevel } = require("../controllers/lldController");
 const { generateERD } = require("../controllers/generateERD");
 const { generateApi } = require("../controllers/generateApi");
-const { getLatestApiDesign } = require("../controllers/getApi");
+// const { getLatestApiDesign } = require("../controllers/getApi");
 const {
   generateSequenceDiagram,
-  getLatestSequenceDiagram,
+  //   getLatestSequenceDiagram,
 } = require("../controllers/generateSequenceDiagram");
 const {
   generateProjectProposal,
-  getLatestProjectProposal,
+  //   getLatestProjectProposal,
 } = require("../controllers/generateprojectProposalController");
 const {
   generateSystemDesign,
-  getLatestSystemDesign,
+  // getLatestSystemDesign,
 } = require("../controllers/systemDesignController");
-
+// ---------------------------------------------------------------------------------------------------
 const {
   getProjects,
   getUser,
   getLoggedInUserDetails,
-} = require("../controllers/getController");
+} = require("../controllers/getUserInfoController");
 
 // Public routes
 router.post("/register", registerUser);
@@ -60,20 +75,20 @@ router.post(
   generateSequenceDiagram
 );
 // get routes
-router.get("/latest-response", getLatestResponse);
-router.get("/getHLD", getHLD);
-router.get("/getLLD", getLLD);
-router.get("/getERD", getERD);
-router.get("/get-apidesign", getLatestApiDesign);
-router.get("/get-sequencediagram", getLatestSequenceDiagram);
-router.get("/get-system-design", getLatestSystemDesign);
-router.get("/get-project-proposal", getLatestProjectProposal);
+router.get("/latest-response/:projectId", authenticate, getResponse);
+// router.get("/getHLD", getHLD);
+// router.get("/getLLD", getLLD);
+// router.get("/getERD", getERD);
+// router.get("/get-apidesign", getLatestApiDesign);
+// router.get("/get-sequencediagram", getLatestSequenceDiagram);
+// router.get("/get-system-design", getLatestSystemDesign);
+// router.get("/get-project-proposal", getLatestProjectProposal);
 
 // get routes on the based of conditions
 // Get routes based on project ID and user auth ✅
 // get controller on the base of conditions
 router.get("/projects", authenticate, getProjects);
-router.get("/user-details", getUser);
+router.get("/user-details", authenticate, getUser);
 router.get("/loggedIn-user-details", authenticate, getLoggedInUserDetails);
 
 // Role-based examples
@@ -84,5 +99,18 @@ router.get("/admin-only", authenticate, authorizeRoles("admin"), (req, res) => {
 router.get("/user-only", authenticate, authorizeRoles("user"), (req, res) => {
   res.json({ message: "Hello User!" });
 });
+
+//get routes for project with id
+//===================================================================================================
+// ✅ Get proposal / design / response etc by projectId
+router.get(
+  "/projects/:projectId/full-output",
+  authenticate,
+  getFullProjectOutput
+);
+
+// delete routes
+router.delete("/projects/:projectId", authenticate, deleteProject);
+//===================================================================================================
 
 module.exports = router;

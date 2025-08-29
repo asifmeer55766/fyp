@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 
 // Recursive function to transform the nested data
 function transformToTreeFormat(node) {
+  if (!node) {
+    return null;
+  }
   const transformed = {
     name: node.name,
   };
@@ -15,22 +18,22 @@ function transformToTreeFormat(node) {
   return transformed;
 }
 
-export default function TreeViewerLLD() {
-  const [treeData, setTreeData] = useState(null);
+export default function TreeViewerLLD({ treeData }) {
+  if (!treeData) {
+    console.log("treeData is not available, skipping transformation.");
+    return null; // or a loading message
+  }
 
-  useEffect(() => {
-    fetch("http://localhost:5000/api/getLLD")
-      .then((res) => res.json())
-      .then((data) => {
-        const treeStructure = transformToTreeFormat(data);
-        setTreeData(treeStructure);
-      })
-      .catch((err) => console.error("Error loading LLD:", err));
-  }, []);
+  const treeStructure = transformToTreeFormat(treeData);
+  console.log("tree structure", treeStructure);
 
-  if (!treeData) return <p>Loading LLD...</p>;
-  // console.log("tree data ", treeData);
-  // dispatch(markTaskCompleted("hld"));
+  if (!treeStructure) {
+    console.log("Transformation returned null, nothing to render.");
+    return null;
+  }
+
+  if (!treeStructure) return <p>Loading LLD...</p>;
+
   return (
     <div
       className="outer-div"
