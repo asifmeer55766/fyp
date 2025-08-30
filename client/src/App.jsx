@@ -63,14 +63,7 @@ function App() {
           <Route path="/projects" element={<UserProjectsList />} />
           {/* <Route path="/projects/:id" element={<ProjectOutput />} /> */}
           <Route path="/projects/:id" element={<FinalOutputDocsNew />} />
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={<Home />} />
           <Route
             path="/display-functional-req"
             element={

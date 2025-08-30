@@ -139,6 +139,12 @@ const UserInput = ({ initialPrompt }) => {
               </div>
             )}
           </div>
+          <h1 className="heading1 headings">
+            Take Your Experience to the Next Level With{" "}
+          </h1>
+          <h1 className="heading2 animated-text headings-2">
+            Best AI Powered System Design Generator
+          </h1>
 
           <form onSubmit={handleForm}>
             <div className="category-boxes">

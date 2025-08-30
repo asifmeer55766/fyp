@@ -68,17 +68,14 @@ const Header = () => {
           className={`nav-links ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen(false)}
         >
-          {isLoggedIn ? (
-            <NavLink to="/" id={"home"}>
-              Home
-            </NavLink>
-          ) : (
-            ""
-          )}
+          <NavLink to="/" id={"home"}>
+            Home
+          </NavLink>
 
           <NavLink to="/about"> About Us</NavLink>
 
           <NavLink to="/features">Features</NavLink>
+          <NavLink to="/user-guide">User Guides</NavLink>
           {isLoggedIn ? (
             <>
               <NavLink to="/display-functional-req">
