@@ -43,7 +43,7 @@
   // Responsive Design
   @media (max-width: 768px) {
     flex-direction: column;
-
+    padding: 130px 0.8rem;
     .requirements-column {
       flex: 1 1 100%;
     }
@@ -66,6 +66,19 @@
       justify-content: center;
       margin-right: 10px;
       font-size: 1.1rem;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .buttons-operation-nex {
+    width: 100%;
+    button {
+      font-size: 1rem;
+      width: fit-content;
+
+      span {
+        font-size: 1rem;
+      }
     }
   }
 }

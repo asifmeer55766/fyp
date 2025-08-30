@@ -1,70 +1,73 @@
 .user-guide {
+  padding: 9rem 2rem 2rem 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-    padding: 2rem;
-    margin-top: 70px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 
+  &__title {
+    font-size: 2rem;
+    color: #00ffb1;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  h1 {
+    span {
+      font-size: 1.3rem;
+      color: white;
+    }
+  }
+  &__section {
+    margin-bottom: 2rem;
 
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-
-    &__title {
-        font-size: 2rem;
-        color: #dbeafa;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        font-weight: 700;
+    h2 {
+      font-size: 1.5rem;
+      color: #dbeafa;
+      margin-bottom: 1rem;
     }
 
-    &__section {
-        margin-bottom: 2rem;
+    ol,
+    ul {
+      padding-left: 1.5rem;
 
-        h2 {
-            font-size: 1.5rem;
-            color: #dbeafa;
-            margin-bottom: 1rem;
+      li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+        color: #adafb0;
+
+        strong {
+          color: white;
         }
 
-        ol,
         ul {
-            padding-left: 1.5rem;
+          margin-top: 0.5rem;
 
-            li {
-                margin-bottom: 0.75rem;
-                line-height: 1.6;
-                color: #adafb0;
-
-                strong {
-                    color: white;
-                }
-
-                ul {
-                    margin-top: 0.5rem;
-
-                    li {
-                        list-style-type: circle;
-                        color: #adafb0;
-                    }
-                }
-            }
+          li {
+            list-style-type: circle;
+            color: #adafb0;
+          }
         }
+      }
     }
-
-
+  }
 }
 
-@media screen and (max-width:768px) {
-    .user-guide {
-        width: 100%;
-        padding: 5px 15px;
+@media screen and (max-width: 768px) {
+  .user-guide {
+    width: 100%;
+    padding: 4rem 15px;
 
-        h1 {
-            text-align: left;
-            font-size: 1.4rem;
-            margin-top: 50px;
-        }
-
-        h2 {
-            font-size: 1.2rem;
-        }
+    h1 {
+      text-align: left;
+      font-size: 1rem;
+      margin-top: 50px;
+      span {
+        font-size: 0.9rem;
+      }
     }
+
+    h2 {
+      font-size: 1rem;
+    }
+  }
 }

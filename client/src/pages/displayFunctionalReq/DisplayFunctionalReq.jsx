@@ -215,7 +215,7 @@ const DisplayFunctionalReq = () => {
             <button onClick={handleClick}>
               <Btn
                 icon={<FiRotateCw />}
-                text={"Requirements Missing, Click to Retry"}
+                text={"Retry"}
                 background={"#5c33ff"}
                 color={"white"}
               />

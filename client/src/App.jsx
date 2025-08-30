@@ -42,15 +42,14 @@ function App() {
   }, []);
   return loading ? (
     <div className="spiner-box">
-      <Spiner
-        status={"Initializing... Please wait while we prepare your experience"}
-      />
+      <Spiner status={"Please wait while we prepare your experience"} />
     </div>
   ) : (
     <>
       <BrowserRouter>
         <ScrollToTop />
         <Header />
+
         <Routes>
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />

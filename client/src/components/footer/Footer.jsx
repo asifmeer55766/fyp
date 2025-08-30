@@ -31,14 +31,15 @@ export default function Footer() {
                 value={data}
                 onChange={(e) => SetData(e.target.value)}
               />
-
-              <Btn
-                icon={<FiBell />}
-                text={"Subscribe"}
-                background={"black"}
-                color={"red"}
-                type="submit"
-              />
+              <button>
+                <Btn
+                  icon={<FiBell />}
+                  text={"Subscribe"}
+                  background={"black"}
+                  color={"red"}
+                  type="submit"
+                />
+              </button>
             </form>
           </div>
         </div>

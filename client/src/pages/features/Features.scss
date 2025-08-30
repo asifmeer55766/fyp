@@ -77,9 +77,10 @@
 
 @media screen and (max-width: 768px) {
   .features-container {
+    padding-top: 0px;
     h1 {
       font-size: 2rem;
-      margin-top: 150px;
+      padding-top: 100px;
     }
 
     .features {
