@@ -15,60 +15,6 @@ export default function Profile() {
   const [user, setUser] = useState([]);
   const [loggedInUser, setloggedInUser] = useState([]);
 
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       const res = await fetch("http://localhost:5000/api/projects", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       });
-  //       const data = await res.json();
-  //       setProjects(data);
-  //     } catch (error) {
-  //       console.error("Failed to load projects", error);
-  //     }
-  //   };
-
-  //   fetchProjects();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       const res = await fetch("http://localhost:5000/api/user-details", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       });
-  //       const data = await res.json();
-  //       setUser(data);
-  //     } catch (error) {
-  //       console.error("Failed to load user", error);
-  //     }
-  //   };
-
-  //   fetchUser();
-  // }, []);
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       const res = await fetch(
-  //         "http://localhost:5000/api/loggedIn-user-details",
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       );
-  //       const data = await res.json();
-  //       setloggedInUser(data);
-  //     } catch (error) {
-  //       console.error("Failed to load user", error);
-  //     }
-  //   };
-
-  //   fetchUser();
-  // }, []);
-
   useEffect(() => {
     const fetchAll = async () => {
       try {

@@ -96,3 +96,48 @@ p {
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .profile-container {
+    width: 100%;
+    .starting-row {
+      flex-direction: column;
+      width: 100%;
+      p {
+        width: 100%;
+        span {
+          font-style: italic;
+          font-weight: 400;
+          color: #ffa600;
+        }
+      }
+    }
+    .first-row {
+      flex-direction: column;
+      width: 100%;
+      .columns {
+        width: 98%;
+      }
+    }
+    .second-row {
+      flex-direction: column;
+
+      .col-box {
+        width: 98%;
+
+        .inner-box {
+          flex-direction: column;
+          width: 98%;
+          .icons {
+            background: transparent;
+            color: $textColorHover;
+          }
+          p {
+            color: $textColorHover;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}

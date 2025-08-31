@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, Suspense } from "react";
 import "./output.scss";
+import logo from "../../assets/logo system design.png";
 import { useParams } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
 import jsPDF from "jspdf";
@@ -49,8 +50,13 @@ export default function FinalOutputDocs() {
   }, [id]);
 
   // PDF download
+
+  const [success, setSuccess] = useState(false);
+
   const handleDownloadPDF = async () => {
     setLoadings(true);
+    setSuccess(false); // reset previous success
+
     try {
       const canvas = await html2canvas(contentRef.current);
       const imgData = canvas.toDataURL("image/png");
@@ -72,11 +78,19 @@ export default function FinalOutputDocs() {
       }
 
       pdf.save("Project.pdf");
+
+      // ✅ Show success message
+      setSuccess(true);
+
+      // Reset success state after 3 seconds
+      setTimeout(() => setSuccess(false), 5000);
     } catch (error) {
       console.error("PDF generation failed", error);
+    } finally {
+      setLoadings(false);
     }
-    setLoadings(false);
   };
+
   // console.log("lld output ", data.lld);
   if (loader)
     return (
@@ -91,10 +105,10 @@ export default function FinalOutputDocs() {
       <button
         style={{
           position: "fixed",
-          right: "20px",
+          right: "30px",
           top: "150px",
           padding: "10px 20px",
-          background: "#2563eb",
+          background: success ? "green" : "#2563eb",
           color: "white",
           border: "none",
           borderRadius: "4px",
@@ -105,6 +119,7 @@ export default function FinalOutputDocs() {
         }}
         onClick={handleDownloadPDF}
         disabled={loadings}
+        className="download-pdf"
       >
         {loadings ? (
           <>
@@ -122,8 +137,10 @@ export default function FinalOutputDocs() {
             ></span>
             Generating PDF...
           </>
+        ) : success ? (
+          "Downloaded Success ✔ "
         ) : (
-          "Download Project PDF"
+          "Download"
         )}
         <span>
           <FaDownload />
@@ -131,6 +148,31 @@ export default function FinalOutputDocs() {
       </button>
 
       <div className="documentation-container" ref={contentRef}>
+        <section class="cover-page">
+          <div class="page-logo">
+            <div class="logo">
+              <img src={logo} alt="page logo" />
+            </div>
+            <div class="software-name">
+              <h3>Sys Design</h3>
+              <p>AI Powered Design Engine</p>
+            </div>
+          </div>
+          <div class="project-title">
+            <h1>{data.proposal.projectName}</h1>
+            <p>AI Powered Syste Design Documentation</p>
+          </div>
+
+          <div class="authors-detail">
+            <span className="title-text">Prepared By</span>
+            <span>AI Powered Sys Design</span>
+            <span>
+              {" "}
+              <span className="title-text">Date :</span>{" "}
+              {new Date().toLocaleDateString()}
+            </span>
+          </div>
+        </section>
         <Suspense fallback="loading Project proposal">
           {data.proposal && <RenderProjectProposal proposal={data.proposal} />}
         </Suspense>
@@ -150,7 +192,7 @@ export default function FinalOutputDocs() {
         </section>
         {/* ======================================Section High Level Design============================================= */}
         <section className="high-level-design">
-          <h2>3) High Level Design (HLD)</h2>
+          <h2>(3) High Level Design (HLD)</h2>
           <p>
             The HLD is a blueprint of the entire system. It provides an
             architectural overview without going into implementation details. It
@@ -163,7 +205,7 @@ export default function FinalOutputDocs() {
         </section>
         {/* ======================================Section Low Level Design============================================= */}
         <section className="low-level-design">
-          <h2>3) Low Level Design (LLD)</h2>
+          <h2>(4) Low Level Design (LLD)</h2>
           <p>
             The LLD is a detailed plan for each individual component defined in
             the HLD. It focuses on the "how" of the system, specifying the
@@ -177,7 +219,7 @@ export default function FinalOutputDocs() {
         {/* ======================================Section System Architecture ============================================= */}
 
         <section className="system-architecture">
-          <h2>4) System Architecture </h2>
+          <h2>(5) System Architecture </h2>
           <p>
             System architecture is a high-level, comprehensive blueprint that
             describes the overall structure of a software system. It defines the
@@ -197,7 +239,7 @@ export default function FinalOutputDocs() {
 
         {/* ======================================Section ERD (Database Design)============================================= */}
         <section className="database-design">
-          <h2>5) Database Design </h2>
+          <h2>(6) Database Design </h2>
           <p>
             Database design is the process of structuring and organizing data
             into logical tables, columns, and relationships to ensure efficient
@@ -213,7 +255,7 @@ export default function FinalOutputDocs() {
 
         {/* ======================================Section API============================================= */}
         <section className="api-design">
-          <h2>6) API Design </h2>
+          <h2>(7) API Design </h2>
           <p>
             An API, or Application Programming Interface, is a set of rules and
             protocols that allows different software applications to communicate
@@ -285,7 +327,7 @@ export default function FinalOutputDocs() {
           </div>
         </section>
         <section className="sequence-diagram">
-          <h2>(7) Sequence Diagram</h2>
+          <h2>(8) Sequence Diagram</h2>
           <p>
             A sequence diagram is a type of chart that shows how processes or
             objects interact with each other over time. It's a key tool in
@@ -303,7 +345,7 @@ export default function FinalOutputDocs() {
         </section>
 
         <section className="proposal-section techStack">
-          <h2>Technology Stack</h2>
+          <h2>(9) Technology Stack</h2>
           <ul>
             <Suspense>
               {data.proposal.techStack.map((tech, index) => (

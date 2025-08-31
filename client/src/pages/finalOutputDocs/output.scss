@@ -1,16 +1,17 @@
 // $backgroundPage: #e3ecde;
 $backgroundPage: #f3ffff;
 @media print {
-  /* Set A4 page size and margins */
-  // @page {
-  //   size: A1 portrait;
-  //   margin: 1in;
-  // }
-
   /* Hide non-print elements */
+  .documentation-container {
+    padding: 0px 20px;
+    .cover-page {
+      min-height: 100vh !important;
+    }
+  }
   header,
   nav,
   footer,
+  .footer-bottom,
   .no-print,
   button,
   .buttons-operation-nex {
@@ -70,11 +71,7 @@ h2 {
   font-size: 1.2rem;
 }
 // <----------------css for docs------------------------------->
-.download-pdf {
-  position: fixed;
-  right: 1%;
-  top: 48%;
-}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -86,7 +83,7 @@ h2 {
 .documentation-container {
   background-color: $backgroundPage;
   min-height: 100vh;
-  padding: 90px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
   text-align: justify;
   .project-overview {
     h2 {
@@ -95,8 +92,81 @@ h2 {
       margin-top: 20px;
     }
   }
+  .cover-page {
+    min-height: 100vh !important;
+    padding: 120px 70px 0px 70px;
+    background-image: url("../../assets/cover\ page.jpg");
+    // background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: Arial, Helvetica, sans-serif;
+    .page-logo {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      gap: 20px;
+      .logo {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        border: 2px solid #f4d061;
+        border-radius: 50%;
+        position: relative;
+        img {
+          width: 100%;
+        }
+      }
+      .software-name {
+        h3 {
+          color: #343434;
+          font-size: 1.8rem;
+          line-height: 0;
+        }
+        p {
+          background: transparent;
+          font-weight: 500;
+          color: #343434;
+          font-style: italic;
+          line-height: 0%;
+        }
+      }
+    }
+    .project-title {
+      h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 90px 0px 0px 0px;
+        // line-height: 0%;
+      }
+      p {
+        font-weight: 500;
+        color: #343434;
+        font-style: italic;
+        // line-height: 0%;
+        background: transparent;
+      }
+    }
+    .authors-detail {
+      margin-top: 60px;
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      font-weight: 600;
+      font-style: italic;
+      color: #343434;
+      flex-direction: column;
+      .title-text {
+        color: #b9010b;
+      }
+    }
+  }
   section {
-    margin: 60px auto 0px auto;
+    margin: 0px auto 60px auto;
     .outer-div {
       border: 1px solid $backgroundPage;
       border-radius: 4px;
@@ -192,5 +262,24 @@ h2 {
 
   td {
     vertical-align: top;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .download-pdf {
+    position: fixed;
+    right: 0.5% !important;
+    top: 85px !important;
+    width: fit-content;
+  }
+  section {
+    p {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  .high-level-design,
+  .low-level-design {
+    width: 100%;
   }
 }

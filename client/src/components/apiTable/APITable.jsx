@@ -15,7 +15,7 @@ const APITable = ({ latestApiDesign }) => {
   }
 
   return (
-    <div className="container">
+    <div className="table-container">
       {/* Directly use the latestApiDesign object */}
 
       <table className="api-table">

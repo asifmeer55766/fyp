@@ -22,52 +22,44 @@ const AdminDashboard = () => {
           {isOpen ? "✖ Close" : "☰ Menu"}
         </button>
 
-        <div className="dashboard">
-          {/* ✅ Added conditional class for open/close */}
-          <div className={`left-dashboard-section ${isOpen ? "open" : ""}`}>
-            <nav>
-              <ul>
-                <h3>Welcome {localStorage.getItem("role")}</h3>
-                <NavLink to="/admin-dashboard/profile" onClick={handleNavClick}>
-                  <span>
-                    <CiRead />
-                  </span>
-                  Profile
-                </NavLink>
-                <NavLink
-                  to="/admin-dashboard/project-list"
-                  onClick={handleNavClick}
-                >
-                  <span>
-                    <CiViewTable />
-                  </span>
-                  Project list
-                </NavLink>
-                <NavLink
-                  to="/admin-dashboard/user-list"
-                  onClick={handleNavClick}
-                >
-                  <span>
-                    <CiUser />
-                  </span>
-                  Registered Users
-                </NavLink>
-                <NavLink
-                  to="/admin-dashboard/settings"
-                  onClick={handleNavClick}
-                >
-                  <span>
-                    <CiSettings />
-                  </span>
-                  Settings
-                </NavLink>
-              </ul>
-            </nav>
-          </div>
+        {/* ✅ Added conditional class for open/close */}
+        <div className={`left-dashboard-section ${isOpen ? "open" : ""}`}>
+          <nav>
+            <ul>
+              <h3>Welcome {localStorage.getItem("role")}</h3>
+              <NavLink to="/admin-dashboard/profile" onClick={handleNavClick}>
+                <span>
+                  <CiRead />
+                </span>
+                Profile
+              </NavLink>
+              <NavLink
+                to="/admin-dashboard/project-list"
+                onClick={handleNavClick}
+              >
+                <span>
+                  <CiViewTable />
+                </span>
+                Project list
+              </NavLink>
+              <NavLink to="/admin-dashboard/user-list" onClick={handleNavClick}>
+                <span>
+                  <CiUser />
+                </span>
+                Registered Users
+              </NavLink>
+              <NavLink to="/admin-dashboard/settings" onClick={handleNavClick}>
+                <span>
+                  <CiSettings />
+                </span>
+                Settings
+              </NavLink>
+            </ul>
+          </nav>
+        </div>
 
-          <div className="right-dashboard-section">
-            <Outlet />
-          </div>
+        <div className="right-dashboard-section">
+          <Outlet />
         </div>
       </section>
     </>

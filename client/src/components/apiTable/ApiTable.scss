@@ -5,26 +5,45 @@
   color: red;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* enables horizontal scrolling */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  /* optional: prevents table from shrinking too much */
+}
 
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.endpoint {
+  color: rgb(24, 123, 138);
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td {
+  vertical-align: top;
+}
+
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 14px; /* make text smaller for small screens */
+    width: 90%;
+    margin: 0px auto;
+  }
   th,
   td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-  }
-  .endpoint {
-    color: rgb(24, 123, 138);
-  }
-
-  th {
-    background-color: #f2f2f2;
-  }
-
-  td {
-    vertical-align: top;
+    padding: 8px;
   }
 }
