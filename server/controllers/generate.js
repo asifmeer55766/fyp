@@ -55,7 +55,7 @@ exports.generateRequirements = async (req, res) => {
       .replace(/```$/, "")
       .trim();
 
-    if (cleanedText.toLowerCase() === "false") {
+    if (cleanedText.replace(/["']/g, "").trim().toLowerCase() === "false") {
       return res.status(400).json({
         error:
           "Your input appears unrelated to system design. Kindly provide a valid prompt describing software requirements to continue...",

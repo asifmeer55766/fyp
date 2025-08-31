@@ -160,7 +160,7 @@ export default function FinalOutputDocs() {
           </div>
           <div class="project-title">
             <h1>{data.proposal.projectName}</h1>
-            <p>AI Powered Syste Design Documentation</p>
+            <p>The Complete System Design Documentation</p>
           </div>
 
           <div class="authors-detail">

@@ -77,14 +77,11 @@ const UserInput = ({ initialPrompt }) => {
 
       if (!response.ok) {
         toast.error(data.error || "Something went wrong.");
-        console.error("Error response from server:", data.error);
         return;
       }
       // ✅ store projectId in localStorage
       if (data.projectId) {
         localStorage.setItem("projectId", data.projectId);
-        toast.success("Project created successfully!");
-        console.log("Saved Project ID:", data.projectId);
       }
 
       if (data.response) {
@@ -95,22 +92,21 @@ const UserInput = ({ initialPrompt }) => {
           .trim();
 
         try {
-          const parsedJSON = JSON.parse(cleanedText);
+          JSON.parse(cleanedText);
           toast.success("Requirements generated and saved!");
-          console.log("Parsed JSON:", parsedJSON);
-          // You can store it in state if needed
         } catch {
           toast.warning("Response is not valid JSON format.");
           console.log("Raw response:", cleanedText);
         }
       }
+      // ✅ Navigate only on success
+      localStorage.setItem("originalPrompt", inputText);
+      navigate("/display-functional-req");
     } catch (err) {
       toast.error("Failed to connect to server.");
       navigate("/");
     } finally {
       setLoading(false);
-      localStorage.setItem("originalPrompt", inputText);
-      navigate("/display-functional-req");
     }
   };
 

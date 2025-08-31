@@ -81,7 +81,7 @@ h2 {
   }
 }
 .documentation-container {
-  background-color: $backgroundPage;
+  background-color: white;
   min-height: 100vh;
   padding: 0px 20px 0px 20px;
   text-align: justify;
@@ -92,15 +92,38 @@ h2 {
       margin-top: 20px;
     }
   }
+
   .cover-page {
     min-height: 100vh !important;
+    background-color: $backgroundPage;
     padding: 120px 70px 0px 70px;
-    background-image: url("../../assets/cover\ page.jpg");
-    // background-size: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     font-family: Arial, Helvetica, sans-serif;
+
+    // top-left corner design
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #bffdfd, #e7d1fb);
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+      border-bottom-right-radius: 40px;
+    }
+
+    // bottom-right corner design
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #e7d1fb, #bffdfd);
+      clip-path: polygon(100% 100%, 0% 100%, 100% 0%);
+      border-top-left-radius: 40px;
+    }
     .page-logo {
       display: flex;
       justify-content: left;
@@ -165,14 +188,15 @@ h2 {
       }
     }
   }
+
   section {
     margin: 0px auto 60px auto;
     .outer-div {
-      border: 1px solid $backgroundPage;
+      border: 1px solid white;
       border-radius: 4px;
       div {
         // background-color: #e3ecde;
-        background-color: $backgroundPage;
+        background-color: white;
         border-radius: 4px;
         width: 100%;
         svg {
@@ -182,12 +206,12 @@ h2 {
     }
 
     p {
-      background-color: $backgroundPage;
+      background-color: white;
       padding: 8px;
       border-radius: 4px;
     }
     .api-div {
-      background-color: $backgroundPage;
+      background-color: white;
       padding: 8px;
       border-radius: 4px;
 
@@ -206,7 +230,7 @@ h2 {
         }
       }
       div {
-        background-color: $backgroundPage;
+        background-color: white;
         padding: 18px;
         line-height: 2;
         border-radius: 4px;
