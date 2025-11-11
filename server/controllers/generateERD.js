@@ -3,8 +3,8 @@ const connectDB = require("../database/db");
 const erdModel = require("../models/erdModel");
 
 // Initialize with API key
-const genAI = new GoogleGenerativeAI("AIzaSyBKHgoOpRV6-L8bfLwiwWfE_hHN21b8CGs");
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 /**
  * Convert structured JSON into Mermaid ER diagram code.

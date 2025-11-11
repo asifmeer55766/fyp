@@ -59,7 +59,7 @@ const DisplayFunctionalReq = () => {
       });
   }, []);
 
-  const handleGenerateDesign = async () => {
+  const handleGenerateDesign = async (retry = true) => {
     setLoading(true);
     try {
       const originalPrompt = localStorage.getItem("originalPrompt");
@@ -84,7 +84,8 @@ const DisplayFunctionalReq = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errData = await response.json();
+        throw new Error(errData.error);
       }
 
       const data = await response.json();
@@ -110,6 +111,19 @@ const DisplayFunctionalReq = () => {
       await GenerateProjectProposal(dispatch);
     } catch (error) {
       console.error("Error generating design:", error);
+      toast.error(error.message);
+      if (
+        error.message.includes(
+          "The model is overloaded, Please try again later"
+        ) &&
+        retry
+      ) {
+        toast("Retrying in 15 seconds...");
+
+        setTimeout(() => {
+          handleGenerateDesign((retry = false));
+        }, 15000);
+      }
       dispatch(markTaskCompleted(""));
     } finally {
       navigate("/status");

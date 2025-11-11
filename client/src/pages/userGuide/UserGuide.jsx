@@ -5,7 +5,7 @@ function UserGuide() {
   return (
     <div className="user-guide">
       <h1 className="user-guide__title">
-        Follow the instruction <span>( Best Prompts => Best Result )</span>{" "}
+        Follow the instruction <span>( Best Prompts Best Result )</span>{" "}
       </h1>
 
       <section className="user-guide__section">

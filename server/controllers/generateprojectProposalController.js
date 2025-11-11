@@ -5,8 +5,8 @@ const connectDB = require("../database/db");
 const ProjectProposal = require("../models/projectProposalModel");
 
 // Initialize with your API key
-const genAI = new GoogleGenerativeAI("AIzaSyBKHgoOpRV6-L8bfLwiwWfE_hHN21b8CGs");
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 /**
  * Express Controller: Generates a project proposal from a user prompt.

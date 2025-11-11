@@ -2,10 +2,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 import connectDB from "../database/db.js";
 import hldResponse from "../models/hldResponse.js";
-const genAI = new GoogleGenerativeAI(
-  "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
-);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gemini-1.5-pro-latest
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 export const generateDesign = async (req, res) => {
   await connectDB(); // Ensure DB is connected
@@ -82,6 +80,12 @@ Respond ONLY with JSON. Do not explain.
     res.json({ design: saved });
   } catch (error) {
     console.error("Error generating HLD:", error);
+    if (error.statusText === "Service Unavailable") {
+      return res.status(503).json({
+        error: "The model is overloaded, Please try again later",
+      });
+    }
+
     res.status(500).json({ error: "Internal server error" });
   }
 };

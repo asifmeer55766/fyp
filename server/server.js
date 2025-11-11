@@ -1,15 +1,17 @@
+require("dotenv").config();
+
+const routes = require("./routes/routes");
+
 const express = require("express");
-const dotenv = require("dotenv");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const connectDB = require("./database/db");
-const routes = require("./routes/routes");
 const projectRoutes = require("./routes/routes");
 
 // const errorHandler = require('./middleware/errorHandler');
 
-dotenv.config();
+// dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 

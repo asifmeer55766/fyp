@@ -3,10 +3,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import connectDB from "../database/db.js";
 import lldmodel from "../models/lldmodel.js";
 // Initialize with API key
-const genAI = new GoogleGenerativeAI(
-  "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
-);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gemini-1.5-pro-latest
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 export const generateLowLevel = async (req, res) => {
   await connectDB(); // Ensure DB is connected

@@ -5,10 +5,9 @@ const ResponseModel = require("../models/response");
 
 const Project = require("../models/Project");
 // Initialize with API key
-const genAI = new GoogleGenerativeAI(
-  "AIzaSyBKHgoOpRV6 - L8bfLwiwWfE_hHN21b8CGs"
-);
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }); // Or gemini-1.5-pro-latest
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // 🔹 Common prefix prompt
 const prefix = `First of all analyze the prompt entered by user if it is irrelvent or not describing and defining any software requirement or dicussing about software , website, web application, mobile application or any type of software ,
@@ -95,6 +94,11 @@ exports.generateRequirements = async (req, res) => {
     });
   } catch (error) {
     console.error("❌ Error generating content:", error.message);
+    if (error.statusText === "Service Unavailable") {
+      return res.status(503).json({
+        error: "The model is overloaded, Please try again later",
+      });
+    }
     res.status(500).json({ error: "Failed to generate content" });
   }
 };
