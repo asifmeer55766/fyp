@@ -10,7 +10,8 @@ export default function Status() {
   const navigate = useNavigate();
   const projecId = localStorage.getItem("projectId");
   const navigateDocs = () => {
-    navigate(`/projects/${projecId}`);
+    navigate(`/projects/${projecId}`, { replace: true });
+    replace: true;
   };
 
   const tasks = useSelector((state) => state.tasks);
@@ -88,7 +89,7 @@ export default function Status() {
             <Progress percentage={progressPercentage} />
           </div>
           <div className="action-progress">
-            <Spiner status={progressMessage} />
+            {allTasksCompleted ? "" : <Spiner status={progressMessage} />}
           </div>
           <div className="button-box">
             <button
