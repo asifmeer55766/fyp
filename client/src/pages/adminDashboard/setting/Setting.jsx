@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IoCube, IoRocket, IoLaptopOutline } from "react-icons/io5";
 import "./AdminSettings.scss";
+import { FaExpand } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Settings() {
   const [settings, setSettings] = useState({
@@ -10,6 +12,7 @@ export default function Settings() {
     enableBackup: true,
     enableNotifications: true,
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
@@ -99,6 +102,16 @@ export default function Settings() {
             />
             Enable Email Notifications
           </label>
+        </div>
+        <div
+          class="settings-card"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/status")}
+        >
+          <div className="settings-icon">
+            <FaExpand size={32} color="#4cafef" />
+          </div>
+          <label for=""> check design status</label>
         </div>
       </div>
 

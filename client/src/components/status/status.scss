@@ -30,12 +30,11 @@
           transform: translateY(-5px);
         }
 
-        // ✨ Default state (faded)
         img {
           width: 40px;
           height: 40px;
           filter: grayscale(100%);
-          opacity: 0.4;
+          opacity: 0.2;
           margin-bottom: 10px;
         }
 
@@ -46,7 +45,6 @@
           text-align: center;
         }
 
-        // ✅ Completed state (full color)
         &.completed {
           img {
             filter: none;
@@ -97,7 +95,7 @@
       .disabled-btn {
         cursor: not-allowed; // Change cursor to indicate it's not clickable
         filter: grayscale(100%);
-        opacity: 0.4;
+        opacity: 0.1;
       }
     }
   }

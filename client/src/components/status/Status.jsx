@@ -52,18 +52,13 @@ export default function Status() {
           <div className="status-box">
             <div className={`success-icon ${tasks.hld ? "completed" : ""}`}>
               <img src={success} alt="success" />
-              <span>HLD</span>
+              <span>High level design</span>
             </div>
             <div className={`success-icon ${tasks.lld ? "completed" : ""}`}>
               <img src={success} alt="success" />
-              <span>LLD</span>
+              <span>Low leve design</span>
             </div>
-            <div
-              className={`success-icon ${tasks.diagrams ? "completed" : ""}`}
-            >
-              <img src={success} alt="success" />
-              <span>Diagrams</span>
-            </div>
+
             <div
               className={`success-icon ${
                 tasks.systemArchitecture ? "completed" : ""
@@ -71,6 +66,12 @@ export default function Status() {
             >
               <img src={success} alt="success" />
               <span>System Architecture</span>
+            </div>
+            <div
+              className={`success-icon ${tasks.diagrams ? "completed" : ""}`}
+            >
+              <img src={success} alt="success" />
+              <span>DB Diagrams</span>
             </div>
             <div className={`success-icon ${tasks.apis ? "completed" : ""}`}>
               <img src={success} alt="success" />
@@ -97,7 +98,7 @@ export default function Status() {
               className={!allTasksCompleted ? "disabled-btn" : ""}
               disabled={!allTasksCompleted}
             >
-              Save and Preview <MdOutlineSaveAlt className="icons" />
+              Save Project and Preview
             </button>
           </div>
         </div>

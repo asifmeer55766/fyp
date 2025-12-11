@@ -1,10 +1,11 @@
 @import "../../common";
 
 .home-container {
-  // padding-top: 80px;
-  background: url("../../assets/pinkblue.png") left center no-repeat,
-    url("../../assets/pinkgradient.png") right top no-repeat;
-  background-size: 750px; // or 'contain' or specific sizes like '300px'
+  background-image: url("../../assets/ai.avif");
+  background-repeat: no-repeat;
+  background-position: right;
+  margin: 0px;
+  background-size: 100%;
   min-height: 100vh;
   .home-landing-page-container {
   }

@@ -6,6 +6,7 @@ import { IoReloadSharp, IoPaperPlane, IoMail, IoClose } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import Spiner from "../status/Spiner";
 import Loading from "../animation/loading/Loading";
+import { MdOutlineContentCopy } from "react-icons/md";
 const UserInput = ({ initialPrompt }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -116,6 +117,16 @@ const UserInput = ({ initialPrompt }) => {
   const handleClose = () => setShowPopup(false);
   const promptText = `I want to build an eCommerce website to sell mobile phones. The system should allow users to register, log in, and browse a catalog of phones by brand, price, and specifications. Users should be able to add products to their cart, manage the cart, and place orders with secure checkout. Admins must be able to add, update, or remove products and view all customer orders. The system should send order confirmation emails, support payment gateway integration, and allow users to track order status. It must include user authentication, authorization, product management, order management, and secure transactions. The system should be scalable, mobile responsive, SEO friendly, and provide a smooth user experience with fast performance and proper error handling.`;
 
+  const copyText = (promptText) => {
+    navigator.clipboard
+      .writeText(promptText)
+      .then(() => {
+        console.log("Text copied to clipboard successfully!");
+      })
+      .catch((err) => {
+        console.error("Could not copy text: ", err);
+      });
+  };
   return (
     <>
       {loading ? (
@@ -130,6 +141,13 @@ const UserInput = ({ initialPrompt }) => {
                   <p>{promptText}</p>
                   <button onClick={handleClose} className="close-btn">
                     <IoClose />
+                  </button>
+                  <button
+                    onClick={() => copyText(promptText)}
+                    className="copy-text"
+                    title="copy to clipboard"
+                  >
+                    <MdOutlineContentCopy />
                   </button>
                 </div>
               </div>
@@ -179,13 +197,16 @@ const UserInput = ({ initialPrompt }) => {
                   onClick={() => setInputText("")}
                   title="Reset"
                 >
-                  <IoReloadSharp />
+                  {/* <IoReloadSharp /> */}
+                  Reset
                 </button>
                 <button title="Prompt example" onClick={handleOpen}>
-                  <IoMail />
+                  {/* <IoMail /> */}
+                  How to write a good prompt
                 </button>
                 <button type="submit" title="Generate">
-                  <IoPaperPlane />
+                  {/* <IoPaperPlane /> */}
+                  Generate Design
                 </button>
               </div>
             </div>
