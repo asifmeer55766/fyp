@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import authimg from "../../assets/register.png";
+import authimg from "../../assets/img/robot.png";
 import { toast } from "react-toastify";
 import Btn from "../buttons/Btn";
 import { FiUser } from "react-icons/fi";
@@ -106,7 +106,7 @@ const RegisterForm = ({ toggleForm }) => {
               <Btn
                 icon={<FiUser />}
                 text={"Sign up"}
-                background={"#5c33ff"}
+                background={"#2777fc"}
                 color={"white"}
                 type="submit"
                 className="submit-btn"

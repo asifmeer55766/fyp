@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.scss";
-import rootImage from "../../assets/robots.png";
+import rootImage from "../../assets/img/banner-robot.png";
 import Btn from "../../components/buttons/Btn";
 import { FiLogIn, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -93,7 +93,7 @@ export default function HomeLandingPage() {
               <Btn
                 text="Login"
                 icon={<FiLogIn />}
-                background="#5c33ff"
+                background="#2777fc"
                 color="white"
               />
             </Link>
@@ -101,7 +101,7 @@ export default function HomeLandingPage() {
               <Btn
                 text="Sign up"
                 icon={<FiUser />}
-                background="#5c33ff"
+                background="#2777fc"
                 color="white"
               />
             </Link>

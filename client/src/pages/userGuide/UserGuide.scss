@@ -1,20 +1,21 @@
 .user-guide {
   padding: 9rem 2rem 2rem 2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-
+  background-image: url("../../assets//img/robot2.png");
+  background-repeat: no-repeat;
+  background-size: 30%;
+  background-position: right;
   &__title {
     font-size: 2rem;
-    color: #00ffb1;
+    color: #2777fc;
     margin-bottom: 1.5rem;
-    text-align: center;
     font-weight: 700;
   }
   h1 {
     span {
       font-size: 1.3rem;
-      color: white;
+      color: rgb(3, 3, 3);
     }
   }
   &__section {
@@ -22,7 +23,7 @@
 
     h2 {
       font-size: 1.5rem;
-      color: #dbeafa;
+      color: #2777fc;
       margin-bottom: 1rem;
     }
 
@@ -33,10 +34,10 @@
       li {
         margin-bottom: 0.75rem;
         line-height: 1.6;
-        color: #adafb0;
+        color: #000000;
 
         strong {
-          color: white;
+          color: #2777fc;
         }
 
         ul {
@@ -44,7 +45,7 @@
 
           li {
             list-style-type: circle;
-            color: #adafb0;
+            color: #000000;
           }
         }
       }

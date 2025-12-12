@@ -6,6 +6,7 @@ import { IoReloadSharp, IoPaperPlane, IoMail, IoClose } from "react-icons/io5";
 import { useLocation } from "react-router-dom";
 import Spiner from "../status/Spiner";
 import Loading from "../animation/loading/Loading";
+import homeImage from "../../assets/img/banner-robot.png";
 import { MdOutlineContentCopy } from "react-icons/md";
 const UserInput = ({ initialPrompt }) => {
   const navigate = useNavigate();
@@ -153,62 +154,47 @@ const UserInput = ({ initialPrompt }) => {
               </div>
             )}
           </div>
-          <h1 className="heading1 headings">
-            Take Your Experience to the Next Level With{" "}
-          </h1>
-          <h1 className="heading2 animated-text headings-2">
-            Best AI Powered System Design Generator
-          </h1>
-
-          <form onSubmit={handleForm}>
-            <div className="category-boxes">
-              <div className="category-box">
-                <label htmlFor="high">High Level Design</label>
-              </div>
-              <div className="category-box">
-                <label htmlFor="low">Low Level Design</label>
-              </div>
-              <div className="category-box">
-                <label htmlFor="erd">ERD Diagram</label>
-              </div>
-              <div className="category-box">
-                <label htmlFor="sequence">Sequence Diagram</label>
-              </div>
-              <div className="category-box">
-                <label htmlFor="tech">Technology Stack</label>
-              </div>
-
-              <div className="category-box">
-                <label htmlFor="system">Complete System Design Doc......</label>
-              </div>
+          <div class="container-home-page">
+            <div class="left-text">
+              <h1 className="heading1 headings">
+                Take Your Experience to the Next Level With{" "}
+              </h1>
+              <h1 className="heading2 animated-text headings-2">
+                Best AI Powered System Design Generator
+              </h1>
+              <p>
+                Build a complete system design and architecture of any software
+                system. <span onClick={handleOpen}>look a demo prompt</span>
+              </p>
             </div>
-
+            <div class="right-img">
+              <img src={homeImage} alt="banner image " />
+            </div>
+          </div>
+          <form onSubmit={handleForm}>
             <div className="user-req-input-container">
               <textarea
                 name="input-data"
                 id="input-data"
-                placeholder="write your system requirements in detail here..."
+                placeholder="Type your system requirements here..."
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
               ></textarea>
-              <div className="btn-operation">
-                <button
-                  type="reset"
-                  onClick={() => setInputText("")}
-                  title="Reset"
-                >
-                  {/* <IoReloadSharp /> */}
-                  Reset
-                </button>
-                <button title="Prompt example" onClick={handleOpen}>
-                  {/* <IoMail /> */}
-                  How to write a good prompt
-                </button>
-                <button type="submit" title="Generate">
-                  {/* <IoPaperPlane /> */}
-                  Generate Design
-                </button>
-              </div>
+            </div>
+            <div className="btn-operation">
+              <button
+                type="reset"
+                onClick={() => setInputText("")}
+                title="Reset"
+              >
+                <IoReloadSharp className="icon" />
+              </button>
+              {/* <button title="Prompt example" onClick={handleOpen}>
+                <IoMail className="icon" />
+              </button> */}
+              <button type="submit" title="Generate">
+                <IoPaperPlane className="icon" />
+              </button>
             </div>
           </form>
         </div>

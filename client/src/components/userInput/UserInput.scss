@@ -3,15 +3,55 @@
 .target-category-container {
   margin: 0px auto 20px auto;
   text-align: center;
+  position: relative;
 
-  .headings {
-    padding-top: 150px;
-    font-weight: 500;
-  }
-  .headings-2 {
-    padding: 10px 0px 20px 0px;
-  }
+  .container-home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    padding: 0px 20px;
+    min-height: 90vh;
+    .left-text {
+      width: 50%;
+      .heading1 {
+        font-size: 2.5rem;
+        text-align: left;
+        font-weight: 500;
+        color: black;
+        padding: 40px 0px;
+        margin-top: 40px;
+      }
 
+      .heading2 {
+        text-align: left;
+        font-size: 3.6rem;
+        font-weight: 900;
+      }
+      p {
+        font-size: 1.2rem;
+        padding: 20px 0px;
+        color: rgb(0, 0, 0);
+        margin: 20px 0px 0px 0px;
+        text-align: left;
+        span {
+          color: #2777fc;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+    .right-img {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 70%;
+        padding-top: 80px;
+      }
+    }
+  }
   .popup-overlay {
     position: fixed;
     top: 0;
@@ -90,85 +130,54 @@
   }
 
   form {
-    display: inline;
-    margin: 4px auto;
+    position: absolute;
+    top: 100%;
+    bottom: 0%;
+    right: 0%;
+    left: 0%;
+    margin: 0px auto;
+    display: flex;
 
-    .category-box {
-      padding: 5px 8px;
-      text-transform: capitalize;
-      background-color: rgb(216, 216, 216);
-      width: fit-content;
-      margin: 2px 4.4px;
-      font-weight: 500;
-      display: inline;
-      border-radius: 3px;
+    justify-content: space-around;
+    align-items: center;
 
-      label {
-        color: black;
-      }
+    width: 94%;
+    .user-req-input-container {
+      width: 80%;
+      margin: 0px auto;
 
-      input {
-        width: 20px;
-      }
-
-      &:hover {
-        background-color: white;
-      }
-    }
-  }
-
-  .user-req-input-container {
-    width: 74%;
-    margin: 20px auto 25px auto;
-    position: relative;
-
-    p {
-      text-align: left;
-      font-size: 1rem;
-      font-weight: 400;
-    }
-
-    textarea {
-      width: 100%;
-      padding: 15px;
-      min-height: 35vh;
-      border: none;
-      outline: none;
-      border-radius: 8px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: 500;
-      font-size: 1.1rem;
-      color: rgb(212, 209, 209);
-      resize: none;
-      background-color: rgb(36, 36, 36);
-      background-color: rgb(163, 180, 255);
-      background-color: rgb(4, 16, 70);
-      border: 1px solid rgb(158, 154, 154);
-    }
-
-    .btn-operation {
-      position: absolute;
-      right: 25px;
-      bottom: 12px;
-      // width: 10%;
-
-      button {
-        width: max-content;
-        // height: 30px;
-        font-size: 1.2rem;
-        text-align: center;
-        border-radius: 4px;
-        padding: 6px;
+      textarea {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 12px 24px;
+        height: 10vh;
         border: none;
+        outline: none;
+        border-radius: 35px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: black;
+        resize: none;
+        background-color: rgb(255, 248, 248);
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+          rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      }
+    }
+    .btn-operation {
+      button {
+        font-size: 2rem;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        border: none;
+        outline: none;
+        background-color: #2777fc;
+        color: white;
         margin: 0px 5px;
         cursor: pointer;
-        background-color: rgb(34, 52, 133);
-        border: 1px solid rgb(129, 128, 128);
-        color: white;
-        &:hover {
-          background-color: rgb(4, 23, 109);
-          border: 1px solid rgb(4, 23, 109);
-        }
       }
     }
   }

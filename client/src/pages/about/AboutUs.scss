@@ -1,33 +1,38 @@
 @import "../../common";
-
+$card-bg: white;
+$card-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+$name-color: #333;
+$title-color: #555;
+$primary-blue: #007bff; // A common shade of blue for icons
+$font-stack: "Arial", sans-serif;
 .about-us {
   color: #2c3e50;
   // background-color: #f9f9fb;
   padding: 2rem;
   padding-top: 140px;
-  background: url("");
-  background: url("../../assets/pinkblue.png") left center no-repeat,
-    url("../../assets/pinkgradient.png") right center no-repeat;
-  background-size: 500px; // or 'contain' or specific sizes like '300px'
-  background-color: rgb(2, 10, 15);
+  background: url("../../assets/img/banner-bg-img.jpg");
 
   .about-hero {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: white;
     padding: 0rem 2rem;
     margin-bottom: 3rem;
 
     h1 {
-      font-size: 3rem;
+      font-size: 6rem;
       margin-bottom: 0.5rem;
 
       span {
-        color: $primary-blue;
+        color: #2777fc;
       }
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: 2.25rem;
+
+      color: black;
       font-weight: 300;
     }
   }
@@ -43,55 +48,119 @@
       h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
-        color: $primary-white;
+        color: #2777fc;
         border-left: 4px solid #764ba2;
         padding-left: 0.75rem;
       }
 
       p {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: 1.8;
-        color: #888888;
+        color: #000000;
+      }
+    }
+    // --- 1. Variables ---
+    .meat-text {
+      text-align: center;
+      font-size: 2rem;
+      color: #2777fc;
+    }
+    // --- 2. Team Section Container ---
+    .team-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+      font-family: $font-stack;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
       }
     }
 
-    .team-members {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
+    // --- 3. Profile Card Styling ---
+    .profile-card {
+      width: 280px;
+      max-width: 100%;
+      background-color: $card-bg;
+      border-radius: 12px;
+      box-shadow: $card-shadow;
+      text-align: center;
+      overflow: hidden; // Ensures image corner radius is respected
+      padding-bottom: 30px; // Padding for the bottom content area
 
-      .member {
-        text-align: center;
-        background-color: rgb(14, 34, 43);
-        padding: 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        width: 25%;
+      // Style for the top image background (light blue/grey area)
+      &__image-container {
+        height: 180px; // Adjust as needed
+        background-color: #f0f4f8; // Light background color from the left card
 
-        &:hover {
-          transform: translateY(-5px);
-        }
-
+        // Optional: Add the actual image styling here
         img {
-          width: 100px;
-          height: 100px;
-          border-radius: 5%;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
-          margin-bottom: 1rem;
         }
+      }
 
-        h3 {
-          margin-bottom: 0.5rem;
-          font-size: 1.2rem;
-          color: #ffffff;
-        }
+      // Info section (name, title, social)
+      &__info {
+        padding: 20px 0 0;
+      }
 
-        p {
-          font-size: 0.95rem;
-          color: $primary-blue;
-        }
+      // Name style
+      &__name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $name-color;
+        margin: 10px 0 5px;
+      }
+
+      // Title/Role style
+      &__title {
+        font-size: 1rem;
+        font-weight: 400;
+        color: $title-color;
+        margin: 5px 0 20px;
+      }
+
+      // Social icons container
+      &__social {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+
+    // --- 4. Social Icon Styling ---
+    .social-icon {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      text-decoration: none;
+      color: white; // Icon color (assuming text or font icon)
+      font-size: 18px;
+      transition: transform 0.2s, background-color 0.2s;
+
+      &:hover {
+        transform: translateY(-2px); // Subtle hover lift
+      }
+
+      // Specific colors for social icons (using class names for differentiation)
+      &.facebook {
+        background-color: #3b5998;
+      }
+
+      &.instagram {
+        background-color: #c13584; // Instagram gradient approximation
+      }
+
+      &.linkedin {
+        background-color: #0077b5;
       }
     }
 

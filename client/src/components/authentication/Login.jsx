@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./AuthModel.scss";
-import authimg from "../../assets/login.png";
+import authimg from "../../assets/img/robot.png";
 import LoaderVerify from "../loaders/LoaderVerify";
 import animation from "../../assets/loginanimation.mp4";
 import Btn from "../buttons/Btn";

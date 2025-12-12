@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
-import logopng from "../../assets/logo system design.png";
+import logopng from "../../assets/img/logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { SlSettings } from "react-icons/sl";
 import Button1 from "../buttons/button1";
@@ -61,7 +61,11 @@ const Header = () => {
         {/* <span>Sys Design</span> */}
 
         <div className="menu-icon" onClick={toggleMenu}>
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          {menuOpen ? (
+            <FaTimes className="bar-icons" />
+          ) : (
+            <FaBars className="bar-icons" />
+          )}
         </div>
 
         <ul
@@ -110,7 +114,7 @@ const Header = () => {
                 <Btn
                   icon={<FiLogIn />}
                   text={"Login"}
-                  background={"#5c33ff"}
+                  background={"#2777fc"}
                   color={"white"}
                   name="login"
                 />

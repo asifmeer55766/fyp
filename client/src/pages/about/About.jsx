@@ -1,19 +1,52 @@
 import React from "react";
 import "./AboutUs.scss";
 import asif from "../../assets/asif.png";
+import imagerobot from "../../assets/img/robot.png";
 import sadaat from "../../assets/sadaat.jpg";
 import farhan from "../../assets/farhan.jpg";
 import naila from "../../assets/profile.png";
 import yasir from "../../assets/yasir.jpg";
 const About = () => {
+  const team = [
+    {
+      name: "Dr. Erssa Arif",
+      title: "Project Superviser",
+      image: naila,
+    },
+    {
+      name: "asif hussain",
+      title: "Lead Developer",
+      image: asif,
+    },
+    {
+      name: "saadat ali khan",
+      title: "Software Quality Assurance",
+      image: sadaat,
+    },
+    {
+      name: "Yasir Ali ",
+      title: "Front-End Developer",
+      image: yasir,
+    },
+    {
+      name: "Farhan Raza",
+      title: "Graphic Designer, UI/UX",
+      image: farhan,
+    },
+  ];
   return (
     <div className="about-us">
       <div className="about-hero">
-        <h1>
-          {" "}
-          <span>About</span> Us
-        </h1>
-        <p>Empowering Innovation with AI-Powered System Design</p>
+        <div class="left-text">
+          <h1>
+            {" "}
+            <span>About</span> Us
+          </h1>
+          <p>Empowering Innovation with AI-Powered System Design</p>
+        </div>
+        <div class="right-img">
+          <img src={imagerobot} alt="" />
+        </div>
       </div>
       <div className="about-content">
         <section className="mission">
@@ -33,35 +66,30 @@ const About = () => {
             faster, smarter, and more efficiently.
           </p>
         </section>
-        <section className="team">
-          <h2>Meet the Team</h2>
-          <div className="team-members">
-            <div className="member">
-              <img src={naila} alt="Designer" />
-              <h3>Dr. Erssa Arif </h3>
-              <p>Project Supervisor</p>
+        <p className="meat-text">meat the taem</p>
+        <section class="team-section">
+          {team.map((member, index) => (
+            <div class="profile-card">
+              <div class="profile-card__image-container">
+                <img src={member.image} alt="" />
+              </div>
+              <div class="profile-card__info">
+                <h3 class="profile-card__name">{member.name}</h3>
+                <p class="profile-card__title">{member.title}</p>
+                <div class="profile-card__social">
+                  <a href="#" class="social-icon facebook">
+                    f
+                  </a>
+                  <a href="#" class="social-icon instagram">
+                    in
+                  </a>
+                  <a href="#" class="social-icon linkedin">
+                    in
+                  </a>
+                </div>
+              </div>
             </div>
-            <div className="member">
-              <img src={asif} alt="Founder" />
-              <h3>Asif Hussain</h3>
-              <p>Lead Developer & Visionary</p>
-            </div>
-            <div className="member">
-              <img src={yasir} alt="Engineer" />
-              <h3>Yasir Ali</h3>
-              <p>FrontEnd Developer</p>
-            </div>
-            <div className="member">
-              <img src={farhan} alt="Designer" />
-              <h3>Farhan Raza</h3>
-              <p>UI/UX Designer and Developer</p>
-            </div>
-            <div className="member">
-              <img src={sadaat} alt="Designer" />
-              <h3>Sadaat Ali Khan</h3>
-              <p>Software Quality Assurance</p>
-            </div>
-          </div>
+          ))}
         </section>
         <section className="contact">
           <h2>Contact Us</h2>

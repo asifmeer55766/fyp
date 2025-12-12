@@ -10,16 +10,14 @@ header {
   margin: 0px auto !important;
   z-index: 1000;
   padding: 10px 0px;
-  background: transparent;
-  background-image: url("../../assets/ai.avif");
+  background-color: white;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   transition: background-color 0.3s ease;
 
   &.scrolled {
-    background-image: url("");
-    background-color: #010b14;
+    background-color: #2777fc;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
 
@@ -50,6 +48,9 @@ header {
       font-size: 1.8rem;
       cursor: pointer;
       z-index: 999;
+      .bar-icons {
+        color: #000000;
+      }
     }
 
     .nav-links {
@@ -62,14 +63,14 @@ header {
         font-size: 1.1rem;
         font-weight: 600;
         // color: $primary-white;
-        color: #ffebd2;
+        color: #000000;
         border-radius: 20px;
 
-        padding: 0.45rem 1rem;
+        padding: 0.7rem 1rem;
 
         &:hover {
           color: #ffffff;
-          background-color: rgb(81, 136, 245);
+          background-color: #2777fc;
         }
       }
     }
@@ -102,6 +103,7 @@ header {
         a {
           margin: 0px 30px;
           font-size: 1.2rem;
+          color: white;
         }
 
         #home {

@@ -1,35 +1,19 @@
 @import "../../common";
 
 .home-container {
-  background-image: url("../../assets/ai.avif");
+  background-image: url("../../assets/img/banner-bg-img.jpg");
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: center;
   margin: 0px;
   background-size: 100%;
   min-height: 100vh;
-  .home-landing-page-container {
-  }
-
-  .heading1 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 200;
-    color: $primary-white;
-    // padding-top: 135px;
-  }
-
-  .heading2 {
-    text-align: center;
-    font-size: 3rem;
-    font-weight: bold;
-  }
 
   p {
     text-align: center;
     font-size: 1.1rem;
     margin-top: 10px;
     font-weight: 600;
-    color: $primary-white;
+    color: white;
   }
 
   .help-btn {

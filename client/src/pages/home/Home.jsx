@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Home.scss";
 import { SiGoogledocs } from "react-icons/si";
-import { useNavigate } from "react-router-dom";
+
 import UserInput from "../../components/userInput/UserInput";
 import HomeLandingPage from "../homeLandingPage/HomeLandingPage";
 const Home = () => {
-  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -16,6 +15,7 @@ const Home = () => {
       setIsLoggedIn(false);
     }
   }, []);
+
   return (
     <>
       <div className="home-container">
