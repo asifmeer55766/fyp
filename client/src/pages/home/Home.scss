@@ -1,11 +1,12 @@
-@import "../../common";
-
 .home-container {
-  background-image: url("../../assets/img/banner-bg-img.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
+  background-image: url("../../assets/img/banner-bg-img.jpg"),
+    url("../../assets//img/pricing-plan-bg-img.jpg");
+  background-repeat: no-repeat, no-repeat; /* Ensure both images don't repeat */
+  /* Position the first image on the left, and the second image on the right */
+  background-position: left center, right center;
+  /* Adjust sizes: 50% for each image to fit side-by-side across the 100% width */
+  background-size: 0% auto, 100% auto;
   margin: 0px;
-  background-size: 100%;
   min-height: 100vh;
 
   p {
@@ -45,15 +46,15 @@
 
   @keyframes colorChange {
     0% {
-      color: $primary-blue;
+      color: #2777fc;
     }
 
     50% {
-      color: $primary-blue-2;
+      color: #2777fc;
     }
 
     100% {
-      color: $primary-blue;
+      color: #2777fc;
     }
   }
 

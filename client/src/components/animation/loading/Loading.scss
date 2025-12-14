@@ -21,6 +21,9 @@
     -webkit-mask-composite: source-out;
     mask-composite: subtract;
     animation: l3 1s infinite linear;
+    p {
+      color: #2777fc;
+    }
   }
   @keyframes l3 {
     to {

@@ -14,6 +14,11 @@ const About = () => {
       image: naila,
     },
     {
+      name: "Sir Fawad Saif",
+      title: "Co-Superviser",
+      image: naila,
+    },
+    {
       name: "asif hussain",
       title: "Lead Developer",
       image: asif,

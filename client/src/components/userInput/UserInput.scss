@@ -1,9 +1,10 @@
-@import "../../common";
-
 .target-category-container {
   margin: 0px auto 20px auto;
   text-align: center;
   position: relative;
+  ::-webkit-scrollbar {
+    font-size: 0px;
+  }
 
   .container-home-page {
     display: flex;
@@ -70,12 +71,15 @@
     padding: 20px 30px;
     border-radius: 12px;
     max-width: 600px;
+    line-height: 1.4;
     width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: relative;
 
     h3 {
-      color: white;
+      color: rgb(255, 255, 255);
+      font-weight: 800;
+      font-family: sans-serif;
       text-align: left;
     }
 
@@ -126,7 +130,7 @@
   span {
     font-size: 1.1rem;
     font-weight: bold;
-    color: $primary-white;
+    color: white;
   }
 
   form {
@@ -137,22 +141,28 @@
     left: 0%;
     margin: 0px auto;
     display: flex;
-
     justify-content: space-around;
     align-items: center;
 
     width: 94%;
     .user-req-input-container {
-      width: 80%;
+      width: 100%;
       margin: 0px auto;
+      position: relative;
 
       textarea {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position: absolute;
+        /* Fix the bottom edge */
+        bottom: 0;
+        /* Fix the side edges */
+        left: 0;
+        right: 0;
         width: 100%;
-        padding: 12px 24px;
-        height: 10vh;
+        padding: 12px 124px 12px 24px;
+        max-height: 12em;
+        resize: none;
+        height: 9.5vh;
+        overflow-y: auto;
         border: none;
         outline: none;
         border-radius: 35px;
@@ -160,19 +170,25 @@
         font-weight: 500;
         font-size: 1.1rem;
         color: black;
-        resize: none;
+
         background-color: rgb(255, 248, 248);
         box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
           rgba(0, 0, 0, 0.24) 0px 1px 2px;
       }
     }
     .btn-operation {
+      position: absolute;
+      /* Fix the bottom edge */
+      bottom: 4px;
+      /* Fix the side edges */
+      right: 0px;
       button {
         font-size: 2rem;
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         border: none;
+        flex-shrink: 0;
         outline: none;
         background-color: #2777fc;
         color: white;
@@ -204,6 +220,9 @@
 }
 
 @media screen and (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
   .target-category-container {
     .user-req-input-container {
       width: 98%;
@@ -212,24 +231,60 @@
         min-height: 20vh;
       }
     }
+    .container-home-page {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6)),
+        url("../../assets/img/robot.png");
+      background-position: right;
+      background-size: cover;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      align-items: start;
+      width: 100%;
+      .left-text {
+        width: 100%;
+        .heading1 {
+          width: 100%;
+          // display: none;
+          margin-top: 60px;
+          font-size: 1.5rem;
+        }
+        .heading2 {
+          // display: none;
+          // font-size: 2rem;
+          color: white !important;
+        }
+        P {
+          display: none;
+        }
+      }
+      .right-img {
+        display: none;
+      }
+    }
 
     form {
-      // display: flex;
-      .category-boxes {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+      top: 80%;
+      width: 95%;
+      .user-req-input-container {
+        width: 90%;
+        margin: 0px auto;
 
-        .category-box {
-          width: 90%;
-          margin: 10px auto;
-          text-align: left;
-          position: relative;
-
-          input {
-            position: absolute;
-            right: 0px;
-          }
+        textarea {
+          padding: 18px 24px;
+          min-height: 4vh;
+          height: 6.5vh;
+        }
+      }
+      .btn-operation {
+        position: relative;
+        bottom: 30px;
+        right: 0px;
+        button {
+          font-size: 2rem;
+          margin: 0px;
+        }
+        .reset {
+          display: none;
         }
       }
     }

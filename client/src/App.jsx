@@ -12,15 +12,11 @@ import ProtectedRoute from "./components/protectedroute/ProtectedRoute";
 import AdminDashboard from "./pages/adminDashboard/AdminDashboard";
 import UserDashboard from "./pages/userDashboard/UserDashboard";
 import SystemSetting from "./pages/adminDashboard/systemSetting/SystemSetting";
-import LoaderVerify from "./components/loaders/LoaderVerify";
 import UserGuide from "./pages/userGuide/UserGuide";
-import ProcessAnimation from "./components/animation/loading/Loading";
 import DisplayFunctionalRequirements from "./pages/displayFunctionalReq/DisplayFunctionalReq";
-// import FinalOutputDocs from "./pages/finalOutputDocs/FinalOutputDocs";
 import Status from "./components/status/Status";
 import Spiner from "./components/status/Spiner";
 import { useState, useEffect } from "react";
-
 import Footer from "./components/footer/Footer";
 import NotFound from "./pages/notFound/NotFound";
 import ScrollToTop from "./components/scrollTop/ScrollToTop";
@@ -30,9 +26,9 @@ import UsersList from "./pages/adminDashboard/userlist/UsersList";
 import Settings from "./pages/adminDashboard/setting/Setting";
 import UserProfile from "./pages/userDashboard/profile/UserProfile";
 import UserProjectsList from "./pages/userDashboard/projectlist/UserProjectList";
-import ProjectOutput from "./pages/userDashboard/projectouput/ProjectOutput";
 import FinalOutputDocsNew from "./pages/finalOutputDocs/FinalOutputDocsNew";
 import QuickGuide from "./components/QuickGuide/QuickGuide";
+
 function App() {
   const HAS_SEEN_GUIDE_KEY = "hasSeenQuickGuide";
   const [loading, setLoading] = useState(true);
@@ -118,6 +114,7 @@ function App() {
                 />
               </Route>
             </Routes>
+
             <Footer />
           </BrowserRouter>
           {/* <ToastContainer position="top-right" autoClose={3000} /> */}

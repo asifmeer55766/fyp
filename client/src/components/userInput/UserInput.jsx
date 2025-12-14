@@ -39,6 +39,14 @@ const UserInput = ({ initialPrompt }) => {
     }
   };
 
+  const handleTextarea = (e) => {
+    setInputText(e.target.value);
+    const textarea = e.target;
+
+    textarea.style.height = "auto";
+
+    textarea.style.height = `${textarea.scrollHeight}px`;
+  };
   // the form logic here
   const handleForm = async (e) => {
     e.preventDefault();
@@ -122,7 +130,7 @@ const UserInput = ({ initialPrompt }) => {
     navigator.clipboard
       .writeText(promptText)
       .then(() => {
-        console.log("Text copied to clipboard successfully!");
+        toast.success("copy to clipboard");
       })
       .catch((err) => {
         console.error("Could not copy text: ", err);
@@ -138,7 +146,9 @@ const UserInput = ({ initialPrompt }) => {
             {showPopup && (
               <div className="popup-overlay">
                 <div className="popup-content">
-                  <h3>Example Prompt </h3>
+                  <h3>
+                    An example prompt to generate an E-Commerce application{" "}
+                  </h3>
                   <p>{promptText}</p>
                   <button onClick={handleClose} className="close-btn">
                     <IoClose />
@@ -164,7 +174,8 @@ const UserInput = ({ initialPrompt }) => {
               </h1>
               <p>
                 Build a complete system design and architecture of any software
-                system. <span onClick={handleOpen}>look a demo prompt</span>
+                system.{" "}
+                <span onClick={handleOpen}>How to write a good prompt ?</span>
               </p>
             </div>
             <div class="right-img">
@@ -178,7 +189,7 @@ const UserInput = ({ initialPrompt }) => {
                 id="input-data"
                 placeholder="Type your system requirements here..."
                 value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
+                onChange={handleTextarea}
               ></textarea>
             </div>
             <div className="btn-operation">
@@ -186,6 +197,7 @@ const UserInput = ({ initialPrompt }) => {
                 type="reset"
                 onClick={() => setInputText("")}
                 title="Reset"
+                className="reset"
               >
                 <IoReloadSharp className="icon" />
               </button>

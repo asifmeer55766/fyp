@@ -1,16 +1,16 @@
-@import "../../common";
 $card-bg: white;
 $card-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 $name-color: #333;
 $title-color: #555;
-$primary-blue: #007bff; // A common shade of blue for icons
+$primary-blue: #007bff;
 $font-stack: "Arial", sans-serif;
 .about-us {
   color: #2c3e50;
-  // background-color: #f9f9fb;
+
   padding: 2rem;
   padding-top: 140px;
   background: url("../../assets/img/banner-bg-img.jpg");
+  height: auto;
 
   .about-hero {
     display: flex;
@@ -96,7 +96,6 @@ $font-stack: "Arial", sans-serif;
         height: 180px; // Adjust as needed
         background-color: #f0f4f8; // Light background color from the left card
 
-        // Optional: Add the actual image styling here
         img {
           width: 100%;
           height: 100%;
@@ -115,6 +114,7 @@ $font-stack: "Arial", sans-serif;
         font-weight: 700;
         color: $name-color;
         margin: 10px 0 5px;
+        text-transform: capitalize;
       }
 
       // Title/Role style
@@ -123,6 +123,7 @@ $font-stack: "Arial", sans-serif;
         font-weight: 400;
         color: $title-color;
         margin: 5px 0 20px;
+        text-transform: capitalize;
       }
 
       // Social icons container
@@ -196,7 +197,29 @@ $font-stack: "Arial", sans-serif;
 
 @media screen and (max-width: 768px) {
   .about-us {
+    .about-hero {
+      margin: 0%;
+      padding: 0%;
+      h1 {
+        font-size: 3rem;
+        text-align: left;
+        padding: 0%;
+        margin: 0%;
+      }
+      p {
+        width: 100%;
+        text-align: left;
+      }
+      .right-img {
+        display: none;
+      }
+    }
     .about-content {
+      .team-section {
+        .profile-card {
+          max-width: 100%;
+        }
+      }
       .team-members {
         flex-direction: column;
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Header.scss";
-import logopng from "../../assets/img/logo.png";
+import logopng from "../../assets/logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { SlSettings } from "react-icons/sl";
 import Button1 from "../buttons/button1";
