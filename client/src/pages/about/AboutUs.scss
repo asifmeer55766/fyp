@@ -40,7 +40,7 @@ $font-stack: "Arial", sans-serif;
   .about-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0px;
 
     section {
       margin-bottom: 3rem;
@@ -114,6 +114,7 @@ $font-stack: "Arial", sans-serif;
         font-weight: 700;
         color: $name-color;
         margin: 10px 0 5px;
+        text-align: center;
         text-transform: capitalize;
       }
 
@@ -121,6 +122,7 @@ $font-stack: "Arial", sans-serif;
       &__title {
         font-size: 1rem;
         font-weight: 400;
+        text-align: center;
         color: $title-color;
         margin: 5px 0 20px;
         text-transform: capitalize;

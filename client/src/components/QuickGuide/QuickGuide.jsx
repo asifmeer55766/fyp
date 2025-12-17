@@ -8,6 +8,8 @@ import step3 from "../../assets/img/step3.png";
 import step4 from "../../assets/img/step4.png";
 import step5 from "../../assets/img/step5.png";
 import step6 from "../../assets/img/step6.png";
+import step7 from "../../assets/img/step7.png";
+import step8 from "../../assets/img/step8.png";
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 
 export default function QuickGuide({ onClose }) {
@@ -29,22 +31,32 @@ export default function QuickGuide({ onClose }) {
     {
       step: 3,
       img: step3,
-      des: "First write a detailed description of your project and then click on generate button",
+      des: "Enter your credentials here to create an account",
     },
     {
       step: 4,
       img: step4,
-      des: "Check functional and non-functional requirement , if not satisfy, click on retry else continue next",
+      des: "write a detail description and click on generate button",
     },
     {
       step: 5,
       img: step5,
-      des: "Wait unitil processing not complete, and then click on save project ",
+      des: "Review and check functional and non-functional reqirements and click on next  ",
     },
     {
       step: 6,
       img: step6,
-      des: "Review the project by scrolling below and click on downlaod button ",
+      des: "Just wait to finish processing , and click on save button  ",
+    },
+    {
+      step: 7,
+      img: step7,
+      des: "Review and check the documentation and click on download button",
+    },
+    {
+      step: 8,
+      img: step8,
+      des: "see your existing  projects and setting on this page ",
     },
   ];
 
@@ -90,10 +102,13 @@ export default function QuickGuide({ onClose }) {
                 style={{ display: index === currentStep ? "block" : "none" }}
               >
                 <h3>
-                  step {image.step} {image.des}
+                  Step {image.step} {image.des}
                 </h3>
-                {/* Note: The 'skip' functionality would typically navigate away or to the end */}
-                <span onClick={onClose}>Skip Tutorials</span>
+                {currentStep < totalSteps - 1 ? (
+                  <span onClick={onClose}>Skip Tutorials</span>
+                ) : (
+                  <span onClick={onClose}>Close Tutorials</span>
+                )}
                 <div className="img">
                   <img src={image.img} alt={`Guide step ${image.step} image`} />
                 </div>
@@ -109,10 +124,7 @@ export default function QuickGuide({ onClose }) {
                     onClick={() => goToStep(index)}
                     // Apply a style to the current dot to highlight it
                     style={{
-                      cursor: "pointer",
-                      margin: "0 2px",
-                      fontSize: "24px",
-                      color: index === currentStep ? "#2777fc" : "lightgray",
+                      color: index === currentStep ? "red" : "white",
                       lineHeight: "0",
                     }}
                   >

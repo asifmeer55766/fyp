@@ -66,13 +66,12 @@ const LoginForm = ({ toggleForm }) => {
       {loading ? (
         <LoaderVerify
           verify={"Authenticating your credentials, please wait..."}
-        /> // Show only the loader while waiting
+        />
       ) : (
         <div className="auth">
-          <div className="auth-container">
-            <div className="auth-img">
+          <div className="auth-container login-container">
+            <div className="auth-img login-img">
               <img src={authimg} alt="" />
-              {/* <video src={animation} autoPlay loop ></video> */}
             </div>
             <div className="auth-form">
               <h2>Welcome Back</h2>
@@ -90,10 +89,9 @@ const LoginForm = ({ toggleForm }) => {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
+                  className="password"
                 />
-                {/* <button className="submit-btn" type="submit">
-                  Login
-                </button> */}
+
                 <Btn
                   icon={<FiLogIn />}
                   text={"Login"}
@@ -102,6 +100,7 @@ const LoginForm = ({ toggleForm }) => {
                   type="submit"
                   className="submit-btn"
                 />
+
                 <p>
                   Do not have an account? <Link to="/register">Sign Up</Link>
                 </p>

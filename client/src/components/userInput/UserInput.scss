@@ -220,9 +220,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
   .target-category-container {
     .user-req-input-container {
       width: 98%;
@@ -277,7 +274,7 @@
       }
       .btn-operation {
         position: relative;
-        bottom: 30px;
+        bottom: 20px;
         right: 0px;
         button {
           font-size: 2rem;

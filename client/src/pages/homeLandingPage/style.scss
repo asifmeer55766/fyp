@@ -210,17 +210,26 @@
 }
 
 @media screen and (max-width: 768px) {
-  .logo-container {
-    flex-direction: column;
-
-    .logo-item {
-      width: 90%;
-      margin: 10px auto;
+  .container {
+    margin: 0px auto;
+    .main-content {
+      .icon-arc-container {
+        width: 90%;
+        margin: 0px auto;
+      }
     }
-  }
-  .icon-item {
-    p {
-      display: none;
+    .logo-container {
+      flex-direction: column;
+
+      .logo-item {
+        width: 90%;
+        margin: 10px auto;
+      }
+    }
+    .icon-item {
+      p {
+        display: none;
+      }
     }
   }
 }

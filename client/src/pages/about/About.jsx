@@ -86,7 +86,7 @@ const About = () => {
                     f
                   </a>
                   <a href="#" class="social-icon instagram">
-                    in
+                    t
                   </a>
                   <a href="#" class="social-icon linkedin">
                     in

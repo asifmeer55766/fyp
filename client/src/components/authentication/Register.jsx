@@ -101,6 +101,7 @@ const RegisterForm = ({ toggleForm }) => {
                 name="confirmPassword"
                 onChange={handleChange}
                 value={formData.confirmPassword}
+                className="password"
               />
 
               <Btn
