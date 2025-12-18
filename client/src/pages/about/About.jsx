@@ -1,11 +1,11 @@
 import React from "react";
 import "./AboutUs.scss";
-import asif from "../../assets/asif.png";
 import imagerobot from "../../assets/img/robot.png";
-import sadaat from "../../assets/sadaat.jpg";
-import farhan from "../../assets/farhan.jpg";
 import naila from "../../assets/profile.png";
-import yasir from "../../assets/yasir.jpg";
+import asif from "../../assets/images/asif.jpg";
+import sadaat from "../../assets/images/saadat.jpg";
+import farhan from "../../assets/images/farhan.jpg";
+import yasir from "../../assets/images/yasir.jpg";
 const About = () => {
   const team = [
     {
@@ -71,7 +71,7 @@ const About = () => {
             faster, smarter, and more efficiently.
           </p>
         </section>
-        <p className="meat-text">meat the taem</p>
+        <p className="meat-text">Meet the Team</p>
         <section class="team-section">
           {team.map((member, index) => (
             <div class="profile-card">
