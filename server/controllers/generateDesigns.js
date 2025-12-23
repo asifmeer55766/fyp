@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import connectDB from "../database/db.js";
 import hldResponse from "../models/hldResponse.js";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 
 export const generateDesign = async (req, res) => {
   await connectDB(); // Ensure DB is connected

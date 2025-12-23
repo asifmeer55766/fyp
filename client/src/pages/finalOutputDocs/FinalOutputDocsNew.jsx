@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, Suspense } from "react";
 import "./output.scss";
-import logo from "../../assets/logo system design.png";
+import logo from "../../assets/logo.png";
 import { useParams } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
 import jsPDF from "jspdf";
@@ -91,7 +91,6 @@ export default function FinalOutputDocs() {
     }
   };
 
-  // console.log("lld output ", data.lld);
   if (loader)
     return (
       <div>
@@ -135,12 +134,12 @@ export default function FinalOutputDocs() {
                 animation: "spin 1s linear infinite",
               }}
             ></span>
-            Generating PDF...
+            Downloading...
           </>
         ) : success ? (
-          "Downloaded Success ✔ "
+          "Downloaded"
         ) : (
-          "Download"
+          "Download PDF"
         )}
         <span>
           <FaDownload />
@@ -153,24 +152,29 @@ export default function FinalOutputDocs() {
             <div class="logo">
               <img src={logo} alt="page logo" />
             </div>
-            <div class="software-name">
-              <h3>Sys Design</h3>
-              <p>AI Powered Design Engine</p>
-            </div>
           </div>
           <div class="project-title">
+            <h3>System Design Document</h3>
             <h1>{data.proposal.projectName}</h1>
-            <p>The Complete System Design Documentation</p>
           </div>
 
           <div class="authors-detail">
-            <span className="title-text">Prepared By</span>
-            <span>AI Powered Sys Design</span>
-            <span>
-              {" "}
-              <span className="title-text">Date :</span>{" "}
-              {new Date().toLocaleDateString()}
-            </span>
+            <table>
+              <thead>
+                <th>Document ID</th>
+                <th>Verson Number </th>
+                <th>Issue Date</th>
+                <th>Author </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{id}</td>
+                  <td>1.0</td>
+                  <td>{new Date().toLocaleDateString()}</td>
+                  <td>AI Powered System Design </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
         <Suspense fallback="loading Project proposal">

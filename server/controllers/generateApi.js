@@ -3,7 +3,7 @@ const connectDB = require("../database/db");
 const ApiDesign = require("../models/apiModel").default;
 // Initialize with API key
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 
 exports.generateApi = async (req, res) => {
   try {

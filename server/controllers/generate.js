@@ -7,7 +7,8 @@ const Project = require("../models/Project");
 // Initialize with API key
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+// const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 
 // 🔹 Common prefix prompt
 const prefix = `First of all analyze the prompt entered by user if it is irrelvent or not describing and defining any software requirement or dicussing about software , website, web application, mobile application or any type of software ,

@@ -89,8 +89,18 @@ export default function Status() {
           <div className="progress">
             <Progress percentage={progressPercentage} />
           </div>
+
           <div className="action-progress">
-            {allTasksCompleted ? "" : <Spiner status={progressMessage} />}
+            {allTasksCompleted ? (
+              ""
+            ) : (
+              <>
+                <h2 style={{ margin: "10px auto" }}>
+                  Please do not leave or refresh this page
+                </h2>
+                <Spiner status={progressMessage} />
+              </>
+            )}
           </div>
           <div className="button-box">
             <button

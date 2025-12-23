@@ -92,78 +92,49 @@ h2 {
       margin-top: 20px;
     }
   }
-
+  //  css for project cover page section
   .cover-page {
     min-height: 100vh !important;
-    background-color: $backgroundPage;
+    // background-color: $backgroundPage;
+    background-color: rgb(231, 231, 231);
     padding: 120px 70px 0px 70px;
     font-family: Arial, Helvetica, sans-serif;
 
     // top-left corner design
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #bffdfd, #e7d1fb);
-      clip-path: polygon(0 0, 100% 0, 0 100%);
-      border-bottom-right-radius: 40px;
-    }
 
-    // bottom-right corner design
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #e7d1fb, #bffdfd);
-      clip-path: polygon(100% 100%, 0% 100%, 100% 0%);
-      border-top-left-radius: 40px;
-    }
     .page-logo {
       display: flex;
-      justify-content: left;
+      justify-content: center;
       align-items: center;
       gap: 20px;
+      width: 40%;
+      margin: 0px auto;
       .logo {
-        width: 120px;
-        height: 120px;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         background: transparent;
-        border: 2px solid #f4d061;
-        border-radius: 50%;
         position: relative;
+        border-bottom: 5px solid black;
+        padding-bottom: 30px;
         img {
           width: 100%;
         }
       }
-      .software-name {
-        h3 {
-          color: #343434;
-          font-size: 1.8rem;
-          line-height: 0;
-        }
-        p {
-          background: transparent;
-          font-weight: 500;
-          color: #343434;
-          font-style: italic;
-          line-height: 0%;
-        }
-      }
     }
     .project-title {
+      h3 {
+        text-align: center;
+        margin: 50px auto 0px auto;
+        color: rgb(16, 16, 75);
+      }
       h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         text-transform: uppercase;
         font-weight: 600;
         margin: 90px 0px 0px 0px;
+        text-align: center;
         // line-height: 0%;
       }
       p {
@@ -175,17 +146,7 @@ h2 {
       }
     }
     .authors-detail {
-      margin-top: 60px;
-      display: flex;
-      justify-content: left;
-      align-items: left;
-      font-weight: 600;
-      font-style: italic;
-      color: #343434;
-      flex-direction: column;
-      .title-text {
-        color: #b9010b;
-      }
+      margin: 40px auto;
     }
   }
 
@@ -207,7 +168,7 @@ h2 {
 
     p {
       background-color: white;
-      padding: 8px;
+      // padding: 8px;
       border-radius: 4px;
     }
     .api-div {
@@ -223,7 +184,7 @@ h2 {
 
     section {
       h2 {
-        margin: 10px 0px;
+        margin: 20px 0px;
         font-size: 1.5rem;
         span {
           color: #00456d;
