@@ -9,15 +9,12 @@ const APITable = ({ latestApiDesign }) => {
     return <div>Error: {error}</div>;
   }
 
-  // Check if a single latestApiDesign object exists
   if (!latestApiDesign) {
     return <div>No API design found.</div>;
   }
 
   return (
     <div className="table-container">
-      {/* Directly use the latestApiDesign object */}
-
       <table className="api-table">
         <thead>
           <tr>
@@ -28,7 +25,6 @@ const APITable = ({ latestApiDesign }) => {
           </tr>
         </thead>
         <tbody>
-          {/* Map over the apiTable array inside the single latestApiDesign object */}
           {latestApiDesign.apiTable.map((endpoint, index) => (
             <tr key={index}>
               <td className="endpoint">{endpoint.endpoint}</td>

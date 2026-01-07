@@ -1,4 +1,3 @@
-// components/renderers/RenderProjectProposal.jsx
 import React from "react";
 import "./ProjectProposal.scss";
 import { formatDescription } from "../../../utils/formatDescription";
@@ -7,7 +6,7 @@ const RenderProjectProposal = ({ proposal }) => {
   if (!proposal) {
     return <div className="empty-message">No project proposal found.</div>;
   }
-  // Only call the formatting function and render when `proposal` exists.
+
   const formattedDescription = formatDescription(proposal.description);
 
   return (
@@ -25,7 +24,6 @@ const RenderProjectProposal = ({ proposal }) => {
           />
         </section>
 
-        {/* Stakeholders and Use Cases Section */}
         <section className="proposal-section-split">
           <div className="stakeholders-container">
             <h2>Stakeholders</h2>

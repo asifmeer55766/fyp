@@ -1,8 +1,6 @@
-// GenerateLLD.jsx
 import { markTaskCompleted } from "../../redux/taskStatusSlice";
 import { toast } from "react-toastify";
 
-// Accept dispatch as an argument
 export const GenerateERD = async (dispatch) => {
   try {
     const token = localStorage.getItem("token");

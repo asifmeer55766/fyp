@@ -26,7 +26,6 @@ const RenderERD = ({ dbErdCode }) => {
     }
   }, [dbErdCode]);
 
-  // Auto-scale diagram after rendering
   useEffect(() => {
     if (!isLoading && svgContent) {
       const container = document.querySelector(".mermaid-diagram-container");

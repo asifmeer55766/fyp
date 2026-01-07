@@ -16,16 +16,14 @@ export default function Status() {
 
   const tasks = useSelector((state) => state.tasks);
 
-  // Calculate the total number of tasks
   const totalTasks = Object.keys(tasks).length;
-  // Count the number of completed tasks
+
   const completedTasks = Object.values(tasks).filter(
     (isCompleted) => isCompleted
   ).length;
-  // Calculate the completion percentage
+
   const progressPercentage = (completedTasks / totalTasks) * 100;
 
-  // Determine the dynamic message based on the current task being worked on
   let progressMessage = "Please wait, we're working on it...";
   if (!tasks.hld) {
     progressMessage = "Working on Heigh Level Design...";
@@ -43,7 +41,6 @@ export default function Status() {
     progressMessage = "All tasks completed! Your documentation is ready.";
   }
 
-  // A boolean variable to check if all tasks are complete
   const allTasksCompleted = progressPercentage === 100;
   return (
     <>

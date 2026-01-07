@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import SystemTreeLLD from "./SystemTreeLLD";
 import { useDispatch } from "react-redux";
 
-// Recursive function to transform the nested data
 function transformToTreeFormat(node) {
   if (!node) {
     return null;
@@ -21,7 +20,7 @@ function transformToTreeFormat(node) {
 export default function TreeViewerLLD({ treeData }) {
   if (!treeData) {
     console.log("treeData is not available, skipping transformation.");
-    return null; // or a loading message
+    return null;
   }
 
   const treeStructure = transformToTreeFormat(treeData);

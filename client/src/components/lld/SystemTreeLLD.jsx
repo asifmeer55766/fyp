@@ -3,11 +3,9 @@ import Tree from "react-d3-tree";
 import SoftwareImage from "../../assets/icons/green.png";
 import majormodule from "../../assets/icons/red.png";
 
-// Custom node element that uses an image instead of a circle
 const renderCustomNode = ({ nodeDatum, toggleNode }) => {
   return (
     <g>
-      {/* Conditionally render the image or SVG based on whether it's a leaf node */}
       {nodeDatum.children ? (
         <image
           href={SoftwareImage}
@@ -17,7 +15,7 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
           height="40"
           onClick={toggleNode}
           style={{
-            transform: "scaleX(-1)", // flip horizontally
+            transform: "scaleX(-1)",
             transformBox: "fill-box",
             transformOrigin: "center",
           }}
@@ -33,7 +31,6 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
         />
       )}
 
-      {/* Node label */}
       <text
         x="20"
         y="5"
@@ -54,7 +51,6 @@ export default function SystemTree({ data }) {
   const [treeData, setTreeData] = useState(data);
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
 
-  // This effect runs once to get the initial container's dimensions.
   useEffect(() => {
     if (treeContainer.current) {
       const { offsetWidth, offsetHeight } = treeContainer.current;
@@ -62,7 +58,6 @@ export default function SystemTree({ data }) {
     }
   }, []);
 
-  // Recursively expand all nodes to ensure the entire tree is visible initially.
   const expandAll = (node) => {
     if (node.children && node.children.length > 0) {
       node._collapsed = false; // Set the private collapsed state to false
@@ -70,7 +65,6 @@ export default function SystemTree({ data }) {
     }
   };
 
-  // This effect expands the tree whenever the data prop changes.
   useEffect(() => {
     if (data) {
       const clonedData = JSON.parse(JSON.stringify(data));
@@ -79,25 +73,21 @@ export default function SystemTree({ data }) {
     }
   }, [data]);
 
-  // Use a second useEffect with a slight delay to allow the tree to render
-  // and then calculate its size.
   useEffect(() => {
     if (treeData && treeContainer.current) {
-      // Small delay to ensure the SVG has been rendered by react-d3-tree
       const timer = setTimeout(() => {
         const treeSvg = treeContainer.current.querySelector("svg");
         if (treeSvg) {
           const bbox = treeSvg.getBBox();
-          // Add some padding to the calculated dimensions
-          const calculatedWidth = bbox.width + 100; // 100px padding
-          const calculatedHeight = bbox.height + 100; // 100px padding
+          const calculatedWidth = bbox.width + 100;
+          const calculatedHeight = bbox.height + 100;
           setSvgDimensions({
             width: calculatedWidth,
             height: calculatedHeight,
           });
         }
-      }, 50); // A small delay is often needed for the DOM to update
-      return () => clearTimeout(timer); // Cleanup timer
+      }, 50);
+      return () => clearTimeout(timer);
     }
   }, [treeData]);
 
@@ -107,12 +97,12 @@ export default function SystemTree({ data }) {
       className="tree-container"
       style={{
         width: "100%",
-        // Set height dynamically
+
         height: `${svgDimensions.height}px`,
         margin: "0 auto",
         padding: "15mm",
         boxSizing: "border-box",
-        overflow: "visible", // Change to "visible" to allow tree to expand
+        overflow: "visible",
         backgroundColor: "#fff",
       }}
     >
@@ -122,7 +112,7 @@ export default function SystemTree({ data }) {
           orientation="horizontal"
           translate={{ x: 50, y: svgDimensions.height / 2 || 500 }}
           pathFunc="diagonal"
-          collapsible={false} // Disable collapsible since we're expanding all
+          collapsible={false}
           nodeSize={{ x: 210, y: 50 }}
           renderCustomNodeElement={renderCustomNode}
           styles={{

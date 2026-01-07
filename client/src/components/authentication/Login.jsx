@@ -47,7 +47,6 @@ const LoginForm = ({ toggleForm }) => {
             email: "",
             password: "",
           });
-          // window.location.reload();
 
           window.location.href = "/";
         } else {

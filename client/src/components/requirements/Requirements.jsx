@@ -1,9 +1,5 @@
 import React from "react";
-// You don't need these since you're getting data from props
-// import { useState, useEffect } from "react";
-// import { normalizeRequirements } from "../../../utils/normalizeRequirements";
 
-// The component now directly uses the props passed to it
 export default function Requirements({
   functionalRequirements,
   nonFunctionalRequirements,
@@ -30,7 +26,6 @@ export default function Requirements({
               </tr>
             ) : (
               functionalRequirements.map((req, i) => {
-                // The logic for rendering the table rows remains the same
                 if (req.id && req.text) {
                   return (
                     <tr key={`fr-${i}`}>
@@ -63,7 +58,6 @@ export default function Requirements({
           </tbody>
         </table>
 
-        {/* Non-Functional Requirements Table */}
         <h3 style={{ marginTop: "30px" }}>Non-Functional Requirements</h3>
         <table className="requirements-table">
           <thead>
@@ -80,7 +74,6 @@ export default function Requirements({
               </tr>
             ) : (
               nonFunctionalRequirements.map((req, i) => {
-                // The logic for rendering the table rows remains the same
                 if (req.id && req.text) {
                   return (
                     <tr key={`nfr-${i}`}>

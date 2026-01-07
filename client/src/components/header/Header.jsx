@@ -15,7 +15,6 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState("");
 
-  // Check login state on mount
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedRole = localStorage.getItem("role");
@@ -58,7 +57,6 @@ const Header = () => {
         <div className="logo-div">
           <img src={logopng} alt="company logo" />
         </div>
-        {/* <span>Sys Design</span> */}
 
         <div className="menu-icon" onClick={toggleMenu}>
           {menuOpen ? (
@@ -97,7 +95,6 @@ const Header = () => {
                 <NavLink to="/user-dashboard">Dashboard</NavLink>
               )}
               <span className="auth-btn" onClick={handleLogout}>
-                {/* <Button1 name="Logout" /> */}
                 <Btn
                   icon={<FiLogOut />}
                   text={"Logout"}
@@ -110,7 +107,6 @@ const Header = () => {
           ) : (
             <>
               <span className="login auth-btn" onClick={NavigateLogin}>
-                {/* <Button1 name="Login" /> */}
                 <Btn
                   icon={<FiLogIn />}
                   text={"Login"}

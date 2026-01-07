@@ -14,12 +14,12 @@ import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
 
 export default function QuickGuide({ onClose }) {
   const [show, setShow] = useState(true);
-  // 2. Initialize state for the current step index (starts at 0)
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const images = [
     {
-      step: 1, // Added step number for clarity
+      step: 1,
       des: "Click on login button  ",
       img: step1,
     },
@@ -65,26 +65,20 @@ export default function QuickGuide({ onClose }) {
   };
   const totalSteps = images.length;
 
-  // 3. Function to handle moving to the next step
   const handleNext = () => {
-    // Only move next if not on the last step
     if (currentStep < totalSteps - 1) {
       setCurrentStep(currentStep + 1);
     }
   };
 
-  // 4. Function to handle moving to the previous step
   const handlePrevious = () => {
-    // Only move previous if not on the first step
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  // 5. Calculate dots array for navigation indicators
   const dots = [...Array(totalSteps).keys()];
 
-  // 6. Function to jump to a specific step
   const goToStep = (index) => {
     setCurrentStep(index);
   };
@@ -95,10 +89,9 @@ export default function QuickGuide({ onClose }) {
         <div className="guide-container">
           <section className="guid-sections">
             {images.map((image, index) => (
-              // 7. Conditional rendering: Only render the current step's component
               <div
                 className="pagination"
-                key={index} // Added key for list rendering
+                key={index}
                 style={{ display: index === currentStep ? "block" : "none" }}
               >
                 <h3>
@@ -117,12 +110,10 @@ export default function QuickGuide({ onClose }) {
 
             <div className="nex-back-btn">
               <div className="dots">
-                {/* Render clickable dots */}
                 {dots.map((index) => (
                   <p
                     key={index}
                     onClick={() => goToStep(index)}
-                    // Apply a style to the current dot to highlight it
                     style={{
                       color: index === currentStep ? "red" : "white",
                       lineHeight: "0",

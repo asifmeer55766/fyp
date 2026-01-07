@@ -1,18 +1,16 @@
-// GenerateLLD.jsx
 import { markTaskCompleted } from "../../redux/taskStatusSlice";
 import { toast } from "react-toastify";
 
-// Accept dispatch as an argument
 export const GenerateLLD = async (dispatch) => {
   try {
     const originalPrompt = localStorage.getItem("originalPrompt");
     const projectId = localStorage.getItem("projectId");
-    const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
+    const token = localStorage.getItem("token");
     const response = await fetch("http://localhost:5000/api/generate-lld", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // 🔹 Send token to backend
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         originalUserPrompt: originalPrompt,

@@ -29,13 +29,12 @@ const UserInput = ({ initialPrompt }) => {
     }
   }, [location]);
 
-  // it handles the input field changes
   const handleChange = (e) => {
     const token = localStorage.getItem("token");
     if (!token) {
       toast.error("Please login to your account first.");
       navigate("/login");
-      return; // Exit early to prevent further changes
+      return;
     }
   };
 
@@ -47,7 +46,7 @@ const UserInput = ({ initialPrompt }) => {
 
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
-  // the form logic here
+
   const handleForm = async (e) => {
     e.preventDefault();
     if (inputText.trim() === "") {
@@ -58,7 +57,7 @@ const UserInput = ({ initialPrompt }) => {
     // form logic
     setLoading(true);
     try {
-      const token = localStorage.getItem("token"); // 🔹 Get token from localStorage
+      const token = localStorage.getItem("token");
       let response;
       if (mode === "update" && projectId) {
         response = await fetch(
@@ -89,7 +88,7 @@ const UserInput = ({ initialPrompt }) => {
         toast.error(data.error || "Something went wrong.");
         return;
       }
-      // ✅ store projectId in localStorage
+
       if (data.projectId) {
         localStorage.setItem("projectId", data.projectId);
       }
@@ -109,7 +108,7 @@ const UserInput = ({ initialPrompt }) => {
           console.log("Raw response:", cleanedText);
         }
       }
-      // ✅ Navigate only on success
+
       localStorage.setItem("originalPrompt", inputText);
       navigate("/display-functional-req");
     } catch (err) {
@@ -201,9 +200,7 @@ const UserInput = ({ initialPrompt }) => {
               >
                 <IoReloadSharp className="icon" />
               </button>
-              {/* <button title="Prompt example" onClick={handleOpen}>
-                <IoMail className="icon" />
-              </button> */}
+
               <button type="submit" title="Generate">
                 <IoPaperPlane className="icon" />
               </button>

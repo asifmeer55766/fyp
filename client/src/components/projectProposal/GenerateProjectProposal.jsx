@@ -1,12 +1,9 @@
-// components/generators/GenerateProjectProposal.jsx
-
 import { markTaskCompleted } from "../../redux/taskStatusSlice";
 import { toast } from "react-toastify";
 
 /**
- * Generates a project proposal by calling the backend API.
- * This function handles the POST request to trigger the generation process.
- * @param {Function} dispatch The Redux dispatch function.
+
+ * @param {Function} dispatch 
  */
 export const GenerateProjectProposal = async (dispatch) => {
   try {
